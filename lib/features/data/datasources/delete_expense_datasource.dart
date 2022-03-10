@@ -1,5 +1,5 @@
-import 'package:organize_more/core/services/database/tables/expense_database.dart';
 import '../../../core/errors/datasource_exception.dart';
+import '../../../core/services/packages/contracts/sqlite_expense.dart';
 
 abstract class DeleteExpenseDatasource {
   Future<int> delete({
@@ -8,10 +8,10 @@ abstract class DeleteExpenseDatasource {
 }
 
 class DeleteExpenseDatasourceImplementetion implements DeleteExpenseDatasource {
-  final ExpenseDatabase _database;
+  final SqliteExpense _database;
 
   DeleteExpenseDatasourceImplementetion({
-    required ExpenseDatabase database,
+    required SqliteExpense database,
   }) : _database = database;
 
   @override

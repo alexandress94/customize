@@ -1,9 +1,11 @@
-import 'package:organize_more/core/services/database/connection_database.dart';
-import 'package:organize_more/core/services/database/tables/expense_database.dart';
 import 'package:get/get.dart';
 import 'package:organize_more/core/services/log/log.dart';
 import 'package:organize_more/core/services/log/log_implementation.dart';
 import 'package:organize_more/core/values/concatenate/concatenate.dart';
+
+import '../packages/contracts/sqlite_expense.dart';
+import '../packages/gateways/sqlite_expense_implementation.dart';
+import '../packages/gateways/sqlite_connection_implementation.dart';
 
 class InitialBindings implements Bindings {
   @override
@@ -13,11 +15,11 @@ class InitialBindings implements Bindings {
       permanent: true,
     );
 
-    Get.lazyPut<ConnectionDatabase>(
-      () => ConnectionDatabase.instance,
+    Get.lazyPut<SqliteConnectionImplementation>(
+      () => SqliteConnectionImplementation.instance,
     );
 
-    Get.put<ExpenseDatabase>(ExpenseDatabase(), permanent: true);
+    Get.put<SqliteExpense>(SqliteExpenseImplementation(), permanent: true);
 
     Get.put<Concatenate>(Concatenate(), permanent: true);
   }

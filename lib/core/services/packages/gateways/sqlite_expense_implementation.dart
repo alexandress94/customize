@@ -1,10 +1,11 @@
 import 'package:organize_more/core/services/log/log.dart';
 import 'package:organize_more/core/services/log/log_implementation.dart';
-import 'package:organize_more/core/services/response/database_response.dart';
+import 'package:organize_more/core/services/packages/gateways/sqlite_connection_implementation.dart';
 import 'package:sqflite/sqflite.dart';
-import '../connection_database.dart';
+import '../../response/sqlite_response.dart';
+import '../contracts/sqlite_expense.dart';
 
-class ExpenseDatabase implements Response {
+class SqliteExpenseImplementation implements SqliteExpense {
   final Log _log = LogImplemetation();
 
   void _logs({
@@ -52,8 +53,8 @@ class ExpenseDatabase implements Response {
       ");";
 
   @override
-  Future<DatabaseResponse> delete({required int id}) async {
-    Database database = await ConnectionDatabase.instance.database;
+  Future<SqliteResponse> delete({required int id}) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
     final int result = await database.delete(
       _table,
       where: '$_columnIdTransaction = ?',
@@ -65,22 +66,12 @@ class ExpenseDatabase implements Response {
       response: 'TRANSAÇÃO DELETADO ID: $result',
       statusCode: true,
     );
-    return DatabaseResponse(data: result, response: true);
-  }
-
-  Future<DatabaseResponse> deleteAll({required int id}) {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
-
-  Future<DatabaseResponse> deleteBetween({required int id}) {
-    // TODO: implement delete
-    throw UnimplementedError();
+    return SqliteResponse(data: result, response: true);
   }
 
   @override
-  Future<DatabaseResponse> insert({required Map<String, dynamic> model}) async {
-    Database database = await ConnectionDatabase.instance.database;
+  Future<SqliteResponse> insert({required Map<String, dynamic> model}) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
     final int result = await database.insert(_table, model);
     _logs(
       method: 'INSERT',
@@ -88,14 +79,14 @@ class ExpenseDatabase implements Response {
       response: 'TRANSAÇÃO INSERIDO ID: $result',
       statusCode: true,
     );
-    return DatabaseResponse(data: result, response: true);
+    return SqliteResponse(data: result, response: true);
   }
 
   @override
-  Future<DatabaseResponse> update({
+  Future<SqliteResponse> update({
     required Map<String, dynamic> model,
   }) async {
-    Database database = await ConnectionDatabase.instance.database;
+    Database database = await SqliteConnectionImplementation.instance.database;
 
     final int result = await database.update(
       _table,
@@ -110,12 +101,12 @@ class ExpenseDatabase implements Response {
       response: 'TRANSAÇÃO ATUALIZADO ID: $result',
       statusCode: true,
     );
-    return DatabaseResponse(data: result, response: true);
+    return SqliteResponse(data: result, response: true);
   }
 
   @override
-  Future<DatabaseResponse> find({Map<String, dynamic>? paramter}) async {
-    Database database = await ConnectionDatabase.instance.database;
+  Future<SqliteResponse> find({Map<String, dynamic>? paramter}) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
 
     String sql = '''
     SELECT * FROM $_table  
@@ -133,75 +124,92 @@ class ExpenseDatabase implements Response {
       response: result,
       statusCode: true,
     );
-    return DatabaseResponse(data: result, response: true);
+    return SqliteResponse(data: result, response: true);
   }
 
-  Future<DatabaseResponse> sumOfTransactions(
-      {Map<String, dynamic>? paramter}) async {
-    Database database = await ConnectionDatabase.instance.database;
+  @override
+  Future<SqliteResponse> sumOfTransactions({
+    Map<String, dynamic>? parameter,
+  }) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
 
     String sql = '''
     SELECT SUM($_columnVlTransaction) as $_columnVlTransaction FROM $_table  
       WHERE $_columnDtDue BETWEEN 
-      DATE('${paramter?['initial-date']}') 
-      AND DATE('${paramter?['end-date']}') 
+      DATE('${parameter?['initial-date']}') 
+      AND DATE('${parameter?['end-date']}') 
     ''';
 
     final List<Map<String, dynamic>> result = await database.rawQuery(sql);
 
     _logs(
       method: 'SELECT',
-      parameters: paramter,
+      parameters: parameter,
       body: sql,
       response: result,
       statusCode: true,
     );
 
-    return DatabaseResponse(data: result, response: true);
+    return SqliteResponse(data: result, response: true);
   }
 
-  Future<DatabaseResponse> paymentSum({Map<String, dynamic>? paramter}) async {
-    Database database = await ConnectionDatabase.instance.database;
+  @override
+  Future<SqliteResponse> paymentSum({Map<String, dynamic>? parameter}) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
 
     String sql = '''
     SELECT SUM($_columnVlTransaction) as $_columnVlTransaction FROM $_table  
       WHERE $_columnDtDue BETWEEN 
-      DATE('${paramter?['initial-date']}') 
-      AND DATE('${paramter?['end-date']}')
+      DATE('${parameter?['initial-date']}') 
+      AND DATE('${parameter?['end-date']}')
       AND $_columnYnPayment = 1
     ''';
 
     final List<Map<String, dynamic>> result = await database.rawQuery(sql);
     _logs(
       method: 'SELECT',
-      parameters: paramter,
+      parameters: parameter,
       body: sql,
       response: result,
       statusCode: true,
     );
-    return DatabaseResponse(data: result, response: true);
+    return SqliteResponse(data: result, response: true);
   }
 
-  Future<DatabaseResponse> sumOfExpenses(
-      {Map<String, dynamic>? paramter}) async {
-    Database database = await ConnectionDatabase.instance.database;
+  @override
+  Future<SqliteResponse> sumOfExpenses({
+    Map<String, dynamic>? parameter,
+  }) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
 
     String sql = '''
     SELECT SUM($_columnVlTransaction) as $_columnVlTransaction FROM $_table  
       WHERE $_columnDtDue BETWEEN 
-      DATE('${paramter?['initial-date']}') 
-      AND DATE('${paramter?['end-date']}') 
+      DATE('${parameter?['initial-date']}') 
+      AND DATE('${parameter?['end-date']}') 
       AND $_columnYnPayment = 0
     ''';
 
     final List<Map<String, dynamic>> result = await database.rawQuery(sql);
     _logs(
       method: 'SELECT',
-      parameters: paramter,
+      parameters: parameter,
       body: sql,
       response: result,
       statusCode: true,
     );
-    return DatabaseResponse(data: result, response: true);
+    return SqliteResponse(data: result, response: true);
+  }
+
+  @override
+  Future<SqliteResponse> deleteAll({Map<String, dynamic>? parameter}) {
+    // TODO: implement deleteAll
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<SqliteResponse> deleteBetween({Map<String, dynamic>? parameter}) {
+    // TODO: implement deleteBetween
+    throw UnimplementedError();
   }
 }

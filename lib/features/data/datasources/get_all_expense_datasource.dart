@@ -1,7 +1,7 @@
-import 'package:organize_more/core/services/database/tables/expense_database.dart';
 import 'package:organize_more/core/values/concatenate/concatenate.dart';
 import 'package:organize_more/features/data/models/expense_model.dart';
 import '../../../core/errors/datasource_exception.dart';
+import '../../../core/services/packages/contracts/sqlite_expense.dart';
 
 abstract class GetAllExpenseDatasource {
   Future<List<ExpenseModel>> find({
@@ -10,11 +10,11 @@ abstract class GetAllExpenseDatasource {
 }
 
 class GetAllExpenseDatasourceImplementation implements GetAllExpenseDatasource {
-  final ExpenseDatabase _expenseDatabase;
+  final SqliteExpense _expenseDatabase;
   final Concatenate concatenate;
 
   GetAllExpenseDatasourceImplementation({
-    required ExpenseDatabase expenseDatabase,
+    required SqliteExpense expenseDatabase,
     required this.concatenate,
   }) : _expenseDatabase = expenseDatabase;
 

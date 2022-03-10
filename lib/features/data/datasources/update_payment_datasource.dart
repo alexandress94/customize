@@ -1,9 +1,6 @@
-import 'package:organize_more/core/services/database/tables/expense_database.dart';
 import 'package:organize_more/core/values/format/format_date.dart';
-import 'package:organize_more/features/data/models/amount_model.dart';
-import 'package:organize_more/core/errors/repository_exception.dart';
-
 import '../../../core/errors/datasource_exception.dart';
+import '../../../core/services/packages/contracts/sqlite_expense.dart';
 
 abstract class UpdatePaymentDatasource {
   Future<int> updateExpense({
@@ -13,10 +10,10 @@ abstract class UpdatePaymentDatasource {
 }
 
 class UpdatePaymentDatasourceImplementetion implements UpdatePaymentDatasource {
-  final ExpenseDatabase _database;
+  final SqliteExpense _database;
 
   UpdatePaymentDatasourceImplementetion({
-    required ExpenseDatabase database,
+    required SqliteExpense database,
   }) : _database = database;
 
   @override

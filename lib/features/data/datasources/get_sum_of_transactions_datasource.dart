@@ -1,9 +1,8 @@
-import 'package:organize_more/core/errors/repository_exception.dart';
-import 'package:organize_more/core/services/database/tables/expense_database.dart';
 import 'package:organize_more/core/values/concatenate/concatenate.dart';
 import 'package:organize_more/features/data/models/amount_model.dart';
 
 import '../../../core/errors/datasource_exception.dart';
+import '../../../core/services/packages/contracts/sqlite_expense.dart';
 
 abstract class GetSumOfTransactionsDatasource {
   Future<List<AmountModel>> getSum({required DateTime date});
@@ -11,10 +10,10 @@ abstract class GetSumOfTransactionsDatasource {
 
 class GetSumOfTrasactionsDatasourceImplementetion
     implements GetSumOfTransactionsDatasource {
-  final ExpenseDatabase _database;
+  final SqliteExpense _database;
   final Concatenate concatenate;
   GetSumOfTrasactionsDatasourceImplementetion({
-    required ExpenseDatabase database,
+    required SqliteExpense database,
     required this.concatenate,
   }) : _database = database;
 
@@ -22,7 +21,7 @@ class GetSumOfTrasactionsDatasourceImplementetion
   Future<List<AmountModel>> getSum({required DateTime date}) async {
     concatenate.selectedDate = date;
     final result = await _database.sumOfTransactions(
-      paramter: {
+      parameter: {
         "initial-date": concatenate.firstDayOfMonthAndYear,
         "end-date": concatenate.lastDayOfMonthAndYear,
       },
