@@ -47,7 +47,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
             ],
           ),
           const Divider(height: 1, thickness: 1),
-          const SizedBox(height: appDefaultPadding),
+          const SizedBox(height: 6),
           expense.isPortion == 1
               ? RichText(
                   text: TextSpan(
