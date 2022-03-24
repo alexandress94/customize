@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:organize_more/core/services/log/log.dart';
 import 'package:organize_more/core/services/log/log_implementation.dart';
+import 'package:organize_more/core/services/packages/contracts/sqlite_connection.dart';
 import 'package:organize_more/core/values/concatenate/concatenate.dart';
 
 import '../packages/contracts/sqlite_expense.dart';
@@ -15,7 +16,7 @@ class InitialBindings implements Bindings {
       permanent: true,
     );
 
-    Get.lazyPut<SqliteConnectionImplementation>(
+    Get.lazyPut<SqliteConnection>(
       () => SqliteConnectionImplementation.instance,
     );
 
