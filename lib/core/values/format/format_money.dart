@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:organize_more/core/values/converts/convert_text.dart';
 
-class FormatMoney {
+abstract class FormatMoney {
   static double replaceMask({required String value}) {
     return ConvertText.toDouble(
       value: value.replaceAll('.', '').replaceAll(',', '.'),

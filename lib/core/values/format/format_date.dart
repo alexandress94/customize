@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-class FormatDate {
+abstract class FormatDate {
   static String replaceMaskDate({required DateTime date}) {
     return DateFormat("dd/MM/yyy").format(date);
   }

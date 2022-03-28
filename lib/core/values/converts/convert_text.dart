@@ -1,4 +1,4 @@
-class ConvertText {
+abstract class ConvertText {
   static double toDouble({required String value}) {
     return double.parse(value);
   }
