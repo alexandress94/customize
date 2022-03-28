@@ -57,4 +57,22 @@ class DeleteExpenseController extends GetxController {
       message: 'Deletado com sucesso.',
     );
   }
+
+  Future<void> deleteBetween(int id) async {
+    final result = await _usecase.call(ParameterDeleteExpense(id: id));
+
+    if (result.isLeft) {
+      _log.error(result.left);
+      showSnackBar(
+        resopnse: StatusNotification.ERROR,
+        message: result.left.toString(),
+      );
+      return;
+    }
+
+    showSnackBar(
+      resopnse: StatusNotification.SUCCESS,
+      message: 'Deletado com sucesso.',
+    );
+  }
 }
