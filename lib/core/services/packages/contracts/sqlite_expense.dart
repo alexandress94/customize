@@ -11,7 +11,7 @@ abstract class SqliteExpense {
 
   Future<SqliteResponse> deleteBetween({Map<String, dynamic>? parameter});
 
-  Future<SqliteResponse> deleteAll({Map<String, dynamic>? parameter});
+  Future<SqliteResponse> deleteAll({required String uuId});
 
   Future<SqliteResponse> sumOfTransactions({Map<String, dynamic>? parameter});
 

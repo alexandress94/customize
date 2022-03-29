@@ -204,9 +204,22 @@ class SqliteExpenseImplementation implements SqliteExpense {
   }
 
   @override
-  Future<SqliteResponse> deleteAll({Map<String, dynamic>? parameter}) {
-    // TODO: implement deleteAll
-    throw UnimplementedError();
+  Future<SqliteResponse> deleteAll({required String uuId}) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
+
+    String sql = '''
+      DELETE FROM $_table WHERE $_columnUuIdTransaction = ?
+      ''';
+
+    final int result = await database.rawDelete(sql, [uuId]);
+
+    _logs(
+      method: 'DELETE ALL',
+      parameters: uuId,
+      response: 'TRANSAÇÃO DELETADO ID: $result',
+      statusCode: true,
+    );
+    return SqliteResponse(data: result, response: true);
   }
 
   @override
@@ -215,18 +228,16 @@ class SqliteExpenseImplementation implements SqliteExpense {
   }) async {
     Database database = await SqliteConnectionImplementation.instance.database;
     String id = parameter!['id'].toString();
-    String description = parameter['ds_transaction'];
-    String value = parameter['vl_transaction'].toString();
+    String uuId = parameter['uuId'];
 
     String sql = '''
       DELETE FROM $_table WHERE $_columnIdTransaction >= ?
-      AND $_columnDsTransaction = ?
-      AND $_columnVlTransaction = ?
+      AND $_columnUuIdTransaction = ?
       ''';
 
     final int result = await database.rawDelete(
       sql,
-      [id, description, value],
+      [id, uuId],
     );
 
     _logs(
