@@ -14,11 +14,6 @@ import 'package:organize_more/features/data/datasources/get_all_expense_datasour
 import 'package:organize_more/features/domain/usecases/get_all_expense_usecase.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/datasources/update_payment_datasource.dart';
-import '../../../../data/repositories/update_payment_repository_implementation.dart';
-import '../../../../domain/usecases/update_payment_usecase.dart';
-import '../controllers/update_payment_controller.dart';
-
 class GetAllExpenseBinding implements Bindings {
   @override
   void dependencies() {

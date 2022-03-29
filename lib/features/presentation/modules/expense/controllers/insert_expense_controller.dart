@@ -1,3 +1,4 @@
+import 'package:organize_more/core/keys/guid_gen.dart';
 import 'package:organize_more/features/domain/usecases/insert_expense_usecase.dart';
 import 'package:organize_more/features/presentation/utils/show_snackbar.dart';
 import 'package:organize_more/features/presentation/routes/routes.dart';
@@ -60,6 +61,8 @@ class InsertExpenseController extends GetxController {
   }
 
   Future<void> insertExpense() async {
+    print("key: " + GUIDGen.generate());
+    print("money: " + moneyTextEditingController.value.text);
     isLoading.value = true;
     if (isValidationForm) {
       int portion = ConvertText.toInteger(
