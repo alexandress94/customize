@@ -5,6 +5,7 @@ import 'package:organize_more/features/domain/usecases/delete_expense_usecase.da
 import 'package:organize_more/features/presentation/utils/show_snackbar.dart';
 
 import '../../../../../core/services/log/log.dart';
+import '../../../../domain/usecases/delete_all_expense_usecase.dart';
 import '../../../../domain/usecases/delete_between_expense_usecase.dart';
 
 enum Delete {
@@ -16,14 +17,17 @@ enum Delete {
 class DeleteExpenseController extends GetxController {
   final DeleteExpenseUsecase _deleteUsecase;
   final DeleteBetweenExpenseUsecase _deleteBetweenUsecase;
+  final DeleteAllExpenseUsecase _deleteAllUsecase;
   final Log _log;
 
   DeleteExpenseController({
     required DeleteExpenseUsecase deleteUsecase,
     required DeleteBetweenExpenseUsecase deleteBetweenUsecase,
+    required DeleteAllExpenseUsecase deleteAllUsecase,
     required Log log,
   })  : _deleteUsecase = deleteUsecase,
         _deleteBetweenUsecase = deleteBetweenUsecase,
+        _deleteAllUsecase = deleteAllUsecase,
         _log = log;
 
   Rx<Delete> remove = Delete.delete_one.obs;
@@ -66,6 +70,26 @@ class DeleteExpenseController extends GetxController {
   Future<void> deleteBetween(ExpenseDto model) async {
     final result = await _deleteBetweenUsecase.call(
       ParameterDeleteBetweenExpense(model: model.toMap()),
+    );
+
+    if (result.isLeft) {
+      _log.error(result.left);
+      showSnackBar(
+        resopnse: StatusNotification.ERROR,
+        message: result.left.toString(),
+      );
+      return;
+    }
+
+    showSnackBar(
+      resopnse: StatusNotification.SUCCESS,
+      message: 'Deletado com sucesso.',
+    );
+  }
+
+  Future<void> deleteAll(String uuId) async {
+    final result = await _deleteAllUsecase.call(
+      ParameterDeleteAllExpense(uuId: uuId),
     );
 
     if (result.isLeft) {
