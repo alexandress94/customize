@@ -4,6 +4,7 @@ import 'package:organize_more/features/domain/entities/expense_entity.dart';
 import 'package:organize_more/features/presentation/modules/transaction/controllers/delete_expense_controller.dart';
 import 'package:organize_more/features/presentation/modules/transaction/controllers/get_all_expense_controller.dart';
 
+import '../../../../../core/models/expense_dto.dart';
 import '../../../theme/app_color.dart';
 import '../../../theme/app_constant.dart';
 
@@ -87,8 +88,9 @@ class ModalButtomSheetDeleteWidget extends GetView<GetAllExpenseController> {
                         ),
                       ),
                       onPressed: () {
-                        controller.deleteExpenseController
-                            .deleteExpense(expense);
+                        controller.deleteExpenseController.deleteExpense(
+                          ExpenseDto.fromEntity(entity: expense),
+                        );
                         // controller.deleteExpenseController.delete(expense.id!);
                         controller.find();
                         // Fecha o alert dialog
