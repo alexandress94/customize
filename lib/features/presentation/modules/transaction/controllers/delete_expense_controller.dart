@@ -43,7 +43,7 @@ class DeleteExpenseController extends GetxController {
         remove.value = Delete.delete_one;
         break;
       case Delete.delete_all:
-        print('Delete all');
+        deleteAll(expense.uuId!);
         remove.value = Delete.delete_one;
         break;
     }
