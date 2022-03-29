@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:organize_more/features/presentation/modules/transaction/controllers/delete_expense_controller.dart';
 import 'package:organize_more/features/presentation/modules/transaction/controllers/get_all_expense_controller.dart';
 import 'package:organize_more/features/presentation/modules/transaction/widgets/modal_buttom_sheet_delete_widget.dart';
-import 'package:organize_more/features/presentation/routes/routes.dart';
 
 import '../../../../../core/values/format/format_date.dart';
 import '../../../../../core/values/format/format_money.dart';
@@ -23,6 +22,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
     return Padding(
       padding: const EdgeInsets.all(appDefaultPadding),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -145,6 +145,8 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
     required ExpenseEntity expense,
   }) {
     showModalBottomSheet(
+      isScrollControlled: true,
+      isDismissible: false,
       backgroundColor: Get.theme.scaffoldBackgroundColor,
       context: context,
       shape: const RoundedRectangleBorder(

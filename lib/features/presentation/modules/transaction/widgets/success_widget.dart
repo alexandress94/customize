@@ -117,6 +117,8 @@ class SuccessWidget extends GetView<GetAllExpenseController> {
     required ExpenseEntity expense,
   }) {
     showModalBottomSheet(
+      isScrollControlled: true,
+      isDismissible: false,
       backgroundColor: Get.theme.scaffoldBackgroundColor,
       context: context,
       shape: const RoundedRectangleBorder(
