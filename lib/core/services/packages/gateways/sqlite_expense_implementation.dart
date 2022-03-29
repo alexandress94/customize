@@ -208,8 +208,31 @@ class SqliteExpenseImplementation implements SqliteExpense {
   }
 
   @override
-  Future<SqliteResponse> deleteBetween({Map<String, dynamic>? parameter}) {
-    // TODO: implement deleteBetween
-    throw UnimplementedError();
+  Future<SqliteResponse> deleteBetween({
+    Map<String, dynamic>? parameter,
+  }) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
+    String id = parameter!['id'].toString();
+    String description = parameter['ds_transaction'];
+    String value = parameter['vl_transaction'].toString();
+
+    String sql = '''
+      DELETE FROM $_table WHERE $_columnIdTransaction >= ?
+      AND $_columnDsTransaction = ?
+      AND $_columnVlTransaction = ?
+      ''';
+
+    final int result = await database.rawDelete(
+      sql,
+      [id, description, value],
+    );
+
+    _logs(
+      method: 'DELETE BETWEEN',
+      parameters: parameter,
+      response: 'TRANSAÇÃO DELETADO ID: $result',
+      statusCode: true,
+    );
+    return SqliteResponse(data: result, response: true);
   }
 }
