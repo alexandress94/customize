@@ -61,8 +61,6 @@ class InsertExpenseController extends GetxController {
   }
 
   Future<void> insertExpense() async {
-    print("key: " + GUIDGen.generate());
-    print("money: " + moneyTextEditingController.value.text);
     isLoading.value = true;
     if (isValidationForm) {
       int portion = ConvertText.toInteger(
@@ -73,8 +71,12 @@ class InsertExpenseController extends GetxController {
         value: moneyTextEditingController.value.text,
       );
 
+      final String? uuId =
+          installmentStatus.index == 1 ? GUIDGen.generate() : null;
+
       for (int count = 0; count < portion; count++) {
         final ExpenseModel _expense = ExpenseModel(
+          uuId: uuId,
           description: descriptionTextEditingController.value.text,
           valueTransaction: money,
           installmentNumber: portion,

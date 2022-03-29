@@ -3,6 +3,7 @@ import 'package:organize_more/features/domain/entities/expense_entity.dart';
 
 class ExpenseDto {
   final int? id;
+  final String? uuId;
   final String description;
   final double valueTransaction;
   final int installmentNumber;
@@ -15,6 +16,7 @@ class ExpenseDto {
 
   ExpenseDto({
     this.id,
+    this.uuId,
     required this.description,
     required this.valueTransaction,
     required this.installmentNumber,
@@ -29,6 +31,7 @@ class ExpenseDto {
   factory ExpenseDto.fromEntity({required ExpenseEntity entity}) {
     return ExpenseDto(
       id: entity.id,
+      uuId: entity.uuId,
       description: entity.description,
       valueTransaction: entity.valueTransaction,
       installmentNumber: entity.installmentNumber,
@@ -44,6 +47,7 @@ class ExpenseDto {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'uuId': uuId,
       'ds_transaction': description,
       'vl_transaction': valueTransaction,
       'nr_installment': installmentNumber,
@@ -64,6 +68,6 @@ class ExpenseDto {
 
   @override
   String toString() {
-    return 'ExpenseDto{id: $id, description: $description, valueTransaction: $valueTransaction, installmentNumber: $installmentNumber, isPayment: $isPayment, isPortion: $isPortion, datePayment: $datePayment, transactionDate: $transactionDate, dueDate: $dueDate}';
+    return 'ExpenseDto{id: $id, uuId: $uuId, description: $description, valueTransaction: $valueTransaction, installmentNumber: $installmentNumber, isPayment: $isPayment, isPortion: $isPortion, datePayment: $datePayment, transactionDate: $transactionDate, dueDate: $dueDate}';
   }
 }

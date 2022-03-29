@@ -29,6 +29,7 @@ class SqliteExpenseImplementation implements SqliteExpense {
 
   // Nome da coluna da tabela
   static const String _columnIdTransaction = 'id';
+  static const String _columnUuIdTransaction = 'uuId';
   static const String _columnDsTransaction = 'ds_transaction';
   static const String _columnVlTransaction = 'vl_transaction';
   static const String _columnNrInstallment = 'nr_installment';
@@ -41,6 +42,7 @@ class SqliteExpenseImplementation implements SqliteExpense {
 
   static const String createTableExpense = "CREATE TABLE IF NOT EXISTS $_table("
       "$_columnIdTransaction INTEGER PRIMARY KEY AUTOINCREMENT,"
+      "$_columnUuIdTransaction TEXT,"
       "$_columnDsTransaction TEXT NOT NULL,"
       "$_columnVlTransaction REAL NOT NULL,"
       "$_columnNrInstallment INTEGER NOT NULL,"

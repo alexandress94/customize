@@ -5,6 +5,7 @@ import 'package:organize_more/features/domain/entities/expense_entity.dart';
 class ExpenseModel extends ExpenseEntity {
   ExpenseModel({
     int? id,
+    String? uuId,
     required String description,
     required double valueTransaction,
     required int installmentNumber,
@@ -16,6 +17,7 @@ class ExpenseModel extends ExpenseEntity {
     required DateTime dueDate,
   }) : super(
           id: id,
+          uuId: uuId,
           description: description,
           valueTransaction: valueTransaction,
           installmentNumber: installmentNumber,
@@ -30,6 +32,7 @@ class ExpenseModel extends ExpenseEntity {
   factory ExpenseModel.fromMap(Map<String, dynamic> map) {
     return ExpenseModel(
       id: map['id'],
+      uuId: map['uuId'] ?? '',
       description: map['ds_transaction'],
       valueTransaction: map['vl_transaction'],
       installmentNumber: map['nr_installment'],
@@ -47,6 +50,7 @@ class ExpenseModel extends ExpenseEntity {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'uuId': uuId,
       'ds_transaction': description,
       'vl_transaction': valueTransaction,
       'nr_installment': installmentNumber,
@@ -67,6 +71,6 @@ class ExpenseModel extends ExpenseEntity {
 
   @override
   String toString() {
-    return 'ExpenseModel{id: $id, description: $description, valueTransaction: $valueTransaction, installmentNumber: $installmentNumber, isPayment: $isPayment, isPortion: $isPortion, datePayment: $datePayment, transactionDate: $transactionDate, dueDate: $dueDate}';
+    return 'ExpenseModel{id: $id, uuId: $uuId, description: $description, valueTransaction: $valueTransaction, installmentNumber: $installmentNumber, isPayment: $isPayment, isPortion: $isPortion, datePayment: $datePayment, transactionDate: $transactionDate, dueDate: $dueDate}';
   }
 }
