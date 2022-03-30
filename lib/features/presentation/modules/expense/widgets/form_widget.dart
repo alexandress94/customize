@@ -86,16 +86,18 @@ class FormWidget extends GetView<InsertExpenseController> {
             const StatusWidget(),
             const SizedBox(height: appDefaultPadding),
             Obx(
-              () => SizedBox(
-                width: Get.width * 0.7,
-                height: 40,
-                child: controller.isLoading.value
-                    ? const GlobalLoadingAnimationButtonWidget()
-                    : ElevatedButton.icon(
-                        icon: const Icon(Icons.check),
-                        onPressed: controller.insertExpense,
-                        label: const Text('Cadastrar'),
-                      ),
+              () => Visibility(
+                replacement: const SizedBox.shrink(),
+                visible: controller.isLoading.isFalse,
+                child: SizedBox(
+                  width: Get.width * 0.7,
+                  height: 40,
+                  child: ElevatedButton.icon(
+                    icon: const Icon(Icons.check),
+                    onPressed: controller.insertExpense,
+                    label: const Text('Cadastrar'),
+                  ),
+                ),
               ),
             ),
             TextButton.icon(
