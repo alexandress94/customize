@@ -3,6 +3,8 @@ import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../theme/app_color.dart';
+
 mixin MessageMixin on GetxController {
   void messageListener(Rxn<MessageModel> message) {
     ever<MessageModel?>(message, (model) {
@@ -24,8 +26,14 @@ mixin MessageMixin on GetxController {
         toastDuration: const Duration(seconds: 4),
         notificationPosition: NOTIFICATION_POSITION.top,
         animation: ANIMATION.fromRight,
-        title: Text(message.title),
-        description: Text(message.message),
+        title: Text(message.title,
+            style: Get.textTheme.bodyText1?.copyWith(
+              color: appDarkBackgroundColor,
+            )),
+        description: Text(message.message,
+            style: Get.textTheme.bodyText1?.copyWith(
+              color: appDarkBackgroundColor,
+            )),
         onActionPressed: () {
           Get.back();
         },
@@ -38,16 +46,28 @@ mixin MessageMixin on GetxController {
         toastDuration: const Duration(seconds: 4),
         notificationPosition: NOTIFICATION_POSITION.top,
         animation: ANIMATION.fromRight,
-        title: Text(message.title),
-        description: Text(message.message),
+        title: Text(message.title,
+            style: Get.textTheme.bodyText1?.copyWith(
+              color: appDarkBackgroundColor,
+            )),
+        description: Text(message.message,
+            style: Get.textTheme.bodyText1?.copyWith(
+              color: appDarkBackgroundColor,
+            )),
       ).show(Get.overlayContext!);
     } else {
       return ElegantNotification.error(
         toastDuration: const Duration(seconds: 4),
         notificationPosition: NOTIFICATION_POSITION.top,
         animation: ANIMATION.fromRight,
-        title: Text(message.title),
-        description: Text(message.message),
+        title: Text(message.title,
+            style: Get.textTheme.bodyText1?.copyWith(
+              color: appDarkBackgroundColor,
+            )),
+        description: Text(message.message,
+            style: Get.textTheme.bodyText1?.copyWith(
+              color: appDarkBackgroundColor,
+            )),
         onActionPressed: () {
           Get.back();
         },
