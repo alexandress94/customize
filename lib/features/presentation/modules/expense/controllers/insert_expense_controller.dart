@@ -1,8 +1,8 @@
 import 'package:organize_more/core/keys/guid_gen.dart';
+import 'package:organize_more/core/models/expense_dto.dart';
 import 'package:organize_more/features/domain/usecases/insert_expense_usecase.dart';
 import 'package:organize_more/features/presentation/utils/show_snackbar.dart';
 import 'package:organize_more/features/presentation/routes/routes.dart';
-import 'package:organize_more/features/data/models/expense_model.dart';
 import 'package:organize_more/core/values/converts/convert_text.dart';
 import 'package:organize_more/core/values/format/format_money.dart';
 import 'package:organize_more/core/services/log/log.dart';
@@ -10,17 +10,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../utils/loader_mixin.dart';
+import '../../../utils/message_mixin.dart';
+
 enum Portion {
   not,
   yeas,
 }
 
-class InsertExpenseController extends GetxController {
+class InsertExpenseController extends GetxController
+    with LoaderMixin, MessageMixin {
   Portion installmentStatus = Portion.not;
   RxBool isRepeatSelected = false.obs;
   RxBool isSelectedPlot = false.obs;
   DateTime _date = DateTime.now();
-  final RxBool isLoading = false.obs;
+
+  final isLoading = false.obs;
+  final message = Rxn<MessageModel>();
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final descriptionTextEditingController = TextEditingController();
@@ -41,6 +47,13 @@ class InsertExpenseController extends GetxController {
   GlobalKey<FormState> get getFormKey => _formkey;
 
   bool get isValidationForm => _formkey.currentState!.validate();
+
+  @override
+  onInit() {
+    super.onInit();
+    loaderListener(isLoading);
+    messageListener(message);
+  }
 
   set setSelectedDate(DateTime date) {
     _date = date;
@@ -75,7 +88,7 @@ class InsertExpenseController extends GetxController {
           installmentStatus.index == 1 ? GUIDGen.generate() : null;
 
       for (int count = 0; count < portion; count++) {
-        final ExpenseModel _expense = ExpenseModel(
+        final ExpenseDto _expense = ExpenseDto(
           uuId: uuId,
           description: descriptionTextEditingController.value.text,
           valueTransaction: money,
@@ -98,30 +111,18 @@ class InsertExpenseController extends GetxController {
         );
         if (result.isLeft) {
           _log.error(result.left);
-
-          showSnackBar(
-            resopnse: StatusNotification.ERROR,
-            message: result.left.toString(),
-          );
+          message(MessageModel.error('Falha', result.left.toString()));
           return;
         }
         _log.debug(result.right);
       }
 
       isLoading.value = false;
-
-      showSnackBar(
-        resopnse: StatusNotification.SUCCESS,
-        message: 'Cadastro realizado!',
-      );
       Get.offAllNamed(Routes.INITIAL_PAGE);
+      message(MessageModel.sucess('Sucesso', 'Cadastro realizado!'));
     } else {
       isLoading.value = false;
-
-      showSnackBar(
-        resopnse: StatusNotification.WARNING,
-        message: 'Verifique as críticas.',
-      );
+      message(MessageModel.info('Falha', 'Verifique as críticas.'));
     }
   }
 
