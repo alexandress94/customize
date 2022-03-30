@@ -1,17 +1,28 @@
 import 'package:get/get.dart';
 import 'package:organize_more/core/services/log/log.dart';
 import 'package:organize_more/features/domain/usecases/update_payment_usecase.dart';
-import 'package:organize_more/features/presentation/utils/show_snackbar.dart';
 
-class UpdatePaymentController extends GetxController {
+import '../../../utils/loader_mixin.dart';
+import '../../../utils/message_mixin.dart';
+
+class UpdatePaymentController extends GetxController
+    with LoaderMixin, MessageMixin {
   final UpdatePaymentUsecase _usecase;
   final Log _log;
+
+  final message = Rxn<MessageModel>();
 
   UpdatePaymentController({
     required UpdatePaymentUsecase usecase,
     required Log log,
   })  : _usecase = usecase,
         _log = log;
+
+  @override
+  onInit() {
+    super.onInit();
+    messageListener(message);
+  }
 
   Future<void> updateExpense({
     required int id,
@@ -26,17 +37,11 @@ class UpdatePaymentController extends GetxController {
 
     if (result.isLeft) {
       _log.error(result.left);
-      showSnackBar(
-        resopnse: StatusNotification.ERROR,
-        message: result.left.toString(),
-      );
+      message(MessageModel.error('Falha', result.left.toString()));
       return;
     }
 
     _log.debug(result.right);
-    showSnackBar(
-      resopnse: StatusNotification.SUCCESS,
-      message: 'Pagamento atualizado!',
-    );
+    message(MessageModel.sucess('Sucesso', 'Pagamento finalizado!'));
   }
 }

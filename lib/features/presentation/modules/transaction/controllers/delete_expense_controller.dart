@@ -2,11 +2,12 @@ import 'package:get/get.dart';
 import 'package:organize_more/core/models/expense_dto.dart';
 
 import 'package:organize_more/features/domain/usecases/delete_expense_usecase.dart';
-import 'package:organize_more/features/presentation/utils/show_snackbar.dart';
 
 import '../../../../../core/services/log/log.dart';
 import '../../../../domain/usecases/delete_all_expense_usecase.dart';
 import '../../../../domain/usecases/delete_between_expense_usecase.dart';
+import '../../../utils/loader_mixin.dart';
+import '../../../utils/message_mixin.dart';
 
 enum Delete {
   delete_one,
@@ -14,11 +15,14 @@ enum Delete {
   delete_all,
 }
 
-class DeleteExpenseController extends GetxController {
+class DeleteExpenseController extends GetxController
+    with LoaderMixin, MessageMixin {
   final DeleteExpenseUsecase _deleteUsecase;
   final DeleteBetweenExpenseUsecase _deleteBetweenUsecase;
   final DeleteAllExpenseUsecase _deleteAllUsecase;
   final Log _log;
+
+  final message = Rxn<MessageModel>();
 
   DeleteExpenseController({
     required DeleteExpenseUsecase deleteUsecase,
@@ -31,6 +35,12 @@ class DeleteExpenseController extends GetxController {
         _log = log;
 
   Rx<Delete> remove = Delete.delete_one.obs;
+
+  @override
+  onInit() {
+    super.onInit();
+    messageListener(message);
+  }
 
   Future<void> deleteExpense(ExpenseDto expense) async {
     switch (remove.value) {
@@ -54,17 +64,11 @@ class DeleteExpenseController extends GetxController {
 
     if (result.isLeft) {
       _log.error(result.left);
-      showSnackBar(
-        resopnse: StatusNotification.ERROR,
-        message: result.left.toString(),
-      );
+      message(MessageModel.error('Falha', result.left.toString()));
       return;
     }
 
-    showSnackBar(
-      resopnse: StatusNotification.SUCCESS,
-      message: 'Deletado com sucesso.',
-    );
+    message(MessageModel.sucess('Finalizado', 'Deletado com sucesso!'));
   }
 
   Future<void> deleteBetween(ExpenseDto model) async {
@@ -74,17 +78,11 @@ class DeleteExpenseController extends GetxController {
 
     if (result.isLeft) {
       _log.error(result.left);
-      showSnackBar(
-        resopnse: StatusNotification.ERROR,
-        message: result.left.toString(),
-      );
+      message(MessageModel.error('Falha', result.left.toString()));
       return;
     }
 
-    showSnackBar(
-      resopnse: StatusNotification.SUCCESS,
-      message: 'Deletado com sucesso.',
-    );
+    message(MessageModel.sucess('Finalizado', 'Deletado com sucesso!'));
   }
 
   Future<void> deleteAll(String uuId) async {
@@ -94,16 +92,10 @@ class DeleteExpenseController extends GetxController {
 
     if (result.isLeft) {
       _log.error(result.left);
-      showSnackBar(
-        resopnse: StatusNotification.ERROR,
-        message: result.left.toString(),
-      );
+      message(MessageModel.sucess('Finalizado', 'Deletado com sucesso!'));
       return;
     }
 
-    showSnackBar(
-      resopnse: StatusNotification.SUCCESS,
-      message: 'Deletado com sucesso.',
-    );
+    message(MessageModel.sucess('Finalizado', 'Deletado com sucesso!'));
   }
 }
