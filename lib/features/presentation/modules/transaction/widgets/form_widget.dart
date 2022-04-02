@@ -4,10 +4,8 @@ import 'package:get/get.dart';
 
 import 'package:organize_more/core/values/format/format_date.dart';
 import 'package:organize_more/core/values/format/format_money.dart';
-import 'package:organize_more/features/presentation/global_widgets/global_rounded_loading_button_widget.dart';
-import 'package:organize_more/features/presentation/modules/expense/controllers/insert_expense_controller.dart';
-import 'package:organize_more/features/presentation/modules/expense/widgets/status_widget.dart';
-import 'package:organize_more/features/presentation/routes/routes.dart';
+import 'package:organize_more/features/presentation/modules/transaction/controllers/insert_expense_controller.dart';
+import 'package:organize_more/features/presentation/modules/transaction/widgets/status_widget.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
 import 'package:organize_more/features/presentation/theme/app_constant.dart';
 import 'text_form_field_widget.dart';
@@ -17,14 +15,12 @@ class FormWidget extends GetView<InsertExpenseController> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: controller.getFormKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: appDefaultPadding,
-          vertical: appDefaultPadding,
-        ),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20.0),
+      child: Form(
+        key: controller.getFormKey,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             TextFormFieldWidget(
               editingController: controller.descriptionTextEditingController,
@@ -85,24 +81,24 @@ class FormWidget extends GetView<InsertExpenseController> {
             ),
             const StatusWidget(),
             const SizedBox(height: appDefaultPadding),
-            Obx(
-              () => Visibility(
-                replacement: const SizedBox.shrink(),
-                visible: controller.isLoading.isFalse,
-                child: SizedBox(
-                  width: Get.width * 0.7,
-                  height: 40,
-                  child: ElevatedButton.icon(
-                    icon: const Icon(Icons.check),
-                    onPressed: controller.insertExpense,
-                    label: const Text('Cadastrar'),
-                  ),
+            Visibility(
+              replacement: const SizedBox.shrink(),
+              visible: controller.isLoading.isFalse,
+              child: SizedBox(
+                width: Get.width * 0.7,
+                height: 40,
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.check),
+                  onPressed: () async {
+                    await controller.insertExpense();
+                  },
+                  label: const Text('Cadastrar'),
                 ),
               ),
             ),
             TextButton.icon(
               onPressed: () {
-                Get.offNamed(Routes.INITIAL_PAGE);
+                Get.back();
               },
               icon: const Icon(Icons.subdirectory_arrow_left),
               label: const Text('Voltar'),

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/modules/expense/bindings/insert_expense_binding.dart';
+import 'package:organize_more/features/presentation/modules/transaction/bindings/insert_expense_binding.dart';
 import 'package:organize_more/features/presentation/modules/expense/expense_page.dart';
 import 'package:organize_more/features/presentation/modules/transaction/bindings/get_all_expense_binding.dart';
 import 'package:organize_more/features/presentation/modules/transaction/bindings/update_payment_binding.dart';
@@ -14,9 +14,10 @@ class AppPages {
       name: Routes.INITIAL_PAGE, page: () => const TransactionPage(),
       // binding: GetAllExpenseBinding(),
       bindings: [
+        GetAllExpenseBinding(),
+        InsertExpenseBinding(),
         UpdatePaymentBinding(),
         DeleteExpenseBinding(),
-        GetAllExpenseBinding(),
       ],
     ),
     GetPage(

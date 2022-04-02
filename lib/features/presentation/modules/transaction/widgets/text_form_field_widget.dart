@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/modules/expense/controllers/insert_expense_controller.dart';
+import 'package:organize_more/features/presentation/modules/transaction/controllers/insert_expense_controller.dart';
 
 class TextFormFieldWidget extends GetView<InsertExpenseController> {
   final TextEditingController editingController;

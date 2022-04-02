@@ -2,13 +2,13 @@ import 'package:organize_more/core/keys/guid_gen.dart';
 import 'package:organize_more/core/models/expense_dto.dart';
 import 'package:organize_more/features/domain/usecases/insert_expense_usecase.dart';
 
-import 'package:organize_more/features/presentation/routes/routes.dart';
 import 'package:organize_more/core/values/converts/convert_text.dart';
 import 'package:organize_more/core/values/format/format_money.dart';
 import 'package:organize_more/core/services/log/log.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:organize_more/features/presentation/modules/transaction/controllers/get_all_expense_controller.dart';
 
 import '../../../utils/loader_mixin.dart';
 import '../../../utils/message_mixin.dart';
@@ -20,6 +20,7 @@ enum Portion {
 
 class InsertExpenseController extends GetxController
     with LoaderMixin, MessageMixin {
+  final getAllExpenseController = Get.find<GetAllExpenseController>();
   Portion installmentStatus = Portion.not;
   RxBool isRepeatSelected = false.obs;
   RxBool isSelectedPlot = false.obs;
@@ -111,19 +112,28 @@ class InsertExpenseController extends GetxController
         );
         if (result.isLeft) {
           _log.error(result.left);
+          isLoading.value = false;
           message(MessageModel.error('Falha', result.left.toString()));
           return;
         }
         _log.debug(result.right);
       }
 
+      await getAllExpenseController.find();
       isLoading.value = false;
-      Get.offAllNamed(Routes.INITIAL_PAGE);
+      _clearTextField();
+      Get.back();
       message(MessageModel.sucess('Sucesso', 'Cadastro realizado!'));
     } else {
       isLoading.value = false;
       message(MessageModel.info('Falha', 'Verifique as críticas.'));
     }
+  }
+
+  void _clearTextField() {
+    descriptionTextEditingController.clear();
+    moneyTextEditingController.clear();
+    portionditingController.clear();
   }
 
   @override

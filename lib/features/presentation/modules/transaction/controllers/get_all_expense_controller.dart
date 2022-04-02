@@ -44,8 +44,8 @@ class GetAllExpenseController extends GetxController
         _usecaseSumOfTransactions = usecaseSumOfTransactions;
 
   @override
-  void onInit() {
-    find();
+  void onInit() async {
+    await find();
     super.onInit();
   }
 
