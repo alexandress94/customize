@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/modules/transaction/controllers/insert_expense_controller.dart';
+
+import '../../transactions/controllers/insert_expense_controller.dart';
 
 class AppBarWidget extends GetView<InsertExpenseController> {
   const AppBarWidget({Key? key}) : super(key: key);

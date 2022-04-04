@@ -74,12 +74,12 @@ class AppTheme {
     ),
   );
 
-  ThemeData appLightThemeData = ThemeData.dark().copyWith(
-    primaryColor: appLightPrimaryColor,
-    primaryColorLight: appLightPrimaryColor,
-    splashColor: appLightPrimaryColor,
+  ThemeData appLightThemeData = ThemeData.light().copyWith(
+    primaryColor: AppLightColors.appPrimaryColor,
+    primaryColorLight: AppLightColors.appPrimaryColor,
+    splashColor: AppLightColors.appPrimaryColor,
     // Setando a cor padrão do background das páginas.
-    scaffoldBackgroundColor: appLightBackgroundColor,
+    scaffoldBackgroundColor: AppLightColors.appPrimaryBackgroundColor,
     // Setando o estilo de texto padrão
     textTheme: AppStyle().appTextThemeLight,
     // Definindo o theme light
@@ -87,31 +87,32 @@ class AppTheme {
     // Setando a cor padrão do AppBars
     appBarTheme: AppBarTheme(
       centerTitle: false,
-      backgroundColor: appLightPrimaryColor,
+      backgroundColor: AppLightColors.appWhiteColor,
       iconTheme: const IconThemeData(
-        color: appLightBodyColor,
+        color: AppLightColors.appBlackColor,
       ),
-      titleTextStyle: AppStyle()
-          .appTextThemeLight
-          .headline6!
-          .copyWith(color: appLightBodyColor),
+      titleTextStyle: AppStyle().appTextThemeLight.headline6!.copyWith(
+            color: AppLightColors.appPrimaryColor,
+          ),
     ),
     // Setando a cor padrão do ElevatedButton
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(appLightPrimaryColor),
+        backgroundColor:
+            MaterialStateProperty.all(AppLightColors.appBlackColor),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.all(
-          appLightPrimaryColor.withOpacity(0.2),
+          AppLightColors.appPrimaryColor.withOpacity(0.2),
         ),
         // Setando a cor padrão do TextButton
-        foregroundColor: MaterialStateProperty.all(appLightBodyColor),
+        foregroundColor:
+            MaterialStateProperty.all(AppLightColors.appPrimaryColor),
       ),
     ),
-    iconTheme: const IconThemeData(color: appLightBodyColor),
+    iconTheme: const IconThemeData(color: AppLightColors.appPrimaryColor),
     inputDecorationTheme: InputDecorationTheme(
       // disabledBorder: OutlineInputBorder(
       //   borderRadius: BorderRadius.circular(10),
@@ -122,25 +123,29 @@ class AppTheme {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(
-          color: appLightBodyColor,
+          color: AppLightColors.appIconGrayColor,
         ),
       ),
       // floatingLabelStyle: const TextStyle(color: appLightBodyColor),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: appLightPrimaryColor, width: 2),
+        borderSide:
+            const BorderSide(color: AppLightColors.appIconGrayColor, width: 2),
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
       ),
     ),
-    dividerColor: appLightBodyColor,
+    dividerColor: AppLightColors.appIconGrayColor,
     colorScheme: ColorScheme.fromSwatch().copyWith(
-      primary: appLightPrimaryColor,
-      secondary: appLightPrimaryColor,
+      primary: AppLightColors.appIconGrayColor,
+      secondary: AppLightColors.appIconGrayColor,
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: AppLightColors.appBlackColor,
     ),
     cardTheme: const CardTheme(
-      color: appLightSecondaryColor,
+      color: AppLightColors.appSecondaryColor,
       elevation: 5.0,
     ),
   );
