@@ -15,7 +15,7 @@ class ExpansePage extends GetView<InsertExpenseController> {
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, 60.h),
         child: AppBar(
-          centerTitle: true,
+          centerTitle: false,
           elevation: 0.0,
           title: Text(
             'Cadastrar despesa',

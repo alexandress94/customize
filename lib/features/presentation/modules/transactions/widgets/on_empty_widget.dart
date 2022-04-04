@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import '../../../utils/path_lottie.dart';
 import '../controllers/get_all_expense_controller.dart';
 
-class IsEmptyWidget extends GetView<GetAllExpenseController> {
-  const IsEmptyWidget({Key? key}) : super(key: key);
+class OnEmptyWidget extends GetView<GetAllExpenseController> {
+  const OnEmptyWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,9 @@ class IsEmptyWidget extends GetView<GetAllExpenseController> {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            controller.getLottieAdpter().asset(path: PathLottie.SAVING_MONEY),
+            controller.getLottieAdpter().asset(
+                  path: PathLottie.BUSINESS_ANALYTICS,
+                ),
           ],
         ),
       ),
