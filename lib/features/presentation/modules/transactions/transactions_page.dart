@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/modules/transactions/widgets/is_empty_widget.dart';
+import 'package:organize_more/features/presentation/modules/transactions/widgets/on_empty_widget.dart';
 
 import 'package:organize_more/features/presentation/modules/transactions/widgets/success_widget.dart';
 import 'package:organize_more/features/presentation/routes/routes.dart';
@@ -36,7 +36,7 @@ class TransactionsPage extends GetView<GetAllExpenseController> {
               const SliverAppBarGridViewSumOfExpenseAndPaymentWidget(),
               const SliverAppBarFilterOfMonthWidget(),
               controller.getAllExpenses.isEmpty
-                  ? const IsEmptyWidget()
+                  ? const OnEmptyWidget()
                   : const SuccessWidget(),
             ],
           ),
@@ -44,7 +44,9 @@ class TransactionsPage extends GetView<GetAllExpenseController> {
             visible: controller.isFabVisible.value,
             child: FloatingActionButton.extended(
               onPressed: () {
-                Get.toNamed(Routes.EXPANSE_PAGE);
+                // Get.toNamed(Routes.EXPANSE_PAGE);
+
+                Get.offAllNamed(Routes.ERROR_PAGE);
               },
               label: Row(
                 children: [
