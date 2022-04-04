@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
 import 'package:organize_more/features/presentation/modules/expense/expense_page.dart';
+import 'package:organize_more/features/presentation/modules/on_error/bindings/on_error_binding.dart';
 
 import 'package:organize_more/features/presentation/routes/routes.dart';
 
+import '../modules/on_error/on_error_page.dart';
 import '../modules/transactions/bindings/delete_expense_binding.dart';
 import '../modules/transactions/bindings/get_all_expense_binding.dart';
 import '../modules/transactions/bindings/insert_expense_binding.dart';
@@ -25,7 +27,11 @@ class AppPages {
     GetPage(
       name: Routes.EXPANSE_PAGE,
       page: () => const ExpansePage(),
-      binding: InsertExpenseBinding(),
+    ),
+    GetPage(
+      name: Routes.ERROR_PAGE,
+      page: () => const OnErrorPage(),
+      binding: OnErrorBinding(),
     ),
   ];
 }
