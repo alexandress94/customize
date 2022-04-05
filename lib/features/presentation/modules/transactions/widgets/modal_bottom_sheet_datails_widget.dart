@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:organize_more/features/presentation/global_widgets/global_action_buttom_widget.dart';
 
 import 'package:organize_more/features/presentation/modules/transactions/widgets/modal_buttom_sheet_delete_widget.dart';
 
 import '../../../../../core/values/format/format_date.dart';
 import '../../../../../core/values/format/format_money.dart';
 import '../../../../domain/entities/expense_entity.dart';
-import '../../../theme/app_color.dart';
 import '../../../theme/app_constant.dart';
-import '../controllers/delete_expense_controller.dart';
 import '../controllers/get_all_expense_controller.dart';
 
 class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
@@ -101,8 +100,9 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 expense.isPayment == 0
-                    ? ElevatedButton.icon(
-                        onPressed: () {
+                    ? GlobalActionButtomWidget(
+                        title: 'Confirmar pagamento',
+                        onTap: () {
                           controller.updatePaymentController.updateExpense(
                             id: expense.id!,
                             portion: expense.installmentNumber,
@@ -110,21 +110,13 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                           controller.find();
                           Get.back();
                         },
-                        icon: const Icon(Icons.check),
-                        label: const Text('Confirmar pagamento'),
                       )
-                    : ElevatedButton.icon(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            appNormalDangerColor,
-                          ),
-                        ),
-                        onPressed: () {
-                          controller.find();
+                    : GlobalActionButtomWidget(
+                        title: 'Cancelar pagamento',
+                        onTap: () async {
+                          await controller.find();
                           Get.back();
                         },
-                        icon: const Icon(Icons.autorenew),
-                        label: const Text('Cancelar pagamento'),
                       ),
                 TextButton.icon(
                   onPressed: () {
@@ -158,111 +150,6 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
       ),
       builder: (_) {
         return ModalButtomSheetDeleteWidget(expense: expense);
-      },
-    );
-  }
-
-  void _displayAlertDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext _) {
-        return AlertDialog(
-          backgroundColor: appDarkBackgroundColor,
-          title: const Text('Deseja completar está ação?'),
-          content: Obx(
-            () => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  'Ao remover este item não será possível recuperá-lo.',
-                ),
-                const SizedBox(height: appDefaultPadding),
-                Row(
-                  children: [
-                    Radio<Delete>(
-                      value: Delete.delete_one,
-                      groupValue:
-                          controller.deleteExpenseController.remove.value,
-                      onChanged: (Delete? value) {
-                        controller.deleteExpenseController.remove.value =
-                            value!;
-                      },
-                    ),
-                    const Text('Remover apenas esta.')
-                  ],
-                ),
-                Row(
-                  children: [
-                    Radio<Delete>(
-                      value: Delete.delete_between,
-                      groupValue:
-                          controller.deleteExpenseController.remove.value,
-                      onChanged: (Delete? value) {
-                        controller.deleteExpenseController.remove.value =
-                            value!;
-                      },
-                    ),
-                    const Text('Remover esta e as próximas.')
-                  ],
-                ),
-                Row(
-                  children: [
-                    Radio<Delete>(
-                      value: Delete.delete_all,
-                      groupValue:
-                          controller.deleteExpenseController.remove.value,
-                      onChanged: (Delete? value) {
-                        controller.deleteExpenseController.remove.value =
-                            value!;
-                      },
-                    ),
-                    const Text('Remover todas.')
-                  ],
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: Get.width * 0.4,
-                    height: 40,
-                    child: ElevatedButton.icon(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                          appNormalDangerColor,
-                        ),
-                      ),
-                      onPressed: () {
-                        controller.deleteExpenseController.delete(expense.id!);
-                        controller.find();
-                        // Fecha o alert dialog
-                        Get.back();
-                        // fecha o modal bottom sheet.
-                        Get.back();
-                      },
-                      icon: const Icon(Icons.delete_forever),
-                      label: const Text('Remover'),
-                    ),
-                  ),
-                  const SizedBox(width: appDefaultPadding),
-                  TextButton.icon(
-                    icon: const Icon(Icons.subdirectory_arrow_left),
-                    label: const Text('Cancelar'),
-                    onPressed: () {
-                      Get.back();
-                    },
-                  ),
-                ],
-              ),
-            )
-          ],
-        );
       },
     );
   }
