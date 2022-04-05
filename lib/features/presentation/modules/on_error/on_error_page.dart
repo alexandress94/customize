@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:organize_more/features/presentation/global_widgets/global_action_buttom_widget.dart';
 import 'package:organize_more/features/presentation/modules/on_error/controller/on_error_controller.dart';
 import 'package:organize_more/features/presentation/routes/routes.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
 
+import '../../theme/app_color.dart';
 import '../../utils/path_lottie.dart';
 
 class OnErrorPage extends GetView<OnErrorController> {
@@ -17,7 +17,7 @@ class OnErrorPage extends GetView<OnErrorController> {
       appBar: AppBar(
         elevation: 0.0,
         title: Text(
-          'Error 404',
+          'Página não encontrada',
           style: Theme.of(context).textTheme.headline5?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -31,6 +31,10 @@ class OnErrorPage extends GetView<OnErrorController> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            controller
+                .getLottieAdpter()
+                .asset(path: PathLottie.SPACE_ERROR_404),
+            const Spacer(),
             Text(
               'Opss! Perece que algo deu errado...',
               style: Theme.of(context).textTheme.headline5?.copyWith(
@@ -40,18 +44,18 @@ class OnErrorPage extends GetView<OnErrorController> {
             SizedBox(height: 15.0.h),
             Text(
               'Não desista, estamos trabalhando para resolver o problema.',
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: AppLightColors.appSecondaryColor,
                   ),
             ),
-            controller.getLottieAdpter().asset(
-                  path: PathLottie.ERROR_404,
-                ),
+            const Spacer(),
             GlobalActionButtomWidget(
-                title: 'Tentar novamente',
-                onTap: () {
-                  Get.offAllNamed(Routes.INITIAL_PAGE);
-                }),
+              title: 'Tentar novamente',
+              onTap: () {
+                Get.offAllNamed(Routes.INITIAL_PAGE);
+              },
+            ),
           ],
         ),
       ),
