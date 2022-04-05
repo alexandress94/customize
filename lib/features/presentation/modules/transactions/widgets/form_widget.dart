@@ -1,5 +1,6 @@
 import 'package:easy_mask/easy_mask.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:organize_more/core/values/format/format_date.dart';
@@ -84,7 +85,7 @@ class FormWidget extends GetView<InsertExpenseController> {
               ],
             ),
             const StatusWidget(),
-            const SizedBox(height: appDefaultPadding),
+            SizedBox(height: 40.0.h),
             Visibility(
               replacement: const SizedBox.shrink(),
               visible: controller.isLoading.isFalse,
