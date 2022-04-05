@@ -4,11 +4,9 @@ import 'package:get/get.dart';
 import 'package:organize_more/features/presentation/modules/transactions/widgets/on_empty_widget.dart';
 
 import 'package:organize_more/features/presentation/modules/transactions/widgets/success_widget.dart';
-import 'package:organize_more/features/presentation/routes/routes.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
 
-import '../../theme/app_constant.dart';
-import 'widgets/modal_bottom_sheet_registration_widget.dart';
+import '../../routes/routes.dart';
 import 'controllers/get_all_expense_controller.dart';
 import 'widgets/custom_app_bar_widget.dart';
 import 'widgets/sliver_app_bar_filter_of_month_widget.dart';
@@ -44,9 +42,7 @@ class TransactionsPage extends GetView<GetAllExpenseController> {
             visible: controller.isFabVisible.value,
             child: FloatingActionButton.extended(
               onPressed: () {
-                // Get.toNamed(Routes.EXPANSE_PAGE);
-
-                Get.offAllNamed(Routes.ERROR_PAGE);
+                Get.toNamed(Routes.EXPANSE_PAGE);
               },
               label: Row(
                 children: [
@@ -59,26 +55,6 @@ class TransactionsPage extends GetView<GetAllExpenseController> {
           ),
         ),
       ),
-    );
-  }
-
-  void _displayModalBottonSheet({
-    required BuildContext context,
-  }) {
-    showModalBottomSheet(
-      isScrollControlled: true,
-      // isDismissible: false,
-      backgroundColor: Get.theme.scaffoldBackgroundColor,
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(appDefaultPadding),
-          topRight: Radius.circular(appDefaultPadding),
-        ),
-      ),
-      builder: (_) {
-        return const ModalBottomSheetRegistrationWidget();
-      },
     );
   }
 }
