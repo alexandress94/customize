@@ -24,8 +24,7 @@ class OnEmptyWidget extends GetView<GetAllExpenseController> {
                   ),
             ),
             controller.getLottieAdpter().asset(
-                  path: PathLottie.BUSINESS_ANALYTICS,
-                ),
+                path: PathLottie.BUSINESS_ANALYTICS, width: Get.width * 0.5),
           ],
         ),
       ),
