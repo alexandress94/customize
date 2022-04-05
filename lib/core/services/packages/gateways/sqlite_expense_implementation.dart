@@ -93,8 +93,8 @@ class SqliteExpenseImplementation implements SqliteExpense {
     final int result = await database.update(
       _table,
       model,
-      where: "$_columnIdTransaction = ?",
-      whereArgs: [model['id']],
+      where: "$_columnUuIdTransaction = ?",
+      whereArgs: [model['uuId']],
     );
 
     _logs(

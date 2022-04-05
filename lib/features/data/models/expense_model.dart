@@ -5,7 +5,7 @@ import 'package:organize_more/features/domain/entities/expense_entity.dart';
 class ExpenseModel extends ExpenseEntity {
   ExpenseModel({
     int? id,
-    String? uuId,
+    required String uuId,
     required String description,
     required double valueTransaction,
     required int installmentNumber,
@@ -32,7 +32,7 @@ class ExpenseModel extends ExpenseEntity {
   factory ExpenseModel.fromMap(Map<String, dynamic> map) {
     return ExpenseModel(
       id: map['id'],
-      uuId: map['uuId'] ?? '',
+      uuId: map['uuId'],
       description: map['ds_transaction'],
       valueTransaction: map['vl_transaction'],
       installmentNumber: map['nr_installment'],

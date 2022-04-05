@@ -1,6 +1,6 @@
 class ExpenseEntity {
   final int? id;
-  final String? uuId;
+  final String uuId;
   final String description;
   final double valueTransaction;
   final int installmentNumber;
@@ -13,7 +13,7 @@ class ExpenseEntity {
 
   ExpenseEntity({
     this.id,
-    this.uuId,
+    required this.uuId,
     required this.description,
     required this.valueTransaction,
     required this.installmentNumber,

@@ -85,8 +85,7 @@ class InsertExpenseController extends GetxController
         value: moneyTextEditingController.value.text,
       );
 
-      final String? uuId =
-          installmentStatus.index == 1 ? GUIDGen.generate() : null;
+      final String uuId = GUIDGen.generate();
 
       for (int count = 0; count < portion; count++) {
         final ExpenseDto _expense = ExpenseDto(
