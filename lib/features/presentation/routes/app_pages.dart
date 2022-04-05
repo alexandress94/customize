@@ -19,7 +19,6 @@ class AppPages {
       page: () => const TransactionsPage(),
       bindings: [
         GetAllExpenseBinding(),
-        InsertExpenseBinding(),
         UpdatePaymentBinding(),
         DeleteExpenseBinding(),
       ],
@@ -27,6 +26,7 @@ class AppPages {
     GetPage(
       name: Routes.EXPANSE_PAGE,
       page: () => const ExpansePage(),
+      binding: InsertExpenseBinding(),
     ),
     GetPage(
       name: Routes.ERROR_PAGE,
