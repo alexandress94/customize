@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:organize_more/features/domain/entities/expense_entity.dart';
 
 import '../../../../../core/models/expense_dto.dart';
-import '../../../theme/app_color.dart';
+import '../../../global_widgets/global_action_buttom_widget.dart';
 import '../../../theme/app_constant.dart';
 import '../controllers/delete_expense_controller.dart';
 import '../controllers/get_all_expense_controller.dart';
@@ -78,29 +78,19 @@ class ModalButtomSheetDeleteWidget extends GetView<GetAllExpenseController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: Get.width * 0.4,
-                    height: 40,
-                    child: ElevatedButton.icon(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                          appNormalDangerColor,
-                        ),
-                      ),
-                      onPressed: () {
-                        controller.deleteExpenseController.deleteExpense(
-                          ExpenseDto.fromEntity(entity: expense),
-                        );
-                        // controller.deleteExpenseController.delete(expense.id!);
-                        controller.find();
-                        // Fecha o alert dialog
-                        Get.back();
-                        // fecha o modal bottom sheet.
-                        // Get.back();
-                      },
-                      icon: const Icon(Icons.delete_forever),
-                      label: const Text('Remover'),
-                    ),
+                  GlobalActionButtomWidget(
+                    title: 'Remover',
+                    onTap: () async {
+                      await controller.deleteExpenseController.deleteExpense(
+                        ExpenseDto.fromEntity(entity: expense),
+                      );
+                      // controller.deleteExpenseController.delete(expense.id!);
+                      await controller.find();
+                      // Fecha o alert dialog
+                      Get.back();
+                      // fecha o modal bottom sheet.
+                      // Get.back();
+                    },
                   ),
                   const SizedBox(width: appDefaultPadding),
                   TextButton.icon(
