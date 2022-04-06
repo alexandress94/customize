@@ -8,7 +8,7 @@ import 'package:organize_more/features/presentation/routes/routes.dart';
 import '../modules/on_error/on_error_page.dart';
 import '../modules/transactions/bindings/delete_expense_binding.dart';
 import '../modules/transactions/bindings/get_all_expense_binding.dart';
-import '../modules/transactions/bindings/insert_expense_binding.dart';
+import '../modules/expense/bindings/insert_or_update_expense_binding.dart';
 import '../modules/transactions/bindings/update_payment_binding.dart';
 import '../modules/transactions/transactions_page.dart';
 
@@ -26,7 +26,7 @@ class AppPages {
     GetPage(
       name: Routes.EXPANSE_PAGE,
       page: () => const ExpansePage(),
-      binding: InsertExpenseBinding(),
+      binding: InsertUpdateExpenseBinding(),
     ),
     GetPage(
       name: Routes.ERROR_PAGE,
