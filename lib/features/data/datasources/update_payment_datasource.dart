@@ -21,7 +21,7 @@ class UpdatePaymentDatasourceImplementetion implements UpdatePaymentDatasource {
     required int id,
     required int portion,
   }) async {
-    final result = await _database.update(
+    final result = await _database.updatePayment(
       model: {
         "id": id,
         "nr_installment": portion,
