@@ -10,6 +10,7 @@ import '../../../../../core/values/format/format_money.dart';
 import '../../../../domain/entities/expense_entity.dart';
 import '../../../theme/app_constant.dart';
 import '../controllers/get_all_expense_controller.dart';
+import 'modal_buttom_sheet_delete_one_expense.dart';
 
 class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
   final ExpenseEntity expense;
@@ -51,14 +52,23 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
               ),
               const SizedBox(width: appDefaultPadding),
               TextButton.icon(
-                onPressed: () {
-                  Get.back();
-                  // _displayAlertDialog(context);
-                  _displayModalBottonSheet(
-                    context: context,
-                    expense: expense,
-                  );
-                },
+                onPressed: expense.isPortion == 1
+                    ? () {
+                        Get.back();
+                        // _displayAlertDialog(context);
+                        _displayModalBottonSheetDeleteWithInstallment(
+                          context: context,
+                          expense: expense,
+                        );
+                      }
+                    : () {
+                        Get.back();
+
+                        _displayModalBottonSheetDeleteOneExpense(
+                          context: context,
+                          expense: expense,
+                        );
+                      },
                 icon: const Icon(Icons.delete),
                 label: const Text('Remover'),
               ),
@@ -144,7 +154,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
     );
   }
 
-  void _displayModalBottonSheet({
+  void _displayModalBottonSheetDeleteWithInstallment({
     required BuildContext context,
     required ExpenseEntity expense,
   }) {
@@ -161,6 +171,27 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
       ),
       builder: (_) {
         return ModalButtomSheetDeleteWithInstallmentWidget(expense: expense);
+      },
+    );
+  }
+
+  void _displayModalBottonSheetDeleteOneExpense({
+    required BuildContext context,
+    required ExpenseEntity expense,
+  }) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      isDismissible: false,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(appDefaultPadding),
+          topRight: Radius.circular(appDefaultPadding),
+        ),
+      ),
+      builder: (_) {
+        return ModalButtomSheetDeleteOnExpensetWidget(expense: expense);
       },
     );
   }
