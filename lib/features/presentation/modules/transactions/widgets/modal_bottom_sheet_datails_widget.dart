@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:organize_more/features/presentation/global_widgets/global_action_buttom_widget.dart';
 
-import 'package:organize_more/features/presentation/modules/transactions/widgets/modal_buttom_sheet_delete_widget.dart';
+import 'package:organize_more/features/presentation/modules/transactions/widgets/modal_buttom_sheet_delete_with_installment_widget.dart';
 import 'package:organize_more/features/presentation/routes/routes.dart';
 
 import '../../../../../core/values/format/format_date.dart';
@@ -160,7 +160,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
         ),
       ),
       builder: (_) {
-        return ModalButtomSheetDeleteWidget(expense: expense);
+        return ModalButtomSheetDeleteWithInstallmentWidget(expense: expense);
       },
     );
   }

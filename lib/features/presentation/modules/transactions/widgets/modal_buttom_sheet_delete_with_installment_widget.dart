@@ -8,10 +8,11 @@ import '../../../theme/app_constant.dart';
 import '../controllers/delete_expense_controller.dart';
 import '../controllers/get_all_expense_controller.dart';
 
-class ModalButtomSheetDeleteWidget extends GetView<GetAllExpenseController> {
+class ModalButtomSheetDeleteWithInstallmentWidget
+    extends GetView<GetAllExpenseController> {
   final ExpenseEntity expense;
 
-  const ModalButtomSheetDeleteWidget({
+  const ModalButtomSheetDeleteWithInstallmentWidget({
     Key? key,
     required this.expense,
   }) : super(key: key);
