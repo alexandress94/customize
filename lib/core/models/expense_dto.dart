@@ -3,7 +3,7 @@ import 'package:organize_more/features/domain/entities/expense_entity.dart';
 
 class ExpenseDto {
   final int? id;
-  final String? uuId;
+  final String uuId;
   final String description;
   final double valueTransaction;
   final int installmentNumber;
@@ -16,7 +16,7 @@ class ExpenseDto {
 
   ExpenseDto({
     this.id,
-    this.uuId,
+    required this.uuId,
     required this.description,
     required this.valueTransaction,
     required this.installmentNumber,
