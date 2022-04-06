@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:organize_more/features/presentation/global_widgets/global_action_buttom_widget.dart';
 
 import 'package:organize_more/features/presentation/modules/transactions/widgets/modal_buttom_sheet_delete_widget.dart';
+import 'package:organize_more/features/presentation/routes/routes.dart';
 
 import '../../../../../core/values/format/format_date.dart';
 import '../../../../../core/values/format/format_money.dart';
@@ -34,7 +35,17 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
               ),
               const Spacer(),
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                  Get.toNamed(
+                    Routes.EXPANSE_PAGE,
+                    arguments: {
+                      "title-page": "Atualizar despesa",
+                      "visibility": false,
+                      "ExpenseEntity": expense,
+                    },
+                  );
+                },
                 icon: const Icon(Icons.create),
                 label: const Text('Editar'),
               ),

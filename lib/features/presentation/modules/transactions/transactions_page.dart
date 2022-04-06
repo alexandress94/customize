@@ -42,7 +42,13 @@ class TransactionsPage extends GetView<GetAllExpenseController> {
             visible: controller.isFabVisible.value,
             child: FloatingActionButton.extended(
               onPressed: () {
-                Get.toNamed(Routes.EXPANSE_PAGE);
+                Get.toNamed(
+                  Routes.EXPANSE_PAGE,
+                  arguments: {
+                    "title-page": "Cadastrar despesa",
+                    "visibility": true,
+                  },
+                );
               },
               label: Row(
                 children: [
