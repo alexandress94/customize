@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:organize_more/features/presentation/global_widgets/global_action_buttom_widget.dart';
 
@@ -75,46 +76,103 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
             ],
           ),
           const Divider(height: 1, thickness: 1),
-          const SizedBox(height: 6),
+          SizedBox(height: appDefaultPadding.h),
           expense.isPortion == 1
               ? RichText(
                   text: TextSpan(
                     text: 'Parcela: ',
-                    style: Get.textTheme.headline6,
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                     children: <TextSpan>[
                       TextSpan(
                         text:
                             '${expense.amountInstallments}/${expense.installmentNumber}',
-                        style: Get.textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ],
                   ),
                 )
               : const SizedBox.shrink(),
-          const SizedBox(height: appDefaultPadding),
-          Text('Descrição: ${expense.description}'),
-          const SizedBox(height: appDefaultPadding),
-          Text(
-            'valor: '
-            '${FormatMoney.outputMask(expense.valueTransaction.toString())}',
+          SizedBox(height: 10.h),
+          RichText(
+            text: TextSpan(
+              text: 'Despesa: ',
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: expense.description,
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: appDefaultPadding),
-          Text(
-            'Vencimento: '
-            '${FormatDate.replaceMaskDate(date: expense.dueDate)}',
+          SizedBox(height: 10.0.h),
+          RichText(
+            text: TextSpan(
+              text: 'Valor: ',
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: FormatMoney.outputMask(
+                    expense.valueTransaction.toString(),
+                  ),
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: appDefaultPadding),
-          Text(
-            'Cadastro: '
-            '${FormatDate.replaceMaskDate(date: expense.transactionDate)}',
+          SizedBox(height: 10.0.h),
+          RichText(
+            text: TextSpan(
+              text: 'Data de vencimento: ',
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: FormatDate.replaceMaskDate(date: expense.dueDate),
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: appDefaultPadding),
+          SizedBox(height: 10.0.h),
+          RichText(
+            text: TextSpan(
+              text: 'Data de cadastro: ',
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: FormatDate.replaceMaskDate(
+                    date: expense.transactionDate,
+                  ),
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: appDefaultPadding.h),
           expense.isPayment == 1
-              ? const Text(
-                  'Está parcela está paga.',
+              ? const Center(
+                  child: Text(
+                    'Está parcela está paga.',
+                    textAlign: TextAlign.center,
+                  ),
                 )
-              : const Text('Não consta pagamento para está parcela.'),
-          const SizedBox(height: appDefaultPadding),
+              : const Center(
+                  child: Text(
+                    'Não consta pagamento para está parcela.',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+          SizedBox(height: appDefaultPadding.h),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
