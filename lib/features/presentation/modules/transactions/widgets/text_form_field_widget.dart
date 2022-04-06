@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../controllers/insert_expense_controller.dart';
+import '../../expense/controllers/insert_or_update_expense_controller.dart';
 
-class TextFormFieldWidget extends GetView<InsertExpenseController> {
+class TextFormFieldWidget extends GetView<InsertOrUpdateExpenseController> {
   final TextEditingController editingController;
   final String? label;
   final String? hint;
