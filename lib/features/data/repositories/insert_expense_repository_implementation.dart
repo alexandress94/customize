@@ -1,6 +1,5 @@
 import 'package:either_dart/either.dart';
 import 'package:organize_more/core/errors/repository_exception.dart';
-import 'package:organize_more/core/errors/usecase_exception.dart';
 import 'package:organize_more/features/data/datasources/insert_expense_datasource.dart';
 import 'package:organize_more/features/domain/repositories/insert_expense_repository.dart';
 

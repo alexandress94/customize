@@ -3,7 +3,6 @@ import 'package:organize_more/core/errors/usecase_exception.dart';
 import 'package:organize_more/core/usecases/usecase.dart';
 import 'package:organize_more/features/domain/entities/expense_entity.dart';
 import 'package:organize_more/features/domain/repositories/get_all_expense_repository.dart';
-import 'package:organize_more/features/domain/usecases/validate/validate_parameter_usecase.dart';
 
 class GetAllExpenseUsecase
     implements Usecase<List<ExpenseEntity>, ParameterGetAllExpense> {
