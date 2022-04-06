@@ -148,19 +148,24 @@ class ModalButtomSheetDeleteWithInstallmentWidget
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  GlobalActionButtomWidget(
-                    title: 'Remover',
-                    onTap: () {
-                      controller.deleteExpenseController.deleteExpense(
-                        ExpenseDto.fromEntity(entity: expense),
-                      );
-                      // controller.deleteExpenseController.delete(expense.id!);
-                      controller.find();
-                      // Fecha o alert dialog
-                      Get.back();
-                      // fecha o modal bottom sheet.
-                      // Get.back();
-                    },
+                  Visibility(
+                    visible:
+                        controller.deleteExpenseController.isLoading.isFalse,
+                    replacement: const SizedBox.shrink(),
+                    child: GlobalActionButtomWidget(
+                      title: 'Remover',
+                      onTap: () {
+                        controller.deleteExpenseController.deleteExpense(
+                          ExpenseDto.fromEntity(entity: expense),
+                        );
+                        // controller.deleteExpenseController.delete(expense.id!);
+                        controller.find();
+                        // Fecha o alert dialog
+                        Get.back();
+                        // fecha o modal bottom sheet.
+                        // Get.back();
+                      },
+                    ),
                   ),
                   const SizedBox(width: appDefaultPadding),
                   TextButton.icon(

@@ -179,16 +179,21 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 expense.isPayment == 0
-                    ? GlobalActionButtomWidget(
-                        title: 'Confirmar pagamento',
-                        onTap: () {
-                          controller.updatePaymentController.updateExpense(
-                            id: expense.id!,
-                            portion: expense.installmentNumber,
-                          );
-                          controller.find();
-                          Get.back();
-                        },
+                    ? Visibility(
+                        visible: controller
+                            .updatePaymentController.isLoading.isFalse,
+                        replacement: const SizedBox.shrink(),
+                        child: GlobalActionButtomWidget(
+                          title: 'Confirmar pagamento',
+                          onTap: () {
+                            controller.updatePaymentController.updateExpense(
+                              id: expense.id!,
+                              portion: expense.installmentNumber,
+                            );
+                            controller.find();
+                            Get.back();
+                          },
+                        ),
                       )
                     : GlobalActionButtomWidget(
                         title: 'Cancelar pagamento',
