@@ -3,7 +3,7 @@ import '../../../core/errors/datasource_exception.dart';
 import '../../../core/services/packages/contracts/sqlite_expense.dart';
 
 abstract class UpdatePaymentDatasource {
-  Future<int> updateExpense({
+  Future<int> updatePayment({
     required int id,
     required int portion,
   });
@@ -17,7 +17,7 @@ class UpdatePaymentDatasourceImplementetion implements UpdatePaymentDatasource {
   }) : _database = database;
 
   @override
-  Future<int> updateExpense({
+  Future<int> updatePayment({
     required int id,
     required int portion,
   }) async {

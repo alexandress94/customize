@@ -15,7 +15,7 @@ class UpdatePaymentUsecase implements Usecase<int, ParameterUpdatePayment> {
       return Left(UsecaseException.invalidInput());
     }
 
-    final result = await _repository.updateExpense(
+    final result = await _repository.updatePayment(
       id: parameter.id,
       portion: parameter.portion,
     );
