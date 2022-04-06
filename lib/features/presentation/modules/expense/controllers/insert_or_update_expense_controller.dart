@@ -177,11 +177,13 @@ class InsertOrUpdateExpenseController extends GetxController
       isLoading.value = false;
       if (result.isLeft) {
         _log.error(result.left);
+        Get.offAllNamed(Routes.ERROR_PAGE);
         message(MessageModel.error('Erro', result.left.toString()));
       }
 
       _log.debug(result.right);
       Get.back();
+      message(MessageModel.sucess('Finalizado', 'Atualizado com sucesso'));
       await getAllExpenseController.find();
     } else {
       isLoading.value = false;

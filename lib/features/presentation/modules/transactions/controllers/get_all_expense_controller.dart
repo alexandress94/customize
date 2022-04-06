@@ -10,11 +10,14 @@ import 'package:organize_more/features/domain/usecases/get_sum_of_transactions_u
 
 import '../../../../../core/services/packages/contracts/lottie_adapter.dart';
 import '../../../../domain/usecases/get_payment_usecase.dart';
+import '../../../routes/routes.dart';
 import '../../../utils/loader_mixin.dart';
+import '../../../utils/message_mixin.dart';
 import 'delete_expense_controller.dart';
 import 'update_payment_controller.dart';
 
-class GetAllExpenseController extends GetxController with LoaderMixin {
+class GetAllExpenseController extends GetxController
+    with LoaderMixin, MessageMixin {
   final updatePaymentController = Get.find<UpdatePaymentController>();
   final deleteExpenseController = Get.find<DeleteExpenseController>();
 
@@ -26,6 +29,7 @@ class GetAllExpenseController extends GetxController with LoaderMixin {
   final LottieAdapter _lottieAdpter;
   LottieAdapter getLottieAdpter() => _lottieAdpter;
   final Log _log;
+  final message = Rxn<MessageModel>();
 
   final Rx<DateTime> _selectedDate = DateTime.now().obs;
   final RxDouble _sumOfTransactions = 0.0.obs;
@@ -56,6 +60,7 @@ class GetAllExpenseController extends GetxController with LoaderMixin {
   @override
   void onInit() async {
     await find();
+    messageListener(message);
     super.onInit();
   }
 
@@ -116,6 +121,8 @@ class GetAllExpenseController extends GetxController with LoaderMixin {
 
     if (result.isLeft) {
       _log.error(result.left);
+      Get.offAllNamed(Routes.ERROR_PAGE);
+      message(MessageModel.error('Error', result.left.toString()));
     }
     _findSumOfTransactions();
     _findSumOfExpenses();
@@ -134,7 +141,8 @@ class GetAllExpenseController extends GetxController with LoaderMixin {
 
     if (result.isLeft) {
       _log.error(result.left);
-      return;
+      Get.offAllNamed(Routes.ERROR_PAGE);
+      message(MessageModel.error('Error', result.left.toString()));
     }
     _log.debug(result.right);
     _sumOfTransactions.value = result.right[0].values;
@@ -151,7 +159,8 @@ class GetAllExpenseController extends GetxController with LoaderMixin {
 
     if (result.isLeft) {
       _log.error(result.left);
-      return;
+      Get.offAllNamed(Routes.ERROR_PAGE);
+      message(MessageModel.error('Error', result.left.toString()));
     }
     _log.debug(result.right);
     _sumOfExpenses.value = result.right[0].values;
@@ -168,7 +177,8 @@ class GetAllExpenseController extends GetxController with LoaderMixin {
 
     if (result.isLeft) {
       _log.error(result.left);
-      return;
+      Get.offAllNamed(Routes.ERROR_PAGE);
+      message(MessageModel.error('Error', result.left.toString()));
     }
     _log.debug(result.right);
     _paymentSum.value = result.right[0].values;
