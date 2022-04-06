@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:organize_more/features/domain/entities/expense_entity.dart';
 
 import '../../../../../core/models/expense_dto.dart';
+import '../../../../../core/values/format/format_date.dart';
+import '../../../../../core/values/format/format_money.dart';
 import '../../../global_widgets/global_action_buttom_widget.dart';
 import '../../../theme/app_constant.dart';
 import '../controllers/delete_expense_controller.dart';
@@ -28,15 +31,81 @@ class ModalButtomSheetDeleteWithInstallmentWidget
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Deseja completar está ação?',
-              style: Get.textTheme.headline6,
+              'Deseja remover está despesa?',
+              style: Theme.of(context).textTheme.headline6?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
-            const SizedBox(height: appDefaultPadding),
+            SizedBox(height: appDefaultPadding.h),
+            RichText(
+              text: TextSpan(
+                text: 'Parcela: ',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text:
+                        '${expense.amountInstallments}/${expense.installmentNumber}',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 10.0.h),
+            RichText(
+              text: TextSpan(
+                text: 'Despesa: ',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: expense.description,
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 10.0.h),
+            RichText(
+              text: TextSpan(
+                text: 'Valor: ',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: FormatMoney.outputMask(
+                      expense.valueTransaction.toString(),
+                    ),
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 10.0.h),
+            RichText(
+              text: TextSpan(
+                text: 'Data de vencimento: ',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: FormatDate.replaceMaskDate(date: expense.dueDate),
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: appDefaultPadding.h),
             Text(
-              'Ao remover este item não será possível recuperá-lo.',
+              'Esta despesa possui outras parcelas. O que gostaria de fazer?',
               style: Get.textTheme.bodyText1,
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: appDefaultPadding),
+            SizedBox(height: 10.0.h),
             Row(
               children: [
                 Radio<Delete>(
