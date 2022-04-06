@@ -33,6 +33,7 @@ class SuccessWidget extends GetView<GetAllExpenseController> {
                 bottom: 5.0,
               ),
               child: ListTile(
+                key: ValueKey(expense.id),
                 onTap: () {
                   _displayModalBottonSheet(
                     context: context,
