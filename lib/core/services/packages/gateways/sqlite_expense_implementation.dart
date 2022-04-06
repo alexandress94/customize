@@ -90,11 +90,22 @@ class SqliteExpenseImplementation implements SqliteExpense {
   }) async {
     Database database = await SqliteConnectionImplementation.instance.database;
 
+    final id = model['id'] as int;
+    final description = model['ds_transaction'] as String;
+    final value = model['vl_transaction'] as double;
+    final dueDate = model['dt_due'] as String;
+
+    final Map<String, dynamic> map = {
+      'ds_transaction': description,
+      'vl_transaction': value,
+      'dt_due': dueDate,
+    };
+
     final int result = await database.update(
       _table,
-      model,
-      where: "$_columnUuIdTransaction = ?",
-      whereArgs: [model['uuId']],
+      map,
+      where: "$_columnIdTransaction = ?",
+      whereArgs: [id],
     );
 
     _logs(
@@ -244,6 +255,28 @@ class SqliteExpenseImplementation implements SqliteExpense {
       method: 'DELETE BETWEEN',
       parameters: parameter,
       response: 'TRANSAÇÃO DELETADO ID: $result',
+      statusCode: true,
+    );
+    return SqliteResponse(data: result, response: true);
+  }
+
+  @override
+  Future<SqliteResponse> updatePayment({
+    required Map<String, dynamic> model,
+  }) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
+
+    final int result = await database.update(
+      _table,
+      model,
+      where: "$_columnIdTransaction = ?",
+      whereArgs: [model['id']],
+    );
+
+    _logs(
+      method: 'UPDATE',
+      parameters: model,
+      response: 'TRANSAÇÃO ATUALIZADO ID: $result',
       statusCode: true,
     );
     return SqliteResponse(data: result, response: true);
