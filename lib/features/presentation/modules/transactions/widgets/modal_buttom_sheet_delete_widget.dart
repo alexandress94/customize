@@ -80,12 +80,12 @@ class ModalButtomSheetDeleteWidget extends GetView<GetAllExpenseController> {
                 children: [
                   GlobalActionButtomWidget(
                     title: 'Remover',
-                    onTap: () async {
-                      await controller.deleteExpenseController.deleteExpense(
+                    onTap: () {
+                      controller.deleteExpenseController.deleteExpense(
                         ExpenseDto.fromEntity(entity: expense),
                       );
                       // controller.deleteExpenseController.delete(expense.id!);
-                      await controller.find();
+                      controller.find();
                       // Fecha o alert dialog
                       Get.back();
                       // fecha o modal bottom sheet.
