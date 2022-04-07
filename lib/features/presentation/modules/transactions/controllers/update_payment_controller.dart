@@ -26,7 +26,7 @@ class UpdatePaymentController extends GetxController
     messageListener(message);
   }
 
-  Future<void> updateExpense({
+  Future<void> updatePayment({
     required int id,
     required int portion,
   }) async {

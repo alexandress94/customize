@@ -186,7 +186,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                         child: GlobalActionButtomWidget(
                           title: 'Confirmar pagamento',
                           onTap: () {
-                            controller.updatePaymentController.updateExpense(
+                            controller.updatePaymentController.updatePayment(
                               id: expense.id!,
                               portion: expense.installmentNumber,
                             );
