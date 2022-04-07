@@ -114,6 +114,7 @@ class GetAllExpenseController extends GetxController
   RxList<ExpenseEntity> get getAllExpenses => _allExpenses;
 
   Future<void> find() async {
+    isFabVisible.value = true;
     isLoading.value = true;
 
     final result = await _usecaseAllExpense(
