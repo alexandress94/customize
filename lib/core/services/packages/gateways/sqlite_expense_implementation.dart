@@ -281,4 +281,26 @@ class SqliteExpenseImplementation implements SqliteExpense {
     );
     return SqliteResponse(data: result, response: true);
   }
+
+  @override
+  Future<SqliteResponse> cancelPayment({
+    required Map<String, dynamic> model,
+  }) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
+
+    final int result = await database.update(
+      _table,
+      model,
+      where: "$_columnIdTransaction = ?",
+      whereArgs: [model['id']],
+    );
+
+    _logs(
+      method: 'UPDATE',
+      parameters: model,
+      response: 'TRANSAÇÃO ATUALIZADO ID: $result',
+      statusCode: true,
+    );
+    return SqliteResponse(data: result, response: true);
+  }
 }

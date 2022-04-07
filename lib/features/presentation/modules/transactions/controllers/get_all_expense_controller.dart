@@ -13,12 +13,14 @@ import '../../../../domain/usecases/get_payment_usecase.dart';
 import '../../../routes/routes.dart';
 import '../../../utils/loader_mixin.dart';
 import '../../../utils/message_mixin.dart';
+import 'cancel_payment_controller.dart';
 import 'delete_expense_controller.dart';
 import 'update_payment_controller.dart';
 
 class GetAllExpenseController extends GetxController
     with LoaderMixin, MessageMixin {
   final updatePaymentController = Get.find<UpdatePaymentController>();
+  final cancelPaymentController = Get.find<CancelPaymentController>();
   final deleteExpenseController = Get.find<DeleteExpenseController>();
 
   final RxList<ExpenseEntity> _allExpenses = <ExpenseEntity>[].obs;

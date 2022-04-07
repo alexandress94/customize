@@ -6,6 +6,7 @@ import 'package:organize_more/features/presentation/modules/on_error/bindings/on
 import 'package:organize_more/features/presentation/routes/routes.dart';
 
 import '../modules/on_error/on_error_page.dart';
+import '../modules/transactions/bindings/cancel_payment_binding.dart';
 import '../modules/transactions/bindings/delete_expense_binding.dart';
 import '../modules/transactions/bindings/get_all_expense_binding.dart';
 import '../modules/expense/bindings/insert_or_update_expense_binding.dart';
@@ -20,6 +21,7 @@ class AppPages {
       bindings: [
         GetAllExpenseBinding(),
         UpdatePaymentBinding(),
+        CancelPaymentBinding(),
         DeleteExpenseBinding(),
       ],
     ),

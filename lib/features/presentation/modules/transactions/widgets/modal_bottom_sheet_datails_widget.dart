@@ -197,8 +197,12 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                       )
                     : GlobalActionButtomWidget(
                         title: 'Cancelar pagamento',
-                        onTap: () async {
-                          await controller.find();
+                        onTap: () {
+                          controller.cancelPaymentController.cancelPayment(
+                            id: expense.id!,
+                            portion: expense.installmentNumber,
+                          );
+                          controller.find();
                           Get.back();
                         },
                       ),
