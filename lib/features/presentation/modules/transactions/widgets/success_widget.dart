@@ -42,12 +42,16 @@ class SuccessWidget extends GetView<GetAllExpenseController> {
                 },
                 title: Text(
                   expense.description,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: Get.textTheme.bodyText1?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 subtitle: Text(
                   FormatDate.replaceMaskDate(date: expense.dueDate),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyText1?.copyWith(
                         color: AppLightColors.appSecondaryColor,
                       ),
@@ -62,6 +66,8 @@ class SuccessWidget extends GetView<GetAllExpenseController> {
                       FormatMoney.outputMask(
                         expense.valueTransaction.toString(),
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: Get.textTheme.bodyText1?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
