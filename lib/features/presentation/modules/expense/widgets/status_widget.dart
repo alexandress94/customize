@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:organize_more/features/presentation/theme/app_color.dart';
 import 'package:organize_more/features/presentation/theme/app_constant.dart';
 import 'package:flutter/material.dart';
 
@@ -54,14 +56,25 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
             builder: (_) {
               return Visibility(
                 visible: controller.isSelectedPlot.value,
-                child: TextFormFieldWidget(
-                  editingController: controller.portionditingController,
-                  icon: Icons.add,
-                  label: 'Parcela',
-                  textInputType: const TextInputType.numberWithOptions(),
-                  validator: (installment) {
-                    return controller.validatorPortion(installment!);
-                  },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Valor R\$',
+                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            color: AppLightColors.appSecondaryColor,
+                          ),
+                    ),
+                    SizedBox(height: 10.0.h),
+                    TextFormFieldWidget(
+                      editingController: controller.portionditingController,
+                      icon: Icons.add,
+                      textInputType: const TextInputType.numberWithOptions(),
+                      validator: (installment) {
+                        return controller.validatorPortion(installment!);
+                      },
+                    ),
+                  ],
                 ),
               );
             },

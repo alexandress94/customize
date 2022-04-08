@@ -114,23 +114,25 @@ class AppTheme {
     ),
     iconTheme: const IconThemeData(color: AppLightColors.appPrimaryColor),
     inputDecorationTheme: InputDecorationTheme(
-      // disabledBorder: OutlineInputBorder(
-      //   borderRadius: BorderRadius.circular(10),
-      //   borderSide: const BorderSide(
-      //       // color: appLightBodyColor,
-      //       ),
-      // ),
+      // custom background color
+      fillColor: AppLightColors.appWhiteColor,
+      filled: true,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(
-          color: AppLightColors.appIconGrayColor,
+          color: AppLightColors.appWhiteColor,
         ),
+      ),
+      hintStyle: const TextStyle(
+        color: AppLightColors.appSecondaryColor,
       ),
       // floatingLabelStyle: const TextStyle(color: appLightBodyColor),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide:
-            const BorderSide(color: AppLightColors.appIconGrayColor, width: 2),
+        borderSide: const BorderSide(
+          color: AppLightColors.appIconGrayColor,
+          width: 2,
+        ),
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),

@@ -6,9 +6,9 @@ import '../../expense/controllers/insert_or_update_expense_controller.dart';
 
 class TextFormFieldWidget extends GetView<InsertOrUpdateExpenseController> {
   final TextEditingController editingController;
-  final String? label;
+
   final String? hint;
-  // final String messageIsEmpty;
+
   final IconData icon;
   final List<TextInputFormatter>? inputMask;
   final TextInputType textInputType;
@@ -17,7 +17,6 @@ class TextFormFieldWidget extends GetView<InsertOrUpdateExpenseController> {
   const TextFormFieldWidget({
     Key? key,
     required this.editingController,
-    this.label,
     this.hint,
     required this.icon,
     this.inputMask,
@@ -32,11 +31,7 @@ class TextFormFieldWidget extends GetView<InsertOrUpdateExpenseController> {
       keyboardType: textInputType,
       inputFormatters: inputMask,
       decoration: InputDecoration(
-        labelText: label,
         hintText: hint,
-        icon: Icon(
-          icon,
-        ),
       ),
       validator: validator,
     );

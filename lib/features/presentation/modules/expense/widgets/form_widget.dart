@@ -26,21 +26,39 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Descrição',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      color: AppLightColors.appSecondaryColor,
+                    ),
+              ),
+            ),
+            SizedBox(height: 10.0.h),
             TextFormFieldWidget(
               editingController: controller.descriptionTextEditingController,
-              label: 'Descrição',
-              hint: 'Informe uma descrição',
+              hint: 'Conta de luz, roupas novas, internet...',
               icon: Icons.create,
               textInputType: TextInputType.name,
               validator: (description) {
                 return controller.validatorDescription(description!);
               },
             ),
-            const SizedBox(height: appDefaultPadding),
+            SizedBox(height: appDefaultPadding.h),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Valor R\$',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      color: AppLightColors.appSecondaryColor,
+                    ),
+              ),
+            ),
+            SizedBox(height: 10.0.h),
             TextFormFieldWidget(
               editingController: controller.moneyTextEditingController,
               icon: Icons.attach_money,
-              label: 'R\$ Valor',
               textInputType: const TextInputType.numberWithOptions(),
               inputMask: [
                 TextInputMask(
