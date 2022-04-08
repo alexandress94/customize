@@ -9,6 +9,7 @@ import 'package:organize_more/features/presentation/routes/routes.dart';
 import '../../../../../core/values/format/format_date.dart';
 import '../../../../../core/values/format/format_money.dart';
 import '../../../../domain/entities/expense_entity.dart';
+import '../../../theme/app_color.dart';
 import '../../../theme/app_constant.dart';
 import '../controllers/get_all_expense_controller.dart';
 import 'modal_buttom_sheet_delete_one_expense.dart';
@@ -159,19 +160,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
             ),
           ),
           SizedBox(height: appDefaultPadding.h),
-          expense.isPayment == 1
-              ? const Center(
-                  child: Text(
-                    'Está parcela está paga.',
-                    textAlign: TextAlign.center,
-                  ),
-                )
-              : const Center(
-                  child: Text(
-                    'Não consta pagamento para está parcela.',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+          _verifyTransactionDate(expense),
           SizedBox(height: appDefaultPadding.h),
           Center(
             child: Column(
@@ -218,6 +207,78 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
           )
         ],
       ),
+    );
+  }
+
+  Widget _verifyTransactionDate(ExpenseEntity expense) {
+    DateTime now = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+    );
+
+    return now.isAfter(expense.dueDate) && expense.isPayment == 0
+        ? Row(
+            children: [
+              _modifyIconByDate(
+                icon: Icons.event_busy,
+                color: appNormalBackgroundCardDueDateColor,
+                backgroundColor: appNormalDueDateColor,
+              ),
+              SizedBox(width: 20.0.h),
+              const Text('Esta parcela está com vencida.')
+            ],
+          )
+        : now.isAtSameMomentAs(expense.dueDate) && expense.isPayment == 0
+            ? Row(
+                children: [
+                  _modifyIconByDate(
+                    backgroundColor: appNormalBackgroundCloseToExpirationColor,
+                    icon: Icons.warning,
+                    color: appNormalWarningColor,
+                  ),
+                  SizedBox(width: 20.0.h),
+                  const Text('Esta parcela está próximo do vencimento.')
+                ],
+              )
+            : now.isBefore(expense.dueDate) && expense.isPayment == 0
+                ? Row(
+                    children: [
+                      _modifyIconByDate(
+                        backgroundColor: appNormalInTimerColor,
+                        icon: Icons.schedule,
+                        color: appNormalBackgroundInTimerColor,
+                      ),
+                      SizedBox(width: 20.0.h),
+                      const Text('Esta despesa está em dia.')
+                    ],
+                  )
+                : Row(
+                    children: [
+                      _modifyIconByDate(
+                        backgroundColor: appNormalBackgroundPaymentColor,
+                        icon: Icons.check,
+                        color: appNormalPaymentColor,
+                      ),
+                      SizedBox(width: 20.0.h),
+                      const Text('Esta parcela consta com pagamento.')
+                    ],
+                  );
+  }
+
+  Widget _modifyIconByDate({
+    required Color backgroundColor,
+    required IconData icon,
+    required Color color,
+  }) {
+    return Container(
+      height: 40,
+      width: 40,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: backgroundColor,
+      ),
+      child: Icon(icon, color: color),
     );
   }
 
