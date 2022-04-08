@@ -83,6 +83,19 @@ class InsertOrUpdateExpenseController extends GetxController
     return null;
   }
 
+  validatorPortion(String installment) {
+    if (installment.isEmpty) {
+      return 'Parcela obrigatório.';
+    } else if (ConvertText.toInteger(value: installment) == 0) {
+      return 'Parcela não pode ser zero.';
+    } else if (ConvertText.toInteger(value: installment) < 0) {
+      return 'Parcela obrigatório.';
+    } else if (ConvertText.toInteger(value: installment) > 100) {
+      return 'Número de parcelas inválida.';
+    }
+    return null;
+  }
+
   _setValueTextField() {
     if (arguments['ExpenseEntity'] != null) {
       final expense = arguments['ExpenseEntity'] as ExpenseEntity;

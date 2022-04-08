@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:organize_more/core/values/format/format_date.dart';
 
-import 'package:organize_more/features/presentation/modules/transactions/widgets/status_widget.dart';
+import 'package:organize_more/features/presentation/modules/expense/widgets/status_widget.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
 import 'package:organize_more/features/presentation/theme/app_constant.dart';
 import '../../../global_widgets/global_action_buttom_widget.dart';
