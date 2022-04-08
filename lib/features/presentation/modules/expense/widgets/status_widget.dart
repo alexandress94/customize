@@ -1,11 +1,10 @@
 import 'package:organize_more/features/presentation/theme/app_constant.dart';
-import 'package:organize_more/core/values/converts/convert_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../expense/controllers/insert_or_update_expense_controller.dart';
-import 'text_form_field_widget.dart';
+import '../controllers/insert_or_update_expense_controller.dart';
+import '../../transactions/widgets/text_form_field_widget.dart';
 
 class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
   const StatusWidget({Key? key}) : super(key: key);
@@ -60,15 +59,8 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
                   icon: Icons.add,
                   label: 'Parcela',
                   textInputType: const TextInputType.numberWithOptions(),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Parcela obrigatório.';
-                    } else if (ConvertText.toInteger(value: value) == 0) {
-                      return 'Parcela não pode ser zero.';
-                    } else if (ConvertText.toInteger(value: value) < 0) {
-                      return 'Parcela obrigatório.';
-                    }
-                    return null;
+                  validator: (installment) {
+                    return controller.validatorPortion(installment!);
                   },
                 ),
               );
