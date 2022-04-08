@@ -2,7 +2,6 @@ import 'package:easy_mask/easy_mask.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:organize_more/core/values/format/format_date.dart';
 
 import 'package:organize_more/features/presentation/modules/expense/widgets/status_widget.dart';
@@ -73,30 +72,43 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
               },
             ),
             const SizedBox(height: appDefaultPadding),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('Data de vencimento:'),
-                GetBuilder<InsertOrUpdateExpenseController>(
-                  id: 'selected-date',
-                  builder: (_) {
-                    return TextButton.icon(
-                      icon: const Icon(Icons.arrow_drop_down),
-                      onPressed: () {
-                        _showDatePicker(context: context);
-                      },
-                      label: Text(
-                        FormatDate.replaceMaskDate(
-                          date: controller.getSelectedDate,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Data de vencimento',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      color: AppLightColors.appSecondaryColor,
+                    ),
+              ),
             ),
+            SizedBox(height: 10.0.h),
+            Obx(
+              () => TextFormField(
+                autofocus: true,
+                autocorrect: true,
+                readOnly: true,
+                keyboardType: TextInputType.datetime,
+                onTap: () {
+                  _showDatePicker(context: context);
+                },
+                decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppLightColors.appWhiteColor,
+                      width: 2,
+                    ),
+                  ),
+                  isDense: true,
+                  hintText:
+                      FormatDate.replaceMaskDate(date: controller.date.value),
+                  prefixIcon: const Icon(Icons.calendar_month),
+                  suffixIcon: const Icon(Icons.keyboard_arrow_down),
+                ),
+              ),
+            ),
+            SizedBox(height: 10.0.h),
             const StatusWidget(),
-            SizedBox(height: 40.0.h),
+            SizedBox(height: 20.0.h),
             controller.arguments['visibility']
                 ? Visibility(
                     replacement: const SizedBox.shrink(),
@@ -151,8 +163,8 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
         );
       },
     );
-    if (_selected != null && _selected != controller.getSelectedDate) {
-      controller.setSelectedDate = _selected;
+    if (_selected != null && _selected != controller.date.value) {
+      controller.date.value = _selected;
     }
   }
 }
