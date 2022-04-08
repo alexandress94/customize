@@ -75,6 +75,8 @@ class AppTheme {
   );
 
   ThemeData appLightThemeData = ThemeData.light().copyWith(
+    unselectedWidgetColor: AppLightColors.appSecondaryColor,
+    toggleableActiveColor: AppLightColors.appBlackColor,
     primaryColor: AppLightColors.appPrimaryColor,
     primaryColorLight: AppLightColors.appPrimaryColor,
     splashColor: AppLightColors.appPrimaryColor,
