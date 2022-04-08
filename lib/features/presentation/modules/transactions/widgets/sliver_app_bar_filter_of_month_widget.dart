@@ -35,7 +35,10 @@ class SliverAppBarFilterOfMonthWidget extends GetView<GetAllExpenseController> {
                       controller.backFilter();
                       controller.find();
                     },
-                    child: const Icon(Icons.arrow_back_ios),
+                    child: const SizedBox(
+                      width: 30,
+                      child: Icon(Icons.arrow_back_ios),
+                    ),
                   ),
                   SizedBox(width: 15.0.h),
                   Obx(
@@ -52,7 +55,10 @@ class SliverAppBarFilterOfMonthWidget extends GetView<GetAllExpenseController> {
                       controller.nextFilter();
                       controller.find();
                     },
-                    child: const Icon(Icons.arrow_forward_ios),
+                    child: const SizedBox(
+                      width: 30,
+                      child: Icon(Icons.arrow_forward_ios),
+                    ),
                   )
                 ],
               ),
