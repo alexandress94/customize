@@ -27,6 +27,7 @@ class ExpansePage extends GetView<InsertOrUpdateExpenseController> {
       ),
       body: const SafeArea(
         child: SingleChildScrollView(
+          padding: EdgeInsets.only(left: 16.0, right: 16.0),
           physics: BouncingScrollPhysics(),
           child: FormWidget(),
         ),
