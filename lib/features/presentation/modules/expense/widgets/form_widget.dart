@@ -151,12 +151,16 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
       ),
       builder: (BuildContext context, Widget? child) {
         return Theme(
-          data: ThemeData.dark().copyWith(
-            primaryColor: appDarkBackgroundColor,
+          data: ThemeData.light().copyWith(
+            primaryColor: AppLightColors.appSecondaryColor,
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                primary: appDarkBodyColor,
+                primary: AppLightColors.appBlackColor,
               ),
+            ),
+            colorScheme: ColorScheme.fromSwatch().copyWith(
+              primary: AppLightColors.appBlackColor,
+              secondary: AppLightColors.appBlackColor,
             ),
           ),
           child: child!,
