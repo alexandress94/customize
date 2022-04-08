@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:organize_more/core/values/format/format_date.dart';
-import 'package:organize_more/core/values/format/format_money.dart';
 
 import 'package:organize_more/features/presentation/modules/transactions/widgets/status_widget.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
@@ -33,11 +32,8 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
               hint: 'Informe uma descrição',
               icon: Icons.create,
               textInputType: TextInputType.name,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return "Descrição obrigatório.";
-                }
-                return null;
+              validator: (description) {
+                return controller.validatorDescription(description!);
               },
             ),
             const SizedBox(height: appDefaultPadding),
@@ -54,11 +50,8 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                   reverse: true,
                 )
               ],
-              validator: (value) {
-                if (FormatMoney.replaceMask(value: value!) <= 0.0) {
-                  return "Valor obrigatório.";
-                }
-                return null;
+              validator: (money) {
+                return controller.validatorMoney(money!);
               },
             ),
             const SizedBox(height: appDefaultPadding),

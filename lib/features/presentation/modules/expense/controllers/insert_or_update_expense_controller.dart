@@ -69,6 +69,20 @@ class InsertOrUpdateExpenseController extends GetxController
     messageListener(message);
   }
 
+  validatorMoney(String money) {
+    if (FormatMoney.replaceMask(value: money) <= 0.0) {
+      return "Valor obrigatório.";
+    }
+    return null;
+  }
+
+  validatorDescription(String description) {
+    if (description.isEmpty) {
+      return "Descrição obrigatório.";
+    }
+    return null;
+  }
+
   _setValueTextField() {
     if (arguments['ExpenseEntity'] != null) {
       final expense = arguments['ExpenseEntity'] as ExpenseEntity;
