@@ -226,7 +226,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                 backgroundColor: appNormalDueDateColor,
               ),
               SizedBox(width: 20.0.h),
-              const Text('Esta parcela está com vencida.')
+              const Text('Esta despesa está com vencimento.')
             ],
           )
         : now.isAtSameMomentAs(expense.dueDate) && expense.isPayment == 0
@@ -238,7 +238,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                     color: appNormalWarningColor,
                   ),
                   SizedBox(width: 20.0.h),
-                  const Text('Esta parcela está próximo do vencimento.')
+                  const Text('Esta despesa está próximo do vencimento.')
                 ],
               )
             : now.isBefore(expense.dueDate) && expense.isPayment == 0
@@ -261,7 +261,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                         color: appNormalPaymentColor,
                       ),
                       SizedBox(width: 20.0.h),
-                      const Text('Esta parcela consta com pagamento.')
+                      const Text('Esta despesa consta como pagamento.')
                     ],
                   );
   }
