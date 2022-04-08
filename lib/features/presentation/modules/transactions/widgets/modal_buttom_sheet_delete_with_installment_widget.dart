@@ -154,6 +154,7 @@ class ModalButtomSheetDeleteWithInstallmentWidget
                         controller.deleteExpenseController.isLoading.isFalse,
                     replacement: const SizedBox.shrink(),
                     child: GlobalActionButtomWidget(
+                      icon: Icons.delete_outline,
                       color: appNormalDangerColor,
                       title: 'Remover',
                       onTap: () {

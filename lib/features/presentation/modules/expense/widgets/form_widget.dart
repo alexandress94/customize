@@ -115,6 +115,7 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                     visible: controller.isLoading.isFalse,
                     child: GlobalActionButtomWidget(
                         title: 'Cadastrar',
+                        icon: Icons.check,
                         onTap: () async {
                           await controller.insertExpense();
                         }),
@@ -123,6 +124,7 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                     replacement: const SizedBox.shrink(),
                     visible: controller.isLoading.isFalse,
                     child: GlobalActionButtomWidget(
+                        icon: Icons.save_outlined,
                         title: 'Salvar',
                         onTap: () async {
                           await controller.updateExpense();

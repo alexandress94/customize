@@ -6,6 +6,7 @@ import 'package:organize_more/features/presentation/theme/app_color.dart';
 class GlobalActionButtomWidget extends StatelessWidget {
   final String title;
   final Color color;
+  final IconData icon;
   final void Function()? onTap;
 
   const GlobalActionButtomWidget({
@@ -13,6 +14,7 @@ class GlobalActionButtomWidget extends StatelessWidget {
     required this.title,
     this.color = AppLightColors.appBlackColor,
     required this.onTap,
+    required this.icon,
   }) : super(key: key);
 
   @override
@@ -29,13 +31,19 @@ class GlobalActionButtomWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          child: Center(
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                    color: AppLightColors.appWhiteColor,
-                  ),
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: AppLightColors.appWhiteColor),
+              SizedBox(width: 10.0.h),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      color: AppLightColors.appWhiteColor,
+                    ),
+              ),
+            ],
           ),
         ),
       ),
