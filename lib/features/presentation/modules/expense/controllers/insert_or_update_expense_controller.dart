@@ -29,7 +29,7 @@ class InsertOrUpdateExpenseController extends GetxController
   Portion installmentStatus = Portion.not;
   RxBool isRepeatSelected = false.obs;
   RxBool isSelectedPlot = false.obs;
-  DateTime _date = DateTime.now();
+  Rx<DateTime> date = DateTime.now().obs;
   final Map<String, dynamic> arguments;
   Rxn<ExpenseEntity> expense = Rxn<ExpenseEntity>();
 
@@ -54,8 +54,6 @@ class InsertOrUpdateExpenseController extends GetxController
   })  : _insertExpenseUsecase = insertExpenseUsecase,
         _updateExpenseUsecase = updateExpenseUsecase,
         _log = log;
-
-  DateTime get getSelectedDate => _date;
 
   GlobalKey<FormState> get getFormKey => _formkey;
 
@@ -90,8 +88,8 @@ class InsertOrUpdateExpenseController extends GetxController
       return 'Parcela não pode ser zero.';
     } else if (ConvertText.toInteger(value: installment) < 0) {
       return 'Parcela obrigatório.';
-    } else if (ConvertText.toInteger(value: installment) > 100) {
-      return 'Número de parcelas inválida.';
+    } else if (ConvertText.toInteger(value: installment) > 99) {
+      return 'Apenas parcelas menores que 100';
     }
     return null;
   }
@@ -103,16 +101,11 @@ class InsertOrUpdateExpenseController extends GetxController
       moneyTextEditingController.text = FormatMoney.outputMask(
         expense.valueTransaction.toString(),
       ).replaceAll('R\$', '');
-      _date = expense.dueDate;
+      date.value = expense.dueDate;
     } else {
       descriptionTextEditingController.clear();
       moneyTextEditingController.text = '0,00';
     }
-  }
-
-  set setSelectedDate(DateTime date) {
-    _date = date;
-    update(['selected-date']);
   }
 
   void selectedNo(Portion? value) {
@@ -152,9 +145,9 @@ class InsertOrUpdateExpenseController extends GetxController
           isPortion: installmentStatus.index,
           transactionDate: DateTime.now(),
           dueDate: DateTime(
-            getSelectedDate.year,
-            getSelectedDate.month + count,
-            getSelectedDate.day,
+            date.value.year,
+            date.value.month + count,
+            date.value.day,
           ),
         );
 
@@ -196,7 +189,7 @@ class InsertOrUpdateExpenseController extends GetxController
           id: expense.id!,
           uuId: expense.uuId,
           description: descriptionTextEditingController.value.text,
-          date: FormatDate.replaceMaskDateForDatabase(date: _date),
+          date: FormatDate.replaceMaskDateForDatabase(date: date.value),
           value: money,
         ),
       );
