@@ -185,6 +185,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                         ),
                       )
                     : GlobalActionButtomWidget(
+                        color: appNormalDangerColor,
                         title: 'Cancelar pagamento',
                         onTap: () {
                           controller.cancelPaymentController.cancelPayment(

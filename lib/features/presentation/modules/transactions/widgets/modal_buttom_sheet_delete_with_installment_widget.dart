@@ -7,6 +7,7 @@ import '../../../../../core/models/expense_dto.dart';
 import '../../../../../core/values/format/format_date.dart';
 import '../../../../../core/values/format/format_money.dart';
 import '../../../global_widgets/global_action_buttom_widget.dart';
+import '../../../theme/app_color.dart';
 import '../../../theme/app_constant.dart';
 import '../controllers/delete_expense_controller.dart';
 import '../controllers/get_all_expense_controller.dart';
@@ -153,6 +154,7 @@ class ModalButtomSheetDeleteWithInstallmentWidget
                         controller.deleteExpenseController.isLoading.isFalse,
                     replacement: const SizedBox.shrink(),
                     child: GlobalActionButtomWidget(
+                      color: appNormalDangerColor,
                       title: 'Remover',
                       onTap: () {
                         controller.deleteExpenseController.deleteExpense(

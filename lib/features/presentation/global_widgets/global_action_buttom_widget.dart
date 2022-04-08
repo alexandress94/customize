@@ -5,11 +5,13 @@ import 'package:organize_more/features/presentation/theme/app_color.dart';
 
 class GlobalActionButtomWidget extends StatelessWidget {
   final String title;
+  final Color color;
   final void Function()? onTap;
 
   const GlobalActionButtomWidget({
     Key? key,
     required this.title,
+    this.color = AppLightColors.appBlackColor,
     required this.onTap,
   }) : super(key: key);
 
@@ -17,7 +19,7 @@ class GlobalActionButtomWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       borderRadius: BorderRadius.circular(20.0),
-      color: AppLightColors.appBlackColor,
+      color: color,
       child: InkWell(
         borderRadius: BorderRadius.circular(20.0),
         onTap: onTap,

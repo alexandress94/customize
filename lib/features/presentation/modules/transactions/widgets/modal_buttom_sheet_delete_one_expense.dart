@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:organize_more/core/values/format/format_money.dart';
 import 'package:organize_more/features/domain/entities/expense_entity.dart';
+import 'package:organize_more/features/presentation/theme/app_color.dart';
 
 import '../../../../../core/values/format/format_date.dart';
 import '../../../global_widgets/global_action_buttom_widget.dart';
@@ -91,6 +92,7 @@ class ModalButtomSheetDeleteOnExpensetWidget
                   visible: controller.deleteExpenseController.isLoading.isFalse,
                   replacement: const SizedBox.shrink(),
                   child: GlobalActionButtomWidget(
+                    color: appNormalDangerColor,
                     title: 'Remover',
                     onTap: () {
                       controller.deleteExpenseController.delete(expense.id!);
