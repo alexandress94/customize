@@ -15,6 +15,10 @@ class InsertExpenseUsecase implements Usecase<int, ParameterInsertExpense> {
       return Left(UsecaseException.invalidInput());
     }
 
+    if (parameter.expenses['nr_installment'] as int > 99) {
+      return Left(UsecaseException.invalidInput());
+    }
+
     final result = await _repository.insertExpense(expense: parameter.expenses);
 
     if (result.isLeft) {
