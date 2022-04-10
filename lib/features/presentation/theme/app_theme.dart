@@ -75,7 +75,7 @@ class AppTheme {
       secondary: AppDarkColors.appBlueColor,
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: AppDarkColors.appPrimaryColor,
+      backgroundColor: AppDarkColors.appBlueColor,
     ),
     cardTheme: const CardTheme(
       color: AppDarkColors.appSecondaryBackgroundColor,

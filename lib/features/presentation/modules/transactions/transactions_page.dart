@@ -22,7 +22,9 @@ class TransactionsPage extends GetView<GetAllExpenseController> {
       () => NotificationListener<ScrollNotification>(
         onNotification: controller.handleScrollNotification,
         child: Scaffold(
-          backgroundColor: AppLightColors.appBarBackgroundColor,
+          backgroundColor: Get.isDarkMode
+              ? AppDarkColors.appPrimeryBackgroundColor
+              : AppLightColors.appBarBackgroundColor,
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, 60.h),
             child: const CustomAppBarWidget(),

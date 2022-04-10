@@ -173,6 +173,9 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                             .updatePaymentController.isLoading.isFalse,
                         replacement: const SizedBox.shrink(),
                         child: GlobalActionButtomWidget(
+                          color: Get.isDarkMode
+                              ? AppDarkColors.appBlueColor
+                              : AppLightColors.appBlackColor,
                           icon: Icons.check,
                           title: 'Confirmar pagamento',
                           onTap: () {

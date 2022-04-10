@@ -105,8 +105,18 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                   isDense: true,
                   hintText:
                       FormatDate.replaceMaskDate(date: controller.date.value),
-                  prefixIcon: const Icon(Icons.calendar_month),
-                  suffixIcon: const Icon(Icons.keyboard_arrow_down),
+                  prefixIcon: Icon(
+                    Icons.calendar_month,
+                    color: Get.isDarkMode
+                        ? AppDarkColors.appWhiteColor
+                        : AppLightColors.appIconGrayColor,
+                  ),
+                  suffixIcon: Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Get.isDarkMode
+                        ? AppDarkColors.appWhiteColor
+                        : AppLightColors.appIconGrayColor,
+                  ),
                 ),
               ),
             ),
@@ -118,6 +128,9 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                     replacement: const SizedBox.shrink(),
                     visible: controller.isLoading.isFalse,
                     child: GlobalActionButtomWidget(
+                        color: Get.isDarkMode
+                            ? AppDarkColors.appBlueColor
+                            : AppLightColors.appBlackColor,
                         title: 'Cadastrar',
                         icon: Icons.check,
                         onTap: () async {
@@ -159,21 +172,39 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
         const Duration(days: 1000),
       ),
       builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: ThemeData.light().copyWith(
-            primaryColor: AppLightColors.appSecondaryColor,
-            textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(
-                primary: AppLightColors.appBlackColor,
-              ),
-            ),
-            colorScheme: ColorScheme.fromSwatch().copyWith(
-              primary: AppLightColors.appBlackColor,
-              secondary: AppLightColors.appBlackColor,
-            ),
-          ),
-          child: child!,
-        );
+        return Get.isDarkMode
+            ? Theme(
+                data: ThemeData.dark().copyWith(
+                  dialogBackgroundColor:
+                      AppDarkColors.appSecondaryBackgroundColor,
+                  textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(
+                      primary: AppDarkColors.appWhiteColor,
+                    ),
+                  ),
+                  colorScheme: ColorScheme.fromSwatch().copyWith(
+                    primary: AppDarkColors.appPrimeryBackgroundColor,
+                    onPrimary: AppDarkColors.appWhiteColor,
+                    onSurface: AppDarkColors.appWhiteColor,
+                  ),
+                ),
+                child: child!,
+              )
+            : Theme(
+                data: ThemeData.light().copyWith(
+                  primaryColor: AppLightColors.appSecondaryColor,
+                  textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(
+                      primary: AppLightColors.appBlackColor,
+                    ),
+                  ),
+                  colorScheme: ColorScheme.fromSwatch().copyWith(
+                    primary: AppLightColors.appBlackColor,
+                    secondary: AppLightColors.appBlackColor,
+                  ),
+                ),
+                child: child!,
+              );
       },
     );
     if (_selected != null && _selected != controller.date.value) {

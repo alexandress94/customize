@@ -12,7 +12,9 @@ class SliverAppBarSumOfMonthWidget extends GetView<GetAllExpenseController> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: AppLightColors.appBarBackgroundColor,
+      backgroundColor: Get.isDarkMode
+          ? AppDarkColors.appPrimeryBackgroundColor
+          : AppLightColors.appBarBackgroundColor,
       automaticallyImplyLeading: false,
       primary: false,
       toolbarHeight: 100.0.h,

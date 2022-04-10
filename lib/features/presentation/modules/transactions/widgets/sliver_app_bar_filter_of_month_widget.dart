@@ -11,7 +11,9 @@ class SliverAppBarFilterOfMonthWidget extends GetView<GetAllExpenseController> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: AppLightColors.appBarBackgroundColor,
+      backgroundColor: Get.isDarkMode
+          ? AppDarkColors.appPrimeryBackgroundColor
+          : AppLightColors.appBarBackgroundColor,
       automaticallyImplyLeading: false,
       primary: false,
       toolbarHeight: 85.0.h,
