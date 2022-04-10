@@ -2,10 +2,12 @@ import 'package:get/get.dart';
 
 import 'package:organize_more/features/presentation/modules/expense/expense_page.dart';
 import 'package:organize_more/features/presentation/modules/on_error/bindings/on_error_binding.dart';
+import 'package:organize_more/features/presentation/modules/settings/binding/settings_binding.dart';
 
 import 'package:organize_more/features/presentation/routes/routes.dart';
 
 import '../modules/on_error/on_error_page.dart';
+import '../modules/settings/settings_page.dart';
 import '../modules/transactions/bindings/cancel_payment_binding.dart';
 import '../modules/transactions/bindings/delete_expense_binding.dart';
 import '../modules/transactions/bindings/get_all_expense_binding.dart';
@@ -34,6 +36,11 @@ class AppPages {
       name: Routes.ERROR_PAGE,
       page: () => const OnErrorPage(),
       binding: OnErrorBinding(),
+    ),
+    GetPage(
+      name: Routes.SETTINGS_PAGE,
+      page: () => const SettingsPage(),
+      binding: SettingsBinding(),
     ),
   ];
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:organize_more/features/presentation/routes/routes.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
 
 class CustomAppBarWidget extends StatelessWidget {
@@ -27,7 +29,9 @@ class CustomAppBarWidget extends StatelessWidget {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed(Routes.SETTINGS_PAGE);
+          },
           icon: const Icon(Icons.settings_outlined),
         )
       ],
