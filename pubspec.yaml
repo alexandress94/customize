@@ -51,6 +51,7 @@ dependencies:
   # new features 
   #-------------
   elegant_notification: ^1.5.1
+  get_storage: ^2.0.3
   
   charts_flutter: ^0.12.0
   flutter_screenutil: ^5.3.1
