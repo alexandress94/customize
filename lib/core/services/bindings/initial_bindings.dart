@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:organize_more/core/services/log/log.dart';
 import 'package:organize_more/core/services/log/log_implementation.dart';
+import 'package:organize_more/core/services/packages/contracts/local_get_storage.dart';
 import 'package:organize_more/core/services/packages/contracts/sqlite_connection.dart';
+import 'package:organize_more/core/services/packages/gateways/local_get_storage_implementation.dart';
 import 'package:organize_more/core/values/concatenate/concatenate.dart';
 
 import '../packages/contracts/sqlite_expense.dart';
@@ -23,5 +25,7 @@ class InitialBindings implements Bindings {
     Get.put<SqliteExpense>(SqliteExpenseImplementation(), permanent: true);
 
     Get.put<Concatenate>(Concatenate(), permanent: true);
+
+    Get.put<LocalGetStorage>(LocalGetStorageImplementation(), permanent: true);
   }
 }
