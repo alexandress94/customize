@@ -67,6 +67,7 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
                     ),
                     SizedBox(height: 10.0.h),
                     TextFormFieldWidget(
+                      maxLenght: 2,
                       editingController: controller.portionditingController,
                       icon: Icons.add,
                       textInputType: const TextInputType.numberWithOptions(),

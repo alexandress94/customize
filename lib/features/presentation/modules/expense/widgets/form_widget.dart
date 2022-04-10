@@ -36,6 +36,7 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
             ),
             SizedBox(height: 10.0.h),
             TextFormFieldWidget(
+              maxLenght: 80,
               editingController: controller.descriptionTextEditingController,
               hint: 'Conta de luz, roupas novas, internet...',
               icon: Icons.create,

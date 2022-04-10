@@ -6,7 +6,7 @@ import '../../expense/controllers/insert_or_update_expense_controller.dart';
 
 class TextFormFieldWidget extends GetView<InsertOrUpdateExpenseController> {
   final TextEditingController editingController;
-
+  final int? maxLenght;
   final String? hint;
 
   final IconData icon;
@@ -17,6 +17,7 @@ class TextFormFieldWidget extends GetView<InsertOrUpdateExpenseController> {
   const TextFormFieldWidget({
     Key? key,
     required this.editingController,
+    this.maxLenght,
     this.hint,
     required this.icon,
     this.inputMask,
@@ -27,6 +28,7 @@ class TextFormFieldWidget extends GetView<InsertOrUpdateExpenseController> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength: maxLenght,
       controller: editingController,
       keyboardType: textInputType,
       inputFormatters: inputMask,
