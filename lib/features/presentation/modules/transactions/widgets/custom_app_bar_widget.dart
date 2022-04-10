@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/routes/routes.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
+
+import '../../../../../core/services/service_controller/theme_service_controller.dart';
 
 class CustomAppBarWidget extends StatelessWidget {
   const CustomAppBarWidget({Key? key}) : super(key: key);
@@ -30,7 +30,9 @@ class CustomAppBarWidget extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {
-            Get.toNamed(Routes.SETTINGS_PAGE);
+            // Get.toNamed(Routes.SETTINGS_PAGE);
+            ThemeServiceController().changeThemeMode();
+            // Get.isDarkMode ? ThemeMode.light : ThemeMode.dark;
           },
           icon: const Icon(Icons.settings_outlined),
         )

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 // DARK
-const Color appDarkBackgroundColor = Color(0xFF212332);
-const Color appDarkBodyColor = Color(0xFFF2F2F2);
-const appDarkPrimaryColor = Color(0xFF2697FF);
-const Color appDarkSecondaryColor = Color(0xFF2A2D3E);
 
 // LIGHT
 class AppLightColors {
@@ -19,10 +15,18 @@ class AppLightColors {
   static const appBarBackgroundColor = Color(0xffe3e3ee);
 }
 
-// const Color appLightBackgroundColor = Color(0xFFD4D4D4);
-// const Color appLightPrimaryColor = Color(0xFF2697FF);
-// const Color appLightBodyColor = Color(0xFF212332);
-// const Color appLightSecondaryColor = Color.fromARGB(255, 202, 200, 200);
+class AppDarkColors {
+  AppDarkColors._instance();
+  static const appWhiteColor = Colors.white;
+  static const appSecondaryColor = Color(0xffa6a6a6);
+  static const appIconGrayColor = Color(0xff767676);
+  static const appBlueColor = Color(0xFF2697FF);
+  static const appPrimaryColor = Colors.white;
+  static const Color appPrimeryBackgroundColor = Color(0xFF212332);
+  static const Color appSecondaryBackgroundColor = Color(0xFF2A2D3E);
+  static const appBarBackgroundColor = Color(0xffe3e3ee);
+}
+
 // warning
 const Color appNormalWarningColor = Color(0xFFFFB717);
 // danger

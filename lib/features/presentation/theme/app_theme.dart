@@ -4,11 +4,13 @@ import 'app_style.dart';
 
 class AppTheme {
   ThemeData appDarkThemeData = ThemeData.dark().copyWith(
-    primaryColor: appDarkPrimaryColor,
-    primaryColorLight: appDarkPrimaryColor,
-    splashColor: appDarkPrimaryColor,
+    unselectedWidgetColor: AppLightColors.appSecondaryColor,
+    toggleableActiveColor: AppLightColors.appWhiteColor,
+    primaryColor: AppDarkColors.appBlueColor,
+    primaryColorLight: AppDarkColors.appBlueColor,
+    splashColor: AppDarkColors.appBlueColor,
     // Setando a cor padrão do background das páginas.
-    scaffoldBackgroundColor: appDarkBackgroundColor,
+    scaffoldBackgroundColor: AppDarkColors.appPrimeryBackgroundColor,
     // Setando o estilo de texto padrão
     textTheme: AppStyle().appTextThemeDark,
     // Definindo o theme light
@@ -16,31 +18,34 @@ class AppTheme {
     // Setando a cor padrão do AppBars
     appBarTheme: AppBarTheme(
       centerTitle: false,
-      backgroundColor: appDarkPrimaryColor,
+      backgroundColor: AppDarkColors.appSecondaryBackgroundColor,
       iconTheme: const IconThemeData(
-        color: appDarkBodyColor,
+        color: AppDarkColors.appPrimaryColor,
       ),
-      titleTextStyle: AppStyle()
-          .appTextThemeDark
-          .headline6!
-          .copyWith(color: appDarkBodyColor),
+      titleTextStyle: AppStyle().appTextThemeDark.headline6!.copyWith(
+            color: AppDarkColors.appPrimaryColor,
+          ),
     ),
     // Setando a cor padrão do ElevatedButton
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(appDarkPrimaryColor),
+        backgroundColor: MaterialStateProperty.all(AppDarkColors.appBlueColor),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.all(
-          appDarkPrimaryColor.withOpacity(0.2),
+          AppDarkColors.appBlueColor.withOpacity(0.2),
         ),
         // Setando a cor padrão do TextButton
-        foregroundColor: MaterialStateProperty.all(appDarkBodyColor),
+        foregroundColor: MaterialStateProperty.all(
+          AppDarkColors.appPrimaryColor,
+        ),
       ),
     ),
-    iconTheme: const IconThemeData(color: appDarkBodyColor),
+    iconTheme: const IconThemeData(
+      color: AppDarkColors.appPrimaryColor,
+    ),
     inputDecorationTheme: InputDecorationTheme(
       // disabledBorder: OutlineInputBorder(
       //   borderRadius: BorderRadius.circular(10),
@@ -51,30 +56,34 @@ class AppTheme {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(
-          color: appDarkBodyColor,
+          color: AppDarkColors.appPrimaryColor,
         ),
       ),
       // floatingLabelStyle: const TextStyle(color: appDarkBodyColor),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: appDarkPrimaryColor, width: 2),
+        borderSide:
+            const BorderSide(color: AppDarkColors.appBlueColor, width: 2),
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
       ),
     ),
-    dividerColor: appDarkBodyColor,
+    dividerColor: AppDarkColors.appPrimaryColor,
     colorScheme: ColorScheme.fromSwatch().copyWith(
-      primary: appDarkPrimaryColor,
-      secondary: appDarkPrimaryColor,
+      primary: AppDarkColors.appBlueColor,
+      secondary: AppDarkColors.appBlueColor,
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: AppDarkColors.appPrimaryColor,
     ),
     cardTheme: const CardTheme(
-      color: appDarkSecondaryColor,
+      color: AppDarkColors.appSecondaryBackgroundColor,
       elevation: 5.0,
     ),
   );
 
-  ThemeData appLightThemeData = ThemeData(
+  ThemeData appLightThemeData = ThemeData.light().copyWith(
     unselectedWidgetColor: AppLightColors.appSecondaryColor,
     toggleableActiveColor: AppLightColors.appBlackColor,
     primaryColor: AppLightColors.appPrimaryColor,

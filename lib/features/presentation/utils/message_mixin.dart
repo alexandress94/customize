@@ -28,11 +28,11 @@ mixin MessageMixin on GetxController {
         animation: ANIMATION.fromRight,
         title: Text(message.title,
             style: Get.textTheme.bodyText1?.copyWith(
-              color: appDarkBackgroundColor,
+              color: AppDarkColors.appPrimeryBackgroundColor,
             )),
         description: Text(message.message,
             style: Get.textTheme.bodyText1?.copyWith(
-              color: appDarkBackgroundColor,
+              color: AppDarkColors.appPrimeryBackgroundColor,
             )),
         onActionPressed: () {
           Get.back();
@@ -48,11 +48,11 @@ mixin MessageMixin on GetxController {
         animation: ANIMATION.fromRight,
         title: Text(message.title,
             style: Get.textTheme.bodyText1?.copyWith(
-              color: appDarkBackgroundColor,
+              color: AppDarkColors.appPrimeryBackgroundColor,
             )),
         description: Text(message.message,
             style: Get.textTheme.bodyText1?.copyWith(
-              color: appDarkBackgroundColor,
+              color: AppDarkColors.appPrimeryBackgroundColor,
             )),
       ).show(Get.overlayContext!);
     } else {
@@ -62,11 +62,11 @@ mixin MessageMixin on GetxController {
         animation: ANIMATION.fromRight,
         title: Text(message.title,
             style: Get.textTheme.bodyText1?.copyWith(
-              color: appDarkBackgroundColor,
+              color: AppDarkColors.appPrimeryBackgroundColor,
             )),
         description: Text(message.message,
             style: Get.textTheme.bodyText1?.copyWith(
-              color: appDarkBackgroundColor,
+              color: AppDarkColors.appPrimeryBackgroundColor,
             )),
         onActionPressed: () {
           Get.back();

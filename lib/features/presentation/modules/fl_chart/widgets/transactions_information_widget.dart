@@ -26,7 +26,7 @@ class TransactionsInformationWidget extends GetView<GetAllExpenseController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const <Widget>[
                 IndicatorWidget(
-                  color: appDarkSecondaryColor,
+                  color: AppDarkColors.appSecondaryBackgroundColor,
                   text: 'N/D',
                   isSquare: true,
                 ),

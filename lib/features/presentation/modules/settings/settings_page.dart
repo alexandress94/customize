@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/modules/settings/controller/settings_controller.dart';
+import 'package:organize_more/features/presentation/modules/settings/controllers/settings_controller.dart';
 
 class SettingsPage extends GetView<SettingsController> {
   const SettingsPage({Key? key}) : super(key: key);

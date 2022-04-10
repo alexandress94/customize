@@ -128,6 +128,9 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                     replacement: const SizedBox.shrink(),
                     visible: controller.isLoading.isFalse,
                     child: GlobalActionButtomWidget(
+                        color: Get.isDarkMode
+                            ? AppDarkColors.appBlueColor
+                            : AppLightColors.appBlackColor,
                         icon: Icons.save_outlined,
                         title: 'Salvar',
                         onTap: () async {
