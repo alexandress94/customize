@@ -7,6 +7,7 @@ import 'package:organize_more/core/services/service_controller/theme_service_con
 import 'package:organize_more/features/presentation/routes/routes.dart';
 import 'features/presentation/routes/app_pages.dart';
 import 'features/presentation/theme/app_theme.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   await GetStorage.init();
@@ -20,15 +21,15 @@ void main() async {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: () => GetMaterialApp(
-        // locale: const Locale('pt', 'BR'),
-        // supportedLocales: const [
-        //   Locale('en', 'US'),
-        //   Locale('pt', 'BR'),
-        // ],
-        // localizationsDelegates: const [
-        //   GlobalMaterialLocalizations.delegate,
-        //   GlobalWidgetsLocalizations.delegate,
-        // ],
+        locale: const Locale('pt', 'BR'),
+        supportedLocales: const [
+          Locale('en', 'US'),
+          Locale('pt', 'BR'),
+        ],
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
         initialRoute: Routes.INITIAL_PAGE,
         getPages: AppPages.routes,
         initialBinding: InitialBindings(),
