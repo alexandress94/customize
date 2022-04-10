@@ -5,8 +5,8 @@ import '../contracts/local_get_storage.dart';
 class LocalGetStorageImplementation implements LocalGetStorage {
   final GetStorage _storage = GetStorage();
   @override
-  Future<T?> read<T>(String key) async {
-    return await _storage.read(key);
+  bool? read(String key) {
+    return _storage.read(key);
   }
 
   @override
