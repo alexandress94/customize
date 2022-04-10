@@ -8,15 +8,17 @@ class TextFormFieldWidget extends GetView<InsertOrUpdateExpenseController> {
   final TextEditingController editingController;
   final int? maxLenght;
   final String? hint;
-
+  final TextInputAction? textInputAction;
   final IconData icon;
   final List<TextInputFormatter>? inputMask;
   final TextInputType textInputType;
   final String? Function(String?) validator;
-
+  final void Function(String)? onFieldSubmitted;
   const TextFormFieldWidget({
     Key? key,
     required this.editingController,
+    this.textInputAction,
+    this.onFieldSubmitted,
     this.maxLenght,
     this.hint,
     required this.icon,
@@ -28,7 +30,9 @@ class TextFormFieldWidget extends GetView<InsertOrUpdateExpenseController> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onFieldSubmitted: onFieldSubmitted,
       maxLength: maxLenght,
+      textInputAction: textInputAction,
       controller: editingController,
       keyboardType: textInputType,
       inputFormatters: inputMask,

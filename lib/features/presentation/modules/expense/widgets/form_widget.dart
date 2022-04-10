@@ -36,6 +36,7 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
             ),
             SizedBox(height: 10.0.h),
             TextFormFieldWidget(
+              textInputAction: TextInputAction.next,
               maxLenght: 80,
               editingController: controller.descriptionTextEditingController,
               hint: 'Conta de luz, roupas novas, internet...',
@@ -57,6 +58,8 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
             ),
             SizedBox(height: 10.0.h),
             TextFormFieldWidget(
+              onFieldSubmitted: (_) => controller.insertExpense(),
+              textInputAction: TextInputAction.go,
               editingController: controller.moneyTextEditingController,
               icon: Icons.attach_money,
               textInputType: const TextInputType.numberWithOptions(),
