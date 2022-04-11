@@ -27,8 +27,21 @@ class SettingsPage extends GetView<SettingsController> {
       ),
       body: ListView(
         physics: BouncingScrollPhysics(),
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(top: 30.0, left: 16.0, right: 16.0),
         children: [
+          Row(
+            children: [
+              Text(
+                'Estilo',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              SizedBox(width: 20.0.h),
+              Expanded(child: const Divider(height: 1, thickness: 1)),
+            ],
+          ),
+          SizedBox(height: 5.0.h),
           GetBuilder<SettingsController>(
               id: 'change-theme',
               builder: (_) {
@@ -44,12 +57,39 @@ class SettingsPage extends GetView<SettingsController> {
                   iconLeading: Icons.brightness_medium_outlined,
                 );
               }),
-          const Divider(height: 1, thickness: 1),
+          SizedBox(height: 25.0.h),
+          Row(
+            children: [
+              Text(
+                'Suporte',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              SizedBox(width: 20.0.h),
+              Expanded(child: const Divider(height: 1, thickness: 1)),
+            ],
+          ),
+          SizedBox(height: 5.0.h),
+          _listTitle(
+            onTap: () {},
+            context: context,
+            title: 'Avalia-nos',
+            subtitle: 'Nos ajude a melhorar envie sua avaliação',
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: Get.isDarkMode
+                  ? AppDarkColors.appBarBackgroundColor
+                  : AppLightColors.appIconGrayColor,
+            ),
+            iconLeading: Icons.star_border,
+          ),
+          SizedBox(height: 5.0.h),
           _listTitle(
             onTap: () {},
             context: context,
             title: 'Ajuda',
-            subtitle: 'Envie sua dúvida ou nos ajude a melhorar',
+            subtitle: 'Envie uma mensagem',
             trailing: Icon(
               Icons.arrow_forward_ios,
               color: Get.isDarkMode
