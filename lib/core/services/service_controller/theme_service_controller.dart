@@ -8,10 +8,10 @@ class ThemeServiceController extends GetxController {
   final LocalGetStorage _storage = LocalGetStorageImplementation();
 
   ThemeMode getThemeMode() {
-    return _isSavedDarkMode() ? ThemeMode.dark : ThemeMode.light;
+    return isSavedDarkMode() ? ThemeMode.dark : ThemeMode.light;
   }
 
-  bool _isSavedDarkMode() {
+  isSavedDarkMode() {
     return _storage.read(Keys.DARK_THEME) ?? false;
   }
 
@@ -20,7 +20,8 @@ class ThemeServiceController extends GetxController {
   }
 
   void changeThemeMode() {
-    Get.changeThemeMode(_isSavedDarkMode() ? ThemeMode.light : ThemeMode.dark);
-    _writeThemeMode(!_isSavedDarkMode());
+    Get.changeThemeMode(isSavedDarkMode() ? ThemeMode.light : ThemeMode.dark);
+    _writeThemeMode(!isSavedDarkMode());
+    update(['change-theme']);
   }
 }
