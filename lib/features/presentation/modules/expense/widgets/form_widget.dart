@@ -58,7 +58,9 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
             ),
             SizedBox(height: 10.0.h),
             TextFormFieldWidget(
-              onFieldSubmitted: (_) => controller.insertExpense(),
+              onFieldSubmitted: (_) => controller.arguments['visibility']
+                  ? controller.insertExpense()
+                  : controller.updateExpense(),
               textInputAction: TextInputAction.go,
               editingController: controller.moneyTextEditingController,
               icon: Icons.attach_money,
