@@ -19,7 +19,7 @@ class AppDarkColors {
   AppDarkColors._instance();
   static const appWhiteColor = Colors.white;
   static const appSecondaryColor = Color(0xffa6a6a6);
-  static const appIconGrayColor = Color(0xff767676);
+  static const appIconGrayColor = Colors.white;
   static const appBlueColor = Color(0xFF2697FF);
   static const appPrimaryColor = Colors.white;
   static const Color appPrimeryBackgroundColor = Color(0xFF212332);
