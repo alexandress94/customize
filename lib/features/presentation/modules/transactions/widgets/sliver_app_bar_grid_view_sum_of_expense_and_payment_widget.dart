@@ -55,7 +55,7 @@ class SliverAppBarGridViewSumOfExpenseAndPaymentWidget
                           child: Icon(
                             Icons.trending_up,
                             color: Get.isDarkMode
-                                ? AppDarkColors.appPrimeryBackgroundColor
+                                ? AppDarkColors.appWhiteColor
                                 : AppLightColors.appBlackColor,
                           ),
                         ),
@@ -118,7 +118,7 @@ class SliverAppBarGridViewSumOfExpenseAndPaymentWidget
                           child: Icon(
                             Icons.trending_down,
                             color: Get.isDarkMode
-                                ? AppDarkColors.appPrimeryBackgroundColor
+                                ? AppDarkColors.appWhiteColor
                                 : AppLightColors.appBlackColor,
                           ),
                         ),
