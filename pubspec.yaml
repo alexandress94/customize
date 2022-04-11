@@ -65,7 +65,9 @@ dev_dependencies:
 
 flutter_native_splash: 
   color: "#f5f5fd"
-  image: assets/logo/payment-day.png
+  image: assets/logo/money.png
+
+  color_dark: "#212332"
   android: true
   ios: true
 
