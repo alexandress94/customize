@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:organize_more/features/presentation/modules/transactions/widgets/on_empty_widget.dart';
 
 import 'package:organize_more/features/presentation/modules/transactions/widgets/success_widget.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
 
 import '../../routes/routes.dart';
 import 'controllers/get_all_expense_controller.dart';
@@ -22,9 +21,6 @@ class TransactionsPage extends GetView<GetAllExpenseController> {
       () => NotificationListener<ScrollNotification>(
         onNotification: controller.handleScrollNotification,
         child: Scaffold(
-          backgroundColor: Get.isDarkMode
-              ? AppDarkColors.appPrimeryBackgroundColor
-              : AppLightColors.appBarBackgroundColor,
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, 60.h),
             child: const CustomAppBarWidget(),

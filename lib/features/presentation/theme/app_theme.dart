@@ -90,7 +90,7 @@ class AppTheme {
     primaryColorLight: AppLightColors.appPrimaryColor,
     splashColor: AppLightColors.appPrimaryColor,
     // Setando a cor padrão do background das páginas.
-    scaffoldBackgroundColor: AppLightColors.appPrimaryBackgroundColor,
+    scaffoldBackgroundColor: AppLightColors.appBarBackgroundColor,
     // Setando o estilo de texto padrão
     textTheme: AppStyle().appTextThemeLight,
     // Definindo o theme light
