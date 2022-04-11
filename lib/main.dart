@@ -11,10 +11,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   await GetStorage.init();
-  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-  // statusBarColor: appDarkBackgroundColor,
-  // statusBarColor: appLightBackgroundColor,
-  // ));
+
   return runApp(
     ScreenUtilInit(
       designSize: const Size(390, 844),
