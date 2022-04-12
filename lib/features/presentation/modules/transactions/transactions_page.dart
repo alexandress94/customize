@@ -36,27 +36,53 @@ class TransactionsPage extends GetView<GetAllExpenseController> {
                   : const SuccessWidget(),
             ],
           ),
-          floatingActionButton: Visibility(
-            visible: controller.isFabVisible.value,
-            child: FloatingActionButton.extended(
-              onPressed: () {
-                Get.toNamed(
-                  Routes.EXPANSE_PAGE,
-                  arguments: {
-                    "title-page": "Cadastrar despesa",
-                    "visibility": true,
-                  },
-                );
-              },
-              label: Row(
-                children: [
-                  const Text('Adicionar'),
-                  SizedBox(width: 10.0.h),
-                  const Icon(Icons.add),
-                ],
+          floatingActionButton: AnimatedScale(
+            duration: Duration(milliseconds: 300),
+            scale: controller.isFabVisible.value ? 1.0 : 0.0,
+            child: AnimatedOpacity(
+              duration: Duration(milliseconds: 300),
+              opacity: controller.isFabVisible.value ? 1.0 : 0.0,
+              child: FloatingActionButton.extended(
+                onPressed: () {
+                  Get.toNamed(
+                    Routes.EXPANSE_PAGE,
+                    arguments: {
+                      "title-page": "Cadastrar despesa",
+                      "visibility": true,
+                    },
+                  );
+                },
+                label: Row(
+                  children: [
+                    const Text('Adicionar'),
+                    SizedBox(width: 10.0.h),
+                    const Icon(Icons.add),
+                  ],
+                ),
               ),
             ),
           ),
+          // floatingActionButton: Visibility(
+          //   visible: controller.isFabVisible.value,
+          //   child: FloatingActionButton.extended(
+          //     onPressed: () {
+          //       Get.toNamed(
+          //         Routes.EXPANSE_PAGE,
+          //         arguments: {
+          //           "title-page": "Cadastrar despesa",
+          //           "visibility": true,
+          //         },
+          //       );
+          //     },
+          //     label: Row(
+          //       children: [
+          //         const Text('Adicionar'),
+          //         SizedBox(width: 10.0.h),
+          //         const Icon(Icons.add),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ),
       ),
     );
