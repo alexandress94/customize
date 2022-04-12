@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:organize_more/core/services/bindings/initial_bindings.dart';
-import 'package:organize_more/core/services/service_controller/theme_service_controller.dart';
 import 'package:organize_more/features/presentation/routes/routes.dart';
 import 'features/presentation/routes/app_pages.dart';
 import 'features/presentation/theme/app_theme.dart';
@@ -32,7 +31,8 @@ void main() async {
         initialBinding: InitialBindings(),
         theme: AppTheme().appLightThemeData,
         darkTheme: AppTheme().appDarkThemeData,
-        themeMode: ThemeServiceController().getThemeMode(),
+        // themeMode: ThemeServiceController().getThemeMode(),
+        themeMode: ThemeMode.system,
       ),
     ),
   );
