@@ -50,13 +50,23 @@ class OnErrorPage extends GetView<OnErrorController> {
                   ),
             ),
             const Spacer(),
-            GlobalActionButtomWidget(
-              icon: Icons.error_outline,
-              title: 'Tentar novamente',
-              onTap: () {
-                Get.offAllNamed(Routes.INITIAL_PAGE);
-              },
-            ),
+            Get.isDarkMode
+                ? GlobalActionButtomWidget(
+                    color: AppDarkColors.appBlueColor,
+                    icon: Icons.error_outline,
+                    title: 'Tentar novamente',
+                    onTap: () {
+                      Get.offAllNamed(Routes.INITIAL_PAGE);
+                    },
+                  )
+                : GlobalActionButtomWidget(
+                    color: AppLightColors.appBlackColor,
+                    icon: Icons.error_outline,
+                    title: 'Tentar novamente',
+                    onTap: () {
+                      Get.offAllNamed(Routes.INITIAL_PAGE);
+                    },
+                  ),
           ],
         ),
       ),
