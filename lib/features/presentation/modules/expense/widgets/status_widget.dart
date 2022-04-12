@@ -20,7 +20,7 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Parcelar?'),
+              const Text('Deseja parcelar?'),
               const SizedBox(width: appDefaultPadding),
               const Text('Não'),
               GetBuilder<InsertOrUpdateExpenseController>(
@@ -60,7 +60,7 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Valor R\$',
+                      'Quantidade de parcela',
                       style: Theme.of(context).textTheme.bodyText1?.copyWith(
                             color: AppLightColors.appSecondaryColor,
                           ),
