@@ -18,7 +18,7 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const Text('Deseja parcelar?'),
               const SizedBox(width: appDefaultPadding),
