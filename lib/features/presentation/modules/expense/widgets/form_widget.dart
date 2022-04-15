@@ -98,9 +98,11 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                   _showDatePicker(context: context);
                 },
                 decoration: InputDecoration(
-                  focusedBorder: const OutlineInputBorder(
+                  focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: AppLightColors.appWhiteColor,
+                      color: Get.isDarkMode
+                          ? AppDarkColors.appSecondaryBackgroundColor
+                          : AppLightColors.appWhiteColor,
                       width: 2,
                     ),
                   ),
@@ -122,7 +124,7 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                 ),
               ),
             ),
-            SizedBox(height: 10.0.h),
+            SizedBox(height: 20.0.h),
             const StatusWidget(),
             SizedBox(height: 20.0.h),
             controller.arguments['visibility']
