@@ -50,6 +50,51 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
               ),
             ],
           ),
+          SizedBox(height: 15.0.h),
+          GetBuilder<InsertOrUpdateExpenseController>(
+              id: 'visibility-dropbuttom',
+              builder: (_) {
+                return Visibility(
+                  visible: controller.isSelectedYes.value,
+                  child: DropdownButtonFormField(
+                    autofocus: false,
+                    dropdownColor: Get.isDarkMode
+                        ? AppDarkColors.appSecondaryBackgroundColor
+                        : AppLightColors.appSecondaryBackgroundColor,
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Get.isDarkMode
+                                ? AppDarkColors.appSecondaryBackgroundColor
+                                : AppLightColors.appWhiteColor,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: Get.isDarkMode
+                                ? AppDarkColors.appSecondaryBackgroundColor
+                                : AppLightColors.appWhiteColor,
+                          ),
+                        )),
+                    icon: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Get.isDarkMode
+                          ? AppDarkColors.appWhiteColor
+                          : AppLightColors.appIconGrayColor,
+                    ),
+                    isExpanded: true,
+                    value: controller.selectedItem.value,
+                    items: controller.suggestionMenuItems
+                        .map(_buildMenuItem)
+                        .toList(),
+                    onChanged: (String? value) {
+                      controller.selectedItem.value = value!;
+                    },
+                  ),
+                );
+              }),
           const SizedBox(height: appDefaultPadding),
           GetBuilder<InsertOrUpdateExpenseController>(
             id: 'modified-plot',
@@ -84,4 +129,9 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
       ),
     );
   }
+
+  DropdownMenuItem<String> _buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Text(item),
+      );
 }

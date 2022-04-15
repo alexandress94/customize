@@ -29,6 +29,8 @@ class InsertOrUpdateExpenseController extends GetxController
   Portion installmentStatus = Portion.not;
   RxBool isRepeatSelected = false.obs;
   RxBool isSelectedPlot = false.obs;
+  RxBool isSelectedYes = false.obs;
+  RxString selectedItem = "Mensalmente".obs;
   Rx<DateTime> date = DateTime.now().obs;
   final Map<String, dynamic> arguments;
   Rxn<ExpenseEntity> expense = Rxn<ExpenseEntity>();
@@ -67,21 +69,27 @@ class InsertOrUpdateExpenseController extends GetxController
     messageListener(message);
   }
 
-  validatorMoney(String money) {
+  List<String> suggestionMenuItems = [
+    'Mensalmente',
+    'A cada 6 meses',
+    'Anualmente',
+  ];
+
+  String? validatorMoney(String money) {
     if (FormatMoney.replaceMask(value: money) <= 0.0) {
       return "Valor obrigatório.";
     }
     return null;
   }
 
-  validatorDescription(String description) {
+  String? validatorDescription(String description) {
     if (description.isEmpty) {
       return "Descrição obrigatório.";
     }
     return null;
   }
 
-  validatorPortion(String installment) {
+  String? validatorPortion(String installment) {
     if (installment.isEmpty) {
       return 'Parcela obrigatório.';
     } else if (ConvertText.toInteger(value: installment) == 0) {
@@ -111,14 +119,33 @@ class InsertOrUpdateExpenseController extends GetxController
   void selectedNo(Portion? value) {
     installmentStatus = value!;
     isSelectedPlot.value = false;
+    isSelectedYes.value = false;
     portionditingController.text = "1";
+    selectedItem.value = "Mensalmente";
     update(['modified-plot']);
+    update(['visibility-dropbuttom']);
   }
 
   void selectedYeas(Portion? value) {
     installmentStatus = value!;
     isSelectedPlot.value = true;
+    isSelectedYes.value = true;
     update(['modified-plot']);
+    update(['visibility-dropbuttom']);
+  }
+
+  DateTime _verifyItemSelected(int counter) {
+    switch (selectedItem.value) {
+      case "A cada 6 meses":
+        return DateTime(
+            date.value.year, date.value.month + (6 * counter), date.value.day);
+      case "Anualmente":
+        return DateTime(
+            date.value.year, date.value.month + (12 * counter), date.value.day);
+      default:
+        return DateTime(
+            date.value.year, date.value.month + counter, date.value.day);
+    }
   }
 
   Future<void> insertExpense() async {
@@ -135,6 +162,8 @@ class InsertOrUpdateExpenseController extends GetxController
       final String uuId = GUIDGen.generate();
 
       for (int count = 0; count < portion; count++) {
+        DateTime dueDate = _verifyItemSelected(count);
+
         final ExpenseDto _expense = ExpenseDto(
           uuId: uuId,
           description: descriptionTextEditingController.value.text,
@@ -144,11 +173,7 @@ class InsertOrUpdateExpenseController extends GetxController
           isPayment: 0,
           isPortion: installmentStatus.index,
           transactionDate: DateTime.now(),
-          dueDate: DateTime(
-            date.value.year,
-            date.value.month + count,
-            date.value.day,
-          ),
+          dueDate: dueDate,
         );
 
         final result = await _insertExpenseUsecase(
