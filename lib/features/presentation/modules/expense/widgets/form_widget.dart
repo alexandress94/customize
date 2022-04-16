@@ -6,8 +6,8 @@ import 'package:organize_more/core/values/format/format_date.dart';
 
 import 'package:organize_more/features/presentation/modules/expense/widgets/status_widget.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
-import 'package:organize_more/features/presentation/theme/app_constant.dart';
 import '../../../global_widgets/global_action_buttom_widget.dart';
+import '../../../theme/app_constant.dart';
 import '../controllers/insert_or_update_expense_controller.dart';
 import '../../transactions/widgets/text_form_field_widget.dart';
 
@@ -46,7 +46,6 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                 return controller.validatorDescription(description!);
               },
             ),
-            SizedBox(height: appDefaultPadding.h),
             Align(
               alignment: Alignment.bottomLeft,
               child: Text(

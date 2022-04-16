@@ -60,7 +60,7 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
                     autofocus: false,
                     dropdownColor: Get.isDarkMode
                         ? AppDarkColors.appSecondaryBackgroundColor
-                        : AppLightColors.appSecondaryBackgroundColor,
+                        : AppLightColors.appWhiteColor,
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
