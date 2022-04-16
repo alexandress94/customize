@@ -30,7 +30,8 @@ class SqliteConnectionImplementation implements SqliteConnection {
     var database = await openDatabase(
       path,
       version: _databaseVersion,
-      onCreate: onCreate, /*onUpgrade: _onUpgrade,*/
+      onCreate: onCreate,
+      onUpgrade: onUpgrade,
     );
     return database;
   }
@@ -41,13 +42,13 @@ class SqliteConnectionImplementation implements SqliteConnection {
   }
 
   //  Atualização de versão do banco.
-  // @override
-  // Future<void> _onUpgrade(
-  //     Database database, int oldVersion, int newVersion) async {
-  //   if (oldVersion < 2) {
-  //     database.execute('INSERIR A QUERY AQUI');
-  //   } else {
-  //     throw Exception('Falha na atualização de versão do banco!');
-  //   }
-  // }
+  @override
+  Future<void> onUpgrade(
+      Database database, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      database.execute('INSERIR A QUERY AQUI');
+    } else {
+      throw Exception('Falha na atualização de versão do banco!');
+    }
+  }
 }
