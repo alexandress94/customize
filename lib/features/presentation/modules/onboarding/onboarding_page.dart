@@ -67,7 +67,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 Container(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () => print('Skip'),
+                    onPressed: () async =>
+                        await controller.navigatorTransactionPage(),
                     child: Text(
                       'Pular',
                       style: Theme.of(context).textTheme.headline5?.copyWith(
@@ -165,7 +166,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               width: double.infinity,
               color: Colors.white,
               child: GestureDetector(
-                onTap: () => print('Get started'),
+                onTap: () async => await controller.navigatorTransactionPage(),
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 30.0),
