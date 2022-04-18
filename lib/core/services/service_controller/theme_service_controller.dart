@@ -11,7 +11,7 @@ class ThemeServiceController extends GetxController {
     return isSavedDarkMode() ? ThemeMode.dark : ThemeMode.light;
   }
 
-  isSavedDarkMode() {
+  bool isSavedDarkMode() {
     return _storage.read(Keys.DARK_THEME) ?? false;
   }
 
