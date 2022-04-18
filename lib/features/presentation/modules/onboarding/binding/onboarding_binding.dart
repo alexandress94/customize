@@ -9,6 +9,7 @@ class OnboardingBinding implements Bindings {
       OnboardingController(
         lottieAdpter: LottieAdapterImplementation(),
         storage: Get.find(),
+        service: Get.find(),
       ),
     );
   }

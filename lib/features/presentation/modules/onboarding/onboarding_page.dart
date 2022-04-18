@@ -51,12 +51,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [0.1, 0.4, 0.7, 0.9],
-              colors: [
-                AppLightColors.appPrimaryBackgroundColor,
-                AppLightColors.appSecondaryColor,
-                AppLightColors.appIconGrayColor,
-                Colors.black87
-              ],
+              colors: controller.service.isDarkMode
+                  ? [
+                      Color(0xFF4563DB),
+                      Color(0xFF5036D5),
+                      AppDarkColors.appSecondaryBackgroundColor,
+                      AppDarkColors.appPrimeryBackgroundColor
+                    ]
+                  : [
+                      AppLightColors.appPrimaryBackgroundColor,
+                      AppLightColors.appSecondaryColor,
+                      AppLightColors.appIconGrayColor,
+                      Colors.black87
+                    ],
             ),
           ),
           child: Padding(
@@ -72,7 +79,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     child: Text(
                       'Pular',
                       style: Theme.of(context).textTheme.headline5?.copyWith(
-                            color: AppLightColors.appBlackColor,
+                            color: controller.service.isDarkMode
+                                ? AppLightColors.appWhiteColor
+                                : AppLightColors.appBlackColor,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -173,7 +182,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     child: Text(
                       'Iniciar agora',
                       style: Theme.of(context).textTheme.headline5?.copyWith(
-                            color: AppLightColors.appBlackColor,
+                            color: controller.service.isDarkMode
+                                ? AppDarkColors.appSecondaryBackgroundColor
+                                : AppLightColors.appBlackColor,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
