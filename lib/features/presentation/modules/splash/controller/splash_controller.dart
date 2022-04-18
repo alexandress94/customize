@@ -1,23 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:organize_more/core/services/packages/contracts/local_get_storage.dart';
+import 'package:organize_more/core/services/service_controller/check_native_darkmode_service_controller.dart';
 import 'package:organize_more/core/values/keys/keys.dart';
 
 import '../../../routes/routes.dart';
 
 class SplashController extends GetxController {
   final LocalGetStorage _storage;
-  RxBool isDarkMode = false.obs;
+  final CheckNativeDarkmodeServiceController _service;
 
-  SplashController({required LocalGetStorage storage}) : _storage = storage;
+  SplashController({
+    required LocalGetStorage storage,
+    required CheckNativeDarkmodeServiceController service,
+  })  : _storage = storage,
+        _service = service;
 
-  @override
-  void onInit() {
-    var brightness = SchedulerBinding.instance!.window.platformBrightness;
-    isDarkMode.value = brightness == Brightness.dark;
-    super.onInit();
-  }
+  CheckNativeDarkmodeServiceController get service => _service;
 
   @override
   void onReady() {

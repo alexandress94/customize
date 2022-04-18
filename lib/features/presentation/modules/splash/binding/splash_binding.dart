@@ -4,6 +4,6 @@ import 'package:organize_more/features/presentation/modules/splash/controller/sp
 class SplashBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(SplashController(storage: Get.find()));
+    Get.put(SplashController(storage: Get.find(), service: Get.find()));
   }
 }
