@@ -10,12 +10,18 @@ import 'package:organize_more/core/values/concatenate/concatenate.dart';
 import '../packages/contracts/sqlite_expense.dart';
 import '../packages/gateways/sqlite_expense_implementation.dart';
 import '../packages/gateways/sqlite_connection_implementation.dart';
+import '../service_controller/check_native_darkmode_service_controller.dart';
 
 class InitialBindings implements Bindings {
   @override
   void dependencies() {
     Get.putAsync<Log>(
       () => LogImplemetation().getInstance(),
+      permanent: true,
+    );
+
+    Get.put<CheckNativeDarkmodeServiceController>(
+      CheckNativeDarkmodeServiceController(),
       permanent: true,
     );
 
