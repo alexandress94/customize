@@ -28,7 +28,7 @@ class SlideWidget extends GetView<OnboardingController> {
                 .getLottieAdpter()
                 .asset(path: lottie, height: 250.0.h, width: 250.0.w),
           ),
-          SizedBox(height: 10.0.h),
+          SizedBox(height: 50.0.h),
           Text(
             title,
             style: Theme.of(context).textTheme.headline5?.copyWith(
