@@ -30,7 +30,7 @@ class InsertOrUpdateExpenseController extends GetxController
   RxBool isRepeatSelected = false.obs;
   RxBool isSelectedPlot = false.obs;
   RxBool isSelectedYes = false.obs;
-  RxString selectedItem = "Mensalmente".obs;
+  RxString selectedItem = "Mensal".obs;
   Rx<DateTime> date = DateTime.now().obs;
   final Map<String, dynamic> arguments;
   Rxn<ExpenseEntity> expense = Rxn<ExpenseEntity>();
@@ -70,9 +70,12 @@ class InsertOrUpdateExpenseController extends GetxController
   }
 
   List<String> suggestionMenuItems = [
-    'Mensalmente',
-    'A cada 6 meses',
-    'Anualmente',
+    'Diário',
+    'Semanal',
+    'Mensal',
+    'Trimestre',
+    'Semestre',
+    'Anual',
   ];
 
   String? validatorMoney(String money) {
@@ -136,10 +139,19 @@ class InsertOrUpdateExpenseController extends GetxController
 
   DateTime _verifyItemSelected(int counter) {
     switch (selectedItem.value) {
-      case "A cada 6 meses":
+      case "Diário":
+        return DateTime(
+            date.value.year, date.value.month, date.value.day + counter);
+      case "Semanal":
+        return DateTime(
+            date.value.year, date.value.month, date.value.day + (7 * counter));
+      case "Trimestre":
+        return DateTime(
+            date.value.year, date.value.month + (3 * counter), date.value.day);
+      case "Semestre":
         return DateTime(
             date.value.year, date.value.month + (6 * counter), date.value.day);
-      case "Anualmente":
+      case "Anual":
         return DateTime(
             date.value.year, date.value.month + (12 * counter), date.value.day);
       default:
