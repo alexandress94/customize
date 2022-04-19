@@ -53,8 +53,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
               stops: [0.1, 0.4, 0.7, 0.9],
               colors: controller.service.isDarkMode
                   ? [
-                      Color(0xFF4563DB),
-                      Color(0xFF5036D5),
+                      AppDarkColors.appPrimeryOnboardingColor,
+                      AppDarkColors.appSecondaryOnboardingColor,
                       AppDarkColors.appSecondaryBackgroundColor,
                       AppDarkColors.appPrimeryBackgroundColor
                     ]

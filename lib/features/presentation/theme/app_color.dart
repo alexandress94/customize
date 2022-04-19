@@ -23,6 +23,8 @@ class AppDarkColors {
   static const appBlueColor = Color(0xFF2697FF);
   static const appPrimaryColor = Colors.white;
   static const Color appPrimeryBackgroundColor = Color(0xFF212332);
+  static const Color appPrimeryOnboardingColor = Color(0xFF616480);
+  static const Color appSecondaryOnboardingColor = Color(0xFF474E80);
   static const Color appSecondaryBackgroundColor = Color(0xFF2A2D3E);
   static const appBarBackgroundColor = Color(0xffe3e3ee);
 }
