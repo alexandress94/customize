@@ -14,13 +14,13 @@ class CustomAppBarWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Organize mais',
+            'Organize despesas',
             style: Theme.of(context).textTheme.headline5?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Text(
-            'minhas despesas',
+            'minhas transações',
             style: Theme.of(context).textTheme.bodyText1?.copyWith(
                   color: AppLightColors.appSecondaryColor,
                 ),
