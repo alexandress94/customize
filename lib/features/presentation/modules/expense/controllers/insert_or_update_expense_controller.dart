@@ -43,6 +43,7 @@ class InsertOrUpdateExpenseController extends GetxController
   final descriptionTextEditingController = TextEditingController();
   final moneyTextEditingController = TextEditingController(text: '0,00');
   final portionditingController = TextEditingController(text: '1');
+  final dueDateController = TextEditingController(text: "Hoje");
 
   final InsertExpenseUsecase _insertExpenseUsecase;
   final UpdateExpenseUsecase _updateExpenseUsecase;
@@ -67,6 +68,35 @@ class InsertOrUpdateExpenseController extends GetxController
     _setValueTextField();
     loaderListener(isLoading);
     messageListener(message);
+  }
+
+  void selectedDueDate() {
+    var now = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+    );
+
+    var lastDay = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day - 1,
+    );
+    var nextDay = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day + 1,
+    );
+
+    if (date.value == now) {
+      dueDateController.text = "Hoje";
+    } else if (date.value == lastDay) {
+      dueDateController.text = "Ontem";
+    } else if (date.value == nextDay) {
+      dueDateController.text = "Amanhã";
+    } else {
+      dueDateController.text = FormatDate.replaceMaskDate(date: date.value);
+    }
   }
 
   List<String> suggestionMenuItems = [

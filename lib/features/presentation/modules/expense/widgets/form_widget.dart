@@ -89,10 +89,11 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
             SizedBox(height: 10.0.h),
             Obx(
               () => TextFormField(
+                controller: controller.dueDateController,
                 autofocus: true,
                 autocorrect: true,
                 readOnly: true,
-                keyboardType: TextInputType.datetime,
+                keyboardType: TextInputType.text,
                 onTap: () {
                   _showDatePicker(context: context);
                 },
@@ -212,6 +213,7 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
     );
     if (_selected != null && _selected != controller.date.value) {
       controller.date.value = _selected;
+      controller.selectedDueDate();
     }
   }
 }
