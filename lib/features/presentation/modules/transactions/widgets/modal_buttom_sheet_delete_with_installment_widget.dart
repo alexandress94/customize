@@ -6,6 +6,7 @@ import 'package:organize_more/features/domain/entities/expense_entity.dart';
 import '../../../../../core/models/expense_dto.dart';
 import '../../../../../core/values/format/format_date.dart';
 import '../../../../../core/values/format/format_money.dart';
+import '../../../../../core/values/format/format_weekday.dart';
 import '../../../global_widgets/global_action_buttom_widget.dart';
 import '../../../theme/app_color.dart';
 import '../../../theme/app_constant.dart';
@@ -94,7 +95,8 @@ class ModalButtomSheetDeleteWithInstallmentWidget
                     ),
                 children: <TextSpan>[
                   TextSpan(
-                    text: FormatDate.replaceMaskDate(date: expense.dueDate),
+                    text:
+                        '${FormatWeekday.descriptionWeekday(expense.dueDate)} ${FormatDate.replaceMaskDate(date: expense.dueDate)}',
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],

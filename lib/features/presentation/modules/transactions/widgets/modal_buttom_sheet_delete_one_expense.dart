@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:organize_more/core/values/format/format_money.dart';
+import 'package:organize_more/core/values/format/format_weekday.dart';
 import 'package:organize_more/features/domain/entities/expense_entity.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
 
@@ -76,7 +77,8 @@ class ModalButtomSheetDeleteOnExpensetWidget
                   ),
               children: <TextSpan>[
                 TextSpan(
-                  text: FormatDate.replaceMaskDate(date: expense.dueDate),
+                  text:
+                      '${FormatWeekday.descriptionWeekday(expense.dueDate)} ${FormatDate.replaceMaskDate(date: expense.dueDate)}',
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
               ],

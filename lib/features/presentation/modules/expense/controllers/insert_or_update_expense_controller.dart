@@ -1,6 +1,7 @@
 import 'package:organize_more/core/keys/guid_gen.dart';
 import 'package:organize_more/core/models/expense_dto.dart';
 import 'package:organize_more/core/values/format/format_date.dart';
+import 'package:organize_more/core/values/format/format_weekday.dart';
 import 'package:organize_more/features/domain/entities/expense_entity.dart';
 import 'package:organize_more/features/domain/usecases/insert_expense_usecase.dart';
 
@@ -43,7 +44,7 @@ class InsertOrUpdateExpenseController extends GetxController
   final descriptionTextEditingController = TextEditingController();
   final moneyTextEditingController = TextEditingController(text: '0,00');
   final portionditingController = TextEditingController(text: '1');
-  final dueDateController = TextEditingController(text: "Hoje");
+  final TextEditingController dueDateController = TextEditingController();
 
   final InsertExpenseUsecase _insertExpenseUsecase;
   final UpdateExpenseUsecase _updateExpenseUsecase;
@@ -70,7 +71,14 @@ class InsertOrUpdateExpenseController extends GetxController
     messageListener(message);
   }
 
-  void selectedDueDate() {
+  String displayCurrentDayDescription() {
+    String weekDay = FormatWeekday.descriptionWeekday(date.value);
+    return "$weekDay Hoje";
+  }
+
+  void selectedDueDateCreateExpense() {
+    String dateFormat = FormatDate.replaceMaskDate(date: date.value);
+    String weekDay = FormatWeekday.descriptionWeekday(date.value);
     var now = DateTime(
       DateTime.now().year,
       DateTime.now().month,
@@ -89,13 +97,44 @@ class InsertOrUpdateExpenseController extends GetxController
     );
 
     if (date.value == now) {
-      dueDateController.text = "Hoje";
+      dueDateController.text = "$weekDay Hoje";
     } else if (date.value == lastDay) {
-      dueDateController.text = "Ontem";
+      dueDateController.text = "$weekDay Ontem";
     } else if (date.value == nextDay) {
-      dueDateController.text = "Amanhã";
+      dueDateController.text = "$weekDay Amanhã ";
     } else {
-      dueDateController.text = FormatDate.replaceMaskDate(date: date.value);
+      dueDateController.text = '$weekDay $dateFormat';
+    }
+  }
+
+  void selectedDueDateUpdateExpense(DateTime dueDate) {
+    String dateFormat = FormatDate.replaceMaskDate(date: dueDate);
+    String weekDay = FormatWeekday.descriptionWeekday(dueDate);
+    var now = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+    );
+
+    var lastDay = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day - 1,
+    );
+    var nextDay = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day + 1,
+    );
+
+    if (dueDate == now) {
+      dueDateController.text = "$weekDay Hoje";
+    } else if (dueDate == lastDay) {
+      dueDateController.text = "$weekDay Ontem";
+    } else if (dueDate == nextDay) {
+      dueDateController.text = "$weekDay Amanhã ";
+    } else {
+      dueDateController.text = '$weekDay $dateFormat';
     }
   }
 
@@ -142,10 +181,15 @@ class InsertOrUpdateExpenseController extends GetxController
       moneyTextEditingController.text = FormatMoney.outputMask(
         expense.valueTransaction.toString(),
       ).replaceAll('R\$', '');
-      date.value = expense.dueDate;
+      selectedDueDateUpdateExpense(expense.dueDate);
+      // dueDateController.text =
+      //     '${FormatWeekday.descriptionWeekday(expense.dueDate)}'
+      //     ' ${FormatDate.replaceMaskDate(date: expense.dueDate)}';
+
     } else {
       descriptionTextEditingController.clear();
       moneyTextEditingController.text = '0,00';
+      dueDateController.text = displayCurrentDayDescription();
     }
   }
 

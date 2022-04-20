@@ -213,7 +213,7 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
     );
     if (_selected != null && _selected != controller.date.value) {
       controller.date.value = _selected;
-      controller.selectedDueDate();
+      controller.selectedDueDateCreateExpense();
     }
   }
 }

@@ -8,6 +8,7 @@ import 'package:organize_more/features/presentation/routes/routes.dart';
 
 import '../../../../../core/values/format/format_date.dart';
 import '../../../../../core/values/format/format_money.dart';
+import '../../../../../core/values/format/format_weekday.dart';
 import '../../../../domain/entities/expense_entity.dart';
 import '../../../theme/app_color.dart';
 import '../../../theme/app_constant.dart';
@@ -136,7 +137,8 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                   ),
               children: <TextSpan>[
                 TextSpan(
-                  text: FormatDate.replaceMaskDate(date: expense.dueDate),
+                  text:
+                      '${FormatWeekday.descriptionWeekday(expense.dueDate)} ${FormatDate.replaceMaskDate(date: expense.dueDate)}',
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
               ],
@@ -151,9 +153,8 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                   ),
               children: <TextSpan>[
                 TextSpan(
-                  text: FormatDate.replaceMaskDate(
-                    date: expense.transactionDate,
-                  ),
+                  text:
+                      '${FormatWeekday.descriptionWeekday(expense.transactionDate)} ${FormatDate.replaceMaskDate(date: expense.transactionDate)}',
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
               ],
