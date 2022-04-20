@@ -86,10 +86,10 @@ class SettingsPage extends GetView<SettingsController> {
           ),
           SizedBox(height: 5.0.h),
           _listTitle(
-            onTap: () {},
+            onTap: controller.sendMenssage,
             context: context,
             title: 'Ajuda',
-            subtitle: 'Envie uma mensagem',
+            subtitle: 'Envie sua mensagem',
             trailing: Icon(
               Icons.arrow_forward_ios,
               color: Get.isDarkMode
@@ -129,8 +129,8 @@ class SettingsPage extends GetView<SettingsController> {
           _listTitle(
             onTap: () {},
             context: context,
-            title: 'versão do aplicativo',
-            subtitle: 'Versão instável.',
+            title: 'Versão do aplicativo',
+            subtitle: 'Confira a versão atual do aplicativo.',
             trailing: Icon(
               Icons.arrow_forward_ios,
               color: Get.isDarkMode
