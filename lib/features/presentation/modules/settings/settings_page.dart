@@ -98,6 +98,47 @@ class SettingsPage extends GetView<SettingsController> {
             ),
             iconLeading: Icons.support_agent,
           ),
+          SizedBox(height: 25.0.h),
+          Row(
+            children: [
+              Text(
+                'Sobre',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              SizedBox(width: 20.0.h),
+              Expanded(child: const Divider(height: 1, thickness: 1)),
+            ],
+          ),
+          SizedBox(height: 5.0.h),
+          _listTitle(
+            onTap: () {},
+            context: context,
+            title: 'Quem somos',
+            subtitle: 'Conheça um pouco mais sobre o projeto.',
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: Get.isDarkMode
+                  ? AppDarkColors.appBarBackgroundColor
+                  : AppLightColors.appIconGrayColor,
+            ),
+            iconLeading: Icons.assignment_ind,
+          ),
+          SizedBox(height: 5.0.h),
+          _listTitle(
+            onTap: () {},
+            context: context,
+            title: 'versão do aplicativo',
+            subtitle: 'Versão instável.',
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: Get.isDarkMode
+                  ? AppDarkColors.appBarBackgroundColor
+                  : AppLightColors.appIconGrayColor,
+            ),
+            iconLeading: Icons.check_box,
+          ),
         ],
       ),
     );
