@@ -99,22 +99,22 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     },
                     children: <Widget>[
                       SlideWidget(
-                        lottie: PathLottie.FINANCE,
+                        lottie: PathLottie.SAVING_MONEY,
                         title: 'Organize suas despesas',
                         description:
-                            'Esquecer aquela despesa no final do mês? Nunca mais. Agora poderá registrar suas despesas.',
+                            'Não deixe para depois. Organize suas despesas de maneira fácil na palma da sua mão.',
                       ),
                       SlideWidget(
                         lottie: PathLottie.BUSINESS_ANALYTICS,
-                        title: 'Organize suas despesas',
+                        title: 'Fazer contas?',
                         description:
-                            'Esquecer aquela despesa no final do mês? Nunca mais. Agora poderá registrar suas despesas.',
+                            'Com o organize despesas, você não irá precisar de calculadora para suas contas.',
                       ),
                       SlideWidget(
                         lottie: PathLottie.FINANCIAL,
-                        title: 'Organize suas despesas',
+                        title: 'O aplicativo que você precisa',
                         description:
-                            'Esquecer aquela despesa no final do mês? Nunca mais. Agora poderá registrar suas despesas.',
+                            'Direto ao ponto e com estilo. Aplicativo simples para facilitar o seu dia a dia.',
                       ),
                     ],
                   ),

@@ -6,7 +6,8 @@ abstract class PathLottie {
   // Home page
   static const MONEY_INVESTMENT = 'assets/lottie/money-investment.json';
   // onboarding
-  static const FINANCE = 'assets/lottie/finance.json';
+
+  static const SAVING_MONEY = 'assets/lottie/saving-money.json';
   static const FINANCIAL = 'assets/lottie/financial.json';
   static const BUSINESS_ANALYTICS = 'assets/lottie/business-analytics.json';
 }
