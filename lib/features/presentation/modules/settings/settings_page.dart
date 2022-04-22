@@ -127,9 +127,11 @@ class SettingsPage extends GetView<SettingsController> {
           ),
           SizedBox(height: 5.0.h),
           _listTitle(
-            onTap: () {},
+            onTap: () async {
+              await controller.displayBuildInfo();
+            },
             context: context,
-            title: 'Versão do aplicativo',
+            title: 'Versão atual',
             subtitle: 'Confira a versão atual do aplicativo.',
             trailing: Icon(
               Icons.arrow_forward_ios,
