@@ -70,6 +70,7 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                   placeholder: '0',
                   maxPlaceHolders: 3,
                   reverse: true,
+                  maxLength: 9,
                 )
               ],
               validator: (money) {
