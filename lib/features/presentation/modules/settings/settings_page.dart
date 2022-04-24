@@ -113,7 +113,9 @@ class SettingsPage extends GetView<SettingsController> {
           ),
           SizedBox(height: 5.0.h),
           _listTitle(
-            onTap: () {},
+            onTap: () {
+              _displayWhoWeAre(context);
+            },
             context: context,
             title: 'Quem somos',
             subtitle: 'Conheça um pouco mais sobre o projeto.',
@@ -127,8 +129,8 @@ class SettingsPage extends GetView<SettingsController> {
           ),
           SizedBox(height: 5.0.h),
           _listTitle(
-            onTap: () async {
-              await controller.displayBuildInfo();
+            onTap: () {
+              _displayAppVersion(context);
             },
             context: context,
             title: 'Versão atual',
@@ -139,10 +141,113 @@ class SettingsPage extends GetView<SettingsController> {
                   ? AppDarkColors.appBarBackgroundColor
                   : AppLightColors.appIconGrayColor,
             ),
-            iconLeading: Icons.check_box,
+            iconLeading: Icons.check_circle_outline,
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _displayAppVersion(BuildContext context) async {
+    await controller.displayBuildInfo();
+    return showDialog<void>(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          backgroundColor: Get.isDarkMode
+              ? AppDarkColors.appPrimeryBackgroundColor
+              : AppLightColors.appBarBackgroundColor,
+          title: const Text('Detalhes do aplicativo'),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RichText(
+                text: TextSpan(
+                  text: 'Nome do app: ',
+                  style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                        color: Get.isDarkMode
+                            ? AppLightColors.appWhiteColor
+                            : AppLightColors.appBlackColor,
+                      ),
+                  children: [
+                    TextSpan(
+                      text: controller.appName,
+                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            color: AppLightColors.appSecondaryColor,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              RichText(
+                text: TextSpan(
+                    text: 'Versão: ',
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                          color: Get.isDarkMode
+                              ? AppLightColors.appWhiteColor
+                              : AppLightColors.appBlackColor,
+                        ),
+                    children: [
+                      TextSpan(
+                        text: controller.appVersion,
+                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                              color: AppLightColors.appSecondaryColor,
+                            ),
+                      ),
+                    ]),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton.icon(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(Icons.close),
+              label: Text('Sair'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _displayWhoWeAre(BuildContext context) async {
+    await controller.displayBuildInfo();
+    return showDialog<void>(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          backgroundColor: Get.isDarkMode
+              ? AppDarkColors.appPrimeryBackgroundColor
+              : AppLightColors.appBarBackgroundColor,
+          title: const Text('Sobre o projeto'),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                '        Projeto realizado apenas por um desenvolvedor, com objetivo '
+                'de resolver um problema pessoal na organização das despesas e também '
+                'colocar os estudos em prática na área da programação. Como este projeto foi pensado '
+                'apenas para consumo próprio, resolvi disponibilizá-lo para que possa ajudar outras pessoas afim '
+                'de organizar suas despesas.',
+                textAlign: TextAlign.start,
+              )
+            ],
+          ),
+          actions: [
+            TextButton.icon(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(Icons.close),
+              label: Text('Sair'),
+            ),
+          ],
+        );
+      },
     );
   }
 

@@ -8,6 +8,7 @@ class SettingsController extends GetxController {
   final PackageInfoPlus _info;
 
   String appName = "";
+  String appVersion = "";
 
   SettingsController({
     required UrlLaucher launcher,
@@ -21,13 +22,7 @@ class SettingsController extends GetxController {
 
   Future<void> displayBuildInfo() async {
     final build = await _info.fromPlatform();
-    String appName = build.appName;
-    String packageName = build.packageName;
-    String version = build.version;
-    String buildNumber = build.buildNumber;
-    print(appName);
-    print(packageName);
-    print(version);
-    print(buildNumber);
+    appName = build.appName;
+    appVersion = build.version;
   }
 }
