@@ -187,10 +187,11 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                       primary: AppDarkColors.appWhiteColor,
                     ),
                   ),
-                  colorScheme: ColorScheme.fromSwatch().copyWith(
-                    primary: AppDarkColors.appPrimeryBackgroundColor,
+                  colorScheme: ColorScheme.dark().copyWith(
+                    primary: AppDarkColors.appBlueColor,
                     onPrimary: AppDarkColors.appWhiteColor,
                     onSurface: AppDarkColors.appWhiteColor,
+                    surface: AppDarkColors.appPrimeryBackgroundColor,
                   ),
                 ),
                 child: child!,
