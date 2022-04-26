@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:organize_more/features/presentation/modules/splash/controller/splash_controller.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
@@ -16,9 +15,9 @@ class SplashPage extends GetView<SplashController> {
           : AppLightColors.appBarBackgroundColor,
       body: Center(
         child: Image.asset(
-          PathLogo.LOGO,
-          width: 150.0.w,
-          height: 150.0.h,
+          controller.service.isDarkMode
+              ? PathLogo.LOGO_DARK
+              : PathLogo.LOGO_LIGHT,
           fit: BoxFit.scaleDown,
         ),
       ),
