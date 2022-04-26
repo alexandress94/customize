@@ -19,6 +19,7 @@ void main() async {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: () => GetMaterialApp(
+        title: 'Customize',
         locale: const Locale('pt', 'BR'),
         supportedLocales: const [
           Locale('en', 'US'),

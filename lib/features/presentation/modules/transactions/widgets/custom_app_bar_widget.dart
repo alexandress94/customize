@@ -20,7 +20,7 @@ class CustomAppBarWidget extends StatelessWidget {
                 ),
           ),
           Text(
-            'minhas transações',
+            'minhas despesas',
             style: Theme.of(context).textTheme.bodyText1?.copyWith(
                   color: AppLightColors.appSecondaryColor,
                 ),
