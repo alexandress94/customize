@@ -198,7 +198,7 @@ class InsertOrUpdateExpenseController extends GetxController
     isSelectedPlot.value = false;
     isSelectedYes.value = false;
     portionditingController.text = "1";
-    selectedItem.value = "Mensalmente";
+    selectedItem.value = "Mensal";
     update(['modified-plot']);
     update(['visibility-dropbuttom']);
   }
