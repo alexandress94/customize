@@ -34,7 +34,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       height: 8.0.h,
       width: isActive ? 24.0.w : 16.0.w,
       decoration: BoxDecoration(
-        color: isActive ? Colors.white : Colors.grey[600],
+        color: isActive ? Colors.white : Colors.grey[500],
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -108,7 +108,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         lottie: PathLottie.BUSINESS_ANALYTICS,
                         title: 'Fazer contas?',
                         description:
-                            'Com o organize despesas, você não irá precisar de calculadora para suas contas.',
+                            'Com o customize, você não irá precisar de calculadora para suas contas.',
                       ),
                       SlideWidget(
                         lottie: PathLottie.FINANCIAL,
