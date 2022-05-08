@@ -125,7 +125,7 @@ class SettingsPage extends GetView<SettingsController> {
                   ? AppDarkColors.appBarBackgroundColor
                   : AppLightColors.appIconGrayColor,
             ),
-            iconLeading: Icons.assignment_ind,
+            iconLeading: Icons.help_outline,
           ),
           SizedBox(height: 5.0.h),
           _listTitle(
@@ -228,7 +228,7 @@ class SettingsPage extends GetView<SettingsController> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '        Projeto realizado apenas por um desenvolvedor, com objetivo '
+                '    Projeto realizado apenas por um desenvolvedor, com objetivo '
                 'de resolver um problema pessoal na organização das despesas e também '
                 'colocar os estudos em prática na área da programação. Como este projeto foi pensado '
                 'apenas para consumo próprio, resolvi disponibilizá-lo para que possa ajudar outras pessoas afim '
