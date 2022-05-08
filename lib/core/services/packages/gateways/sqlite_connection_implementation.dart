@@ -5,7 +5,7 @@ import 'sqlite_expense_implementation.dart';
 import 'dart:io';
 
 class SqliteConnectionImplementation implements SqliteConnection {
-  static const String _databaseName = 'organize.db';
+  static const String _databaseName = 'customize.db';
   static const int _databaseVersion = 1;
 
   SqliteConnectionImplementation._privateConstructor();
