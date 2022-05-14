@@ -22,4 +22,6 @@ abstract class SqliteExpense {
   Future<SqliteResponse> paymentSum({Map<String, dynamic>? parameter});
 
   Future<SqliteResponse> sumOfExpenses({Map<String, dynamic>? parameter});
+
+  Future<SqliteResponse> totalOfExpense(String uuId);
 }

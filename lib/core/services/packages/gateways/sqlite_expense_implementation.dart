@@ -32,6 +32,7 @@ class SqliteExpenseImplementation implements SqliteExpense {
   static const String _columnUuIdTransaction = 'uuId';
   static const String _columnDsTransaction = 'ds_transaction';
   static const String _columnVlTransaction = 'vl_transaction';
+  static const String _columnVlTotal = 'vl_total';
   static const String _columnNrInstallment = 'nr_installment';
   static const String _columnQtInstallment = 'qt_installment';
   static const String _columnYnPayment = 'yn_payment';
@@ -45,6 +46,7 @@ class SqliteExpenseImplementation implements SqliteExpense {
       "$_columnUuIdTransaction TEXT,"
       "$_columnDsTransaction TEXT NOT NULL,"
       "$_columnVlTransaction REAL NOT NULL,"
+      "$_columnVlTotal REAL NOT NULL,"
       "$_columnNrInstallment INTEGER NOT NULL,"
       "$_columnYnPortion INTEGER NOT NULL,"
       "$_columnQtInstallment INTEGER NOT NULL,"
@@ -91,6 +93,7 @@ class SqliteExpenseImplementation implements SqliteExpense {
     Database database = await SqliteConnectionImplementation.instance.database;
 
     final id = model['id'] as int;
+    final uuId = model['uuId'] as String;
     final description = model['ds_transaction'] as String;
     final value = model['vl_transaction'] as double;
     final dueDate = model['dt_due'] as String;
@@ -100,13 +103,26 @@ class SqliteExpenseImplementation implements SqliteExpense {
       'vl_transaction': value,
       'dt_due': dueDate,
     };
-
     final int result = await database.update(
       _table,
       map,
       where: "$_columnIdTransaction = ?",
       whereArgs: [id],
     );
+
+    final response = await totalOfExpense(uuId);
+
+    if (response.response) {
+      final Map<String, dynamic> singleMap = {
+        'vl_total': response.data[0]['vl_transaction'] as double,
+      };
+      await database.update(
+        _table,
+        singleMap,
+        where: "$_columnUuIdTransaction = ?",
+        whereArgs: [uuId],
+      );
+    }
 
     _logs(
       method: 'UPDATE',
@@ -299,6 +315,27 @@ class SqliteExpenseImplementation implements SqliteExpense {
       method: 'UPDATE',
       parameters: model,
       response: 'TRANSAÇÃO ATUALIZADO ID: $result',
+      statusCode: true,
+    );
+    return SqliteResponse(data: result, response: true);
+  }
+
+  @override
+  Future<SqliteResponse> totalOfExpense(String uuId) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
+
+    String sql = '''
+    SELECT SUM($_columnVlTransaction) as $_columnVlTransaction FROM $_table
+    WHERE $_columnUuIdTransaction = '$uuId'
+    ''';
+
+    final List<Map<String, dynamic>> result = await database.rawQuery(sql);
+
+    _logs(
+      method: 'SELECT',
+      parameters: uuId,
+      body: sql,
+      response: result,
       statusCode: true,
     );
     return SqliteResponse(data: result, response: true);
