@@ -7,7 +7,7 @@ class CheckNativeDarkmodeServiceController extends GetxController {
 
   @override
   void onInit() {
-    var brightness = SchedulerBinding.instance!.window.platformBrightness;
+    var brightness = SchedulerBinding.instance.window.platformBrightness;
     isDarkMode = brightness == Brightness.dark;
     super.onInit();
   }
