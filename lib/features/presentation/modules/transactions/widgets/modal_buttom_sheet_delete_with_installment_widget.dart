@@ -72,7 +72,7 @@ class ModalButtomSheetDeleteWithInstallmentWidget
             SizedBox(height: 10.0.h),
             RichText(
               text: TextSpan(
-                text: 'Valor: ',
+                text: expense.isPortion != 0 ? 'Valor da parcela: ' : 'Valor: ',
                 style: Theme.of(context).textTheme.bodyText1?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -86,6 +86,27 @@ class ModalButtomSheetDeleteWithInstallmentWidget
                 ],
               ),
             ),
+            expense.isPortion != 0
+                ? SizedBox(height: 10.0.h)
+                : SizedBox(height: 0.0.h),
+            expense.isPortion != 0
+                ? RichText(
+                    text: TextSpan(
+                      text: 'Valor total: ',
+                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: FormatMoney.outputMask(
+                            expense.valueTotal.toString(),
+                          ),
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                      ],
+                    ),
+                  )
+                : SizedBox.shrink(),
             SizedBox(height: 10.0.h),
             RichText(
               text: TextSpan(
