@@ -1,4 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:organize_more/features/presentation/modules/expense/widgets/toggle_switch_widget.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
 import 'package:organize_more/features/presentation/theme/app_constant.dart';
 import 'package:flutter/material.dart';
@@ -14,87 +15,86 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
+      replacement: SizedBox.shrink(),
       visible: controller.arguments['visibility'],
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Text('Deseja parcelar?'),
-              const SizedBox(width: appDefaultPadding),
-              const Text('Não'),
-              GetBuilder<InsertOrUpdateExpenseController>(
-                id: 'modified-plot',
-                builder: (_) {
-                  return Radio<Portion>(
-                    value: Portion.not,
-                    groupValue: controller.installmentStatus,
-                    onChanged: (Portion? value) {
-                      return controller.selectedNo(value);
-                    },
-                  );
-                },
-              ),
-              const Text('Sim'),
-              GetBuilder<InsertOrUpdateExpenseController>(
-                id: 'modified-plot',
-                builder: (_) {
-                  return Radio<Portion>(
-                    value: Portion.yeas,
-                    groupValue: controller.installmentStatus,
-                    onChanged: (Portion? value) {
-                      return controller.selectedYeas(value);
-                    },
-                  );
-                },
-              ),
-            ],
+          ToggleSwitchWidget(
+            labelOne: 'Sem frequência',
+            labelTwo: 'Parceladas',
+            onToggle: (value) {
+              controller.changeInstallmentType(value!);
+              print(value);
+            },
           ),
-          SizedBox(height: 15.0.h),
-          GetBuilder<InsertOrUpdateExpenseController>(
-              id: 'visibility-dropbuttom',
-              builder: (_) {
-                return Visibility(
-                  visible: controller.isSelectedYes.value,
-                  child: DropdownButtonFormField(
-                    autofocus: false,
-                    dropdownColor: Get.isDarkMode
-                        ? AppDarkColors.appSecondaryBackgroundColor
-                        : AppLightColors.appWhiteColor,
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Get.isDarkMode
-                                ? AppDarkColors.appSecondaryBackgroundColor
-                                : AppLightColors.appWhiteColor,
-                            width: 2,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Get.isDarkMode
-                                ? AppDarkColors.appSecondaryBackgroundColor
-                                : AppLightColors.appWhiteColor,
-                          ),
-                        )),
-                    icon: Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Get.isDarkMode
-                          ? AppDarkColors.appWhiteColor
-                          : AppLightColors.appIconGrayColor,
+          Obx(
+            () => Visibility(
+              visible: controller.isValue.value,
+              replacement: SizedBox(height: 0.0),
+              child: SizedBox(height: appDefaultPadding),
+            ),
+          ),
+          Obx(
+            () => Visibility(
+              visible: controller.isValue.value,
+              child: ToggleSwitchWidget(
+                labelOne: 'Valor total',
+                labelTwo: 'Valor parcelado',
+                onToggle: (value) {
+                  controller.changeExpenseAmountType(value!);
+                  print(value);
+                },
+              ),
+            ),
+          ),
+          Obx(
+            () => Visibility(
+              visible: controller.isValue.value,
+              replacement: SizedBox(height: 0.0),
+              child: SizedBox(height: appDefaultPadding),
+            ),
+          ),
+          Obx(
+            () => Visibility(
+              visible: controller.isSelectedYes.value,
+              child: DropdownButtonFormField(
+                autofocus: false,
+                dropdownColor: Get.isDarkMode
+                    ? AppDarkColors.appSecondaryBackgroundColor
+                    : AppLightColors.appWhiteColor,
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Get.isDarkMode
+                            ? AppDarkColors.appSecondaryBackgroundColor
+                            : AppLightColors.appWhiteColor,
+                        width: 2,
+                      ),
                     ),
-                    isExpanded: true,
-                    value: controller.selectedItem.value,
-                    items: controller.suggestionMenuItems
-                        .map(_buildMenuItem)
-                        .toList(),
-                    onChanged: (String? value) {
-                      controller.selectedItem.value = value!;
-                    },
-                  ),
-                );
-              }),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Get.isDarkMode
+                            ? AppDarkColors.appSecondaryBackgroundColor
+                            : AppLightColors.appWhiteColor,
+                      ),
+                    )),
+                icon: Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Get.isDarkMode
+                      ? AppDarkColors.appWhiteColor
+                      : AppLightColors.appIconGrayColor,
+                ),
+                isExpanded: true,
+                value: controller.selectedItem.value,
+                items:
+                    controller.suggestionMenuItems.map(_buildMenuItem).toList(),
+                onChanged: (String? value) {
+                  controller.selectedItem.value = value!;
+                },
+              ),
+            ),
+          ),
           const SizedBox(height: appDefaultPadding),
           GetBuilder<InsertOrUpdateExpenseController>(
             id: 'modified-plot',
