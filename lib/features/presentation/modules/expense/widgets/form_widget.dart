@@ -4,12 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:organize_more/core/values/format/format_date.dart';
 
-import 'package:organize_more/features/presentation/modules/expense/widgets/status_widget.dart';
 import 'package:organize_more/features/presentation/theme/app_color.dart';
 import '../../../global_widgets/global_action_buttom_widget.dart';
-import '../../../theme/app_constant.dart';
 import '../controllers/insert_or_update_expense_controller.dart';
 import '../../transactions/widgets/text_form_field_widget.dart';
+import 'status_widget.dart';
 
 class FormWidget extends GetView<InsertOrUpdateExpenseController> {
   const FormWidget({Key? key}) : super(key: key);
@@ -77,7 +76,8 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                 return controller.validatorMoney(money!);
               },
             ),
-            const SizedBox(height: appDefaultPadding),
+            SizedBox(height: 30.0.h),
+            const StatusWidget(),
             Align(
               alignment: Alignment.bottomLeft,
               child: Text(
@@ -125,9 +125,7 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0.h),
-            const StatusWidget(),
-            SizedBox(height: 20.0.h),
+            SizedBox(height: 70.0.h),
             controller.arguments['visibility']
                 ? Visibility(
                     replacement: const SizedBox.shrink(),
