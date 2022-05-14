@@ -18,19 +18,16 @@ import '../../../utils/loader_mixin.dart';
 import '../../../utils/message_mixin.dart';
 import '../../transactions/controllers/get_all_expense_controller.dart';
 
-enum Portion {
-  not,
-  yeas,
-}
-
 class InsertOrUpdateExpenseController extends GetxController
     with LoaderMixin, MessageMixin {
   final getAllExpenseController = Get.find<GetAllExpenseController>();
+  int installmentStatus = 0;
+  int valueExpenseStatus = 0;
 
-  Portion installmentStatus = Portion.not;
   RxBool isRepeatSelected = false.obs;
   RxBool isSelectedPlot = false.obs;
   RxBool isSelectedYes = false.obs;
+  RxBool isValue = false.obs;
   RxString selectedItem = "Mensal".obs;
   Rx<DateTime> date = DateTime.now().obs;
   final Map<String, dynamic> arguments;
@@ -182,10 +179,7 @@ class InsertOrUpdateExpenseController extends GetxController
         expense.valueTransaction.toString(),
       ).replaceAll('R\$', '');
       selectedDueDateUpdateExpense(expense.dueDate);
-      // dueDateController.text =
-      //     '${FormatWeekday.descriptionWeekday(expense.dueDate)}'
-      //     ' ${FormatDate.replaceMaskDate(date: expense.dueDate)}';
-
+      date.value = expense.dueDate;
     } else {
       descriptionTextEditingController.clear();
       moneyTextEditingController.text = '0,00';
@@ -193,22 +187,80 @@ class InsertOrUpdateExpenseController extends GetxController
     }
   }
 
-  void selectedNo(Portion? value) {
-    installmentStatus = value!;
+  void changeInstallmentType(int selectedValue) {
+    switch (selectedValue) {
+      case 0:
+        _noInstallment();
+        break;
+      case 1:
+        _yeasInstallment();
+        break;
+      default:
+    }
+  }
+
+  void changeExpenseAmountType(int selectedValue) {
+    switch (selectedValue) {
+      case 0:
+        _selectedTotal();
+        break;
+      case 1:
+        _selectedInstallment();
+        break;
+      default:
+    }
+  }
+
+  void _noInstallment() {
     isSelectedPlot.value = false;
     isSelectedYes.value = false;
+    isValue.value = false;
+    valueExpenseStatus = 0;
     portionditingController.text = "1";
     selectedItem.value = "Mensal";
     update(['modified-plot']);
-    update(['visibility-dropbuttom']);
   }
 
-  void selectedYeas(Portion? value) {
-    installmentStatus = value!;
+  void _yeasInstallment() {
+    installmentStatus = 1;
     isSelectedPlot.value = true;
     isSelectedYes.value = true;
+    isValue.value = true;
     update(['modified-plot']);
-    update(['visibility-dropbuttom']);
+  }
+
+  void _selectedTotal() {
+    valueExpenseStatus = 0;
+    update(['value-expense']);
+  }
+
+  void _selectedInstallment() {
+    valueExpenseStatus = 1;
+    update(['value-expense']);
+  }
+
+  double _verifyValue(int portion) {
+    double money = FormatMoney.replaceMask(
+      value: moneyTextEditingController.value.text,
+    );
+    switch (valueExpenseStatus) {
+      case 1:
+        return money / portion;
+      default:
+        return money;
+    }
+  }
+
+  double _valueTotal(int portion) {
+    double money = FormatMoney.replaceMask(
+      value: moneyTextEditingController.value.text,
+    );
+    switch (valueExpenseStatus) {
+      case 1:
+        return money;
+      default:
+        return money * portion;
+    }
   }
 
   DateTime _verifyItemSelected(int counter) {
@@ -241,9 +293,8 @@ class InsertOrUpdateExpenseController extends GetxController
         value: portionditingController.value.text,
       );
 
-      double money = FormatMoney.replaceMask(
-        value: moneyTextEditingController.value.text,
-      );
+      double money = _verifyValue(portion);
+      double total = _valueTotal(portion);
 
       final String uuId = GUIDGen.generate();
 
@@ -254,10 +305,11 @@ class InsertOrUpdateExpenseController extends GetxController
           uuId: uuId,
           description: descriptionTextEditingController.value.text,
           valueTransaction: money,
+          valueTotal: total,
           installmentNumber: portion,
           amountInstallments: count + 1,
           isPayment: 0,
-          isPortion: installmentStatus.index,
+          isPortion: installmentStatus,
           transactionDate: DateTime.now(),
           dueDate: dueDate,
         );
@@ -302,6 +354,7 @@ class InsertOrUpdateExpenseController extends GetxController
           description: descriptionTextEditingController.value.text,
           date: FormatDate.replaceMaskDateForDatabase(date: date.value),
           value: money,
+          total: expense.valueTotal,
         ),
       );
 
