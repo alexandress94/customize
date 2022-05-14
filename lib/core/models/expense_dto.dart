@@ -6,6 +6,7 @@ class ExpenseDto {
   final String uuId;
   final String description;
   final double valueTransaction;
+  final double valueTotal;
   final int installmentNumber;
   final int amountInstallments;
   final int? isPayment;
@@ -19,6 +20,7 @@ class ExpenseDto {
     required this.uuId,
     required this.description,
     required this.valueTransaction,
+    required this.valueTotal,
     required this.installmentNumber,
     required this.amountInstallments,
     this.isPayment,
@@ -34,6 +36,7 @@ class ExpenseDto {
       uuId: entity.uuId,
       description: entity.description,
       valueTransaction: entity.valueTransaction,
+      valueTotal: entity.valueTotal,
       installmentNumber: entity.installmentNumber,
       amountInstallments: entity.amountInstallments,
       isPayment: entity.isPayment,
@@ -50,6 +53,7 @@ class ExpenseDto {
       'uuId': uuId,
       'ds_transaction': description,
       'vl_transaction': valueTransaction,
+      'vl_total': valueTotal,
       'nr_installment': installmentNumber,
       'qt_installment': amountInstallments,
       'yn_payment': isPayment,
