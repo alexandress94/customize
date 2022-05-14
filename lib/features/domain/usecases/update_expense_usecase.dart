@@ -28,6 +28,7 @@ class UpdateExpenseUsecase implements Usecase<int, ParameterUpdateExpense> {
       "uuId": parameter.uuId,
       "ds_transaction": parameter.description,
       "vl_transaction": parameter.value,
+      "vl_total": parameter.total,
       "dt_due": parameter.date,
     };
 
@@ -45,6 +46,7 @@ class ParameterUpdateExpense {
   final String uuId;
   final String description;
   final double value;
+  final double total;
   final String date;
 
   ParameterUpdateExpense({
@@ -52,6 +54,7 @@ class ParameterUpdateExpense {
     required this.uuId,
     required this.description,
     required this.value,
+    required this.total,
     required this.date,
   });
 }
