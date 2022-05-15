@@ -8,6 +8,7 @@ class ExpenseEntity {
   final int amountInstallments;
   final int? isPayment;
   final int isPortion;
+  final String typeTransaction;
   final DateTime? datePayment;
   final DateTime transactionDate;
   final DateTime dueDate;
@@ -19,6 +20,7 @@ class ExpenseEntity {
     required this.valueTransaction,
     required this.valueTotal,
     required this.installmentNumber,
+    required this.typeTransaction,
     required this.amountInstallments,
     this.isPayment,
     required this.isPortion,

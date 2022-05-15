@@ -5,6 +5,7 @@ class ExpenseDto {
   final int? id;
   final String uuId;
   final String description;
+  final String typeTransaction;
   final double valueTransaction;
   final double valueTotal;
   final int installmentNumber;
@@ -20,6 +21,7 @@ class ExpenseDto {
     required this.uuId,
     required this.description,
     required this.valueTransaction,
+    required this.typeTransaction,
     required this.valueTotal,
     required this.installmentNumber,
     required this.amountInstallments,
@@ -44,6 +46,7 @@ class ExpenseDto {
       datePayment: entity.datePayment!,
       transactionDate: entity.transactionDate,
       dueDate: entity.dueDate,
+      typeTransaction: entity.typeTransaction,
     );
   }
 
@@ -55,6 +58,7 @@ class ExpenseDto {
       'vl_transaction': valueTransaction,
       'vl_total': valueTotal,
       'nr_installment': installmentNumber,
+      'tp_transaction': typeTransaction,
       'qt_installment': amountInstallments,
       'yn_payment': isPayment,
       'yn_portion': isPortion,

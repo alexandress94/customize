@@ -11,6 +11,7 @@ class ExpenseModel extends ExpenseEntity {
     required double valueTotal,
     required int installmentNumber,
     required int amountInstallments,
+    required String typeTransaction,
     int? isPayment,
     required int isPortion,
     DateTime? datePayment,
@@ -24,6 +25,7 @@ class ExpenseModel extends ExpenseEntity {
           valueTotal: valueTotal,
           installmentNumber: installmentNumber,
           amountInstallments: amountInstallments,
+          typeTransaction: typeTransaction,
           isPayment: isPayment,
           isPortion: isPortion,
           datePayment: datePayment,
@@ -47,6 +49,7 @@ class ExpenseModel extends ExpenseEntity {
           : DateTime.now(),
       transactionDate: ConvertText.toDate(value: map['dt_transaction']),
       dueDate: ConvertText.toDate(value: map['dt_due']),
+      typeTransaction: map['tp_transaction'],
     );
   }
 
@@ -61,6 +64,7 @@ class ExpenseModel extends ExpenseEntity {
       'qt_installment': amountInstallments,
       'yn_payment': isPayment,
       'yn_portion': isPortion,
+      'tp_transaction': typeTransaction,
       'dt_payment': datePayment != null
           ? FormatDate.replaceMaskDateForDatabase(date: datePayment!)
           : null,
@@ -75,6 +79,6 @@ class ExpenseModel extends ExpenseEntity {
 
   @override
   String toString() {
-    return 'ExpenseModel{id: $id, uuId: $uuId, description: $description, valueTransaction: $valueTransaction, installmentNumber: $installmentNumber, isPayment: $isPayment, isPortion: $isPortion, datePayment: $datePayment, transactionDate: $transactionDate, dueDate: $dueDate}';
+    return 'ExpenseModel{id: $id, uuId: $uuId, description: $description, valueTransaction: $valueTransaction, installmentNumber: $installmentNumber, isPayment: $isPayment, isPortion: $isPortion, datePayment: $datePayment, transactionDate: $transactionDate, dueDate: $dueDate, typeTransaction: $typeTransaction}';
   }
 }
