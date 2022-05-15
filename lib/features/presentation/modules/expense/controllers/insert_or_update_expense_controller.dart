@@ -12,11 +12,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../domain/usecases/update_between_expense_usecase.dart';
 import '../../../../domain/usecases/update_expense_usecase.dart';
 import '../../../routes/routes.dart';
 import '../../../utils/loader_mixin.dart';
 import '../../../utils/message_mixin.dart';
 import '../../transactions/controllers/get_all_expense_controller.dart';
+
+enum Update {
+  update_one,
+  update_between,
+  update_all,
+}
 
 class InsertOrUpdateExpenseController extends GetxController
     with LoaderMixin, MessageMixin {
@@ -36,6 +43,8 @@ class InsertOrUpdateExpenseController extends GetxController
   final isLoading = false.obs;
   final message = Rxn<MessageModel>();
 
+  Rx<Update> updateExpense = Update.update_one.obs;
+
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   final descriptionTextEditingController = TextEditingController();
@@ -45,15 +54,18 @@ class InsertOrUpdateExpenseController extends GetxController
 
   final InsertExpenseUsecase _insertExpenseUsecase;
   final UpdateExpenseUsecase _updateExpenseUsecase;
+  final UpdateBetweenExpenseUsecase _updateBetweenExpenseUsecase;
   final Log _log;
 
   InsertOrUpdateExpenseController({
     required InsertExpenseUsecase insertExpenseUsecase,
     required UpdateExpenseUsecase updateExpenseUsecase,
+    required UpdateBetweenExpenseUsecase updateBetweenExpenseUsecase,
     required this.arguments,
     required Log log,
   })  : _insertExpenseUsecase = insertExpenseUsecase,
         _updateExpenseUsecase = updateExpenseUsecase,
+        _updateBetweenExpenseUsecase = updateBetweenExpenseUsecase,
         _log = log;
 
   GlobalKey<FormState> get getFormKey => _formkey;
@@ -286,6 +298,31 @@ class InsertOrUpdateExpenseController extends GetxController
     }
   }
 
+  DateTime _verifyTypeTransactionSelected(int counter, String type) {
+    _log.debug("Quantidade de parcelas: $counter e Tipo: $type ");
+    _log.debug("vencimento: ${date.value}");
+    switch (type) {
+      case "Diário":
+        return DateTime(
+            date.value.year, date.value.month, date.value.day + counter);
+      case "Semanal":
+        return DateTime(
+            date.value.year, date.value.month, date.value.day + (7 * counter));
+      case "Trimestre":
+        return DateTime(
+            date.value.year, date.value.month + (3 * counter), date.value.day);
+      case "Semestre":
+        return DateTime(
+            date.value.year, date.value.month + (6 * counter), date.value.day);
+      case "Anual":
+        return DateTime(
+            date.value.year, date.value.month + (12 * counter), date.value.day);
+      default:
+        return DateTime(
+            date.value.year, date.value.month + counter, date.value.day);
+    }
+  }
+
   Future<void> insertExpense() async {
     isLoading.value = true;
     if (isValidationForm) {
@@ -312,6 +349,7 @@ class InsertOrUpdateExpenseController extends GetxController
           isPortion: installmentStatus,
           transactionDate: DateTime.now(),
           dueDate: dueDate,
+          typeTransaction: selectedItem.value,
         );
 
         final result = await _insertExpenseUsecase(
@@ -339,7 +377,7 @@ class InsertOrUpdateExpenseController extends GetxController
     }
   }
 
-  Future<void> updateExpense() async {
+  Future<void> updateData() async {
     isLoading.value = true;
     if (isValidationForm) {
       final expense = arguments['ExpenseEntity'] as ExpenseEntity;
@@ -347,32 +385,68 @@ class InsertOrUpdateExpenseController extends GetxController
         value: moneyTextEditingController.value.text,
       );
 
-      final result = await _updateExpenseUsecase.call(
-        ParameterUpdateExpense(
-          id: expense.id!,
-          uuId: expense.uuId,
-          description: descriptionTextEditingController.value.text,
-          date: FormatDate.replaceMaskDateForDatabase(date: date.value),
-          value: money,
-          total: expense.valueTotal,
-        ),
-      );
-
-      isLoading.value = false;
-      if (result.isLeft) {
-        _log.error(result.left);
-        Get.offAllNamed(Routes.ERROR_PAGE);
-        message(MessageModel.error('Erro', result.left.toString()));
+      switch (updateExpense.value) {
+        case Update.update_one:
+          _updateOne(expense, money);
+          break;
+        case Update.update_between:
+          _updateBetween(expense, money);
+          break;
+        default:
       }
-
-      _log.debug(result.right);
-      Get.back();
-      message(MessageModel.sucess('Finalizado', 'Atualizado com sucesso'));
-      await getAllExpenseController.find();
     } else {
       isLoading.value = false;
       message(MessageModel.info('Falha', 'Verifique as críticas.'));
     }
+  }
+
+  Future<void> _updateOne(ExpenseEntity expense, double money) async {
+    final result = await _updateExpenseUsecase.call(
+      ParameterUpdateExpense(
+        id: expense.id!,
+        uuId: expense.uuId,
+        description: descriptionTextEditingController.value.text,
+        date: FormatDate.replaceMaskDateForDatabase(date: date.value),
+        value: money,
+        total: expense.valueTotal,
+      ),
+    );
+
+    isLoading.value = false;
+    if (result.isLeft) {
+      _log.error(result.left);
+      Get.offAllNamed(Routes.ERROR_PAGE);
+      message(MessageModel.error('Erro', result.left.toString()));
+    }
+
+    _log.debug(result.right);
+    Get.back();
+    message(MessageModel.sucess('Finalizado', 'Atualizado com sucesso'));
+    await getAllExpenseController.find();
+  }
+
+  Future<void> _updateBetween(ExpenseEntity expense, double money) async {
+    final result = await _updateBetweenExpenseUsecase.call(
+      ParameterUpdateBetweenExpense(
+        id: expense.id!,
+        uuId: expense.uuId,
+        description: descriptionTextEditingController.value.text,
+        date: FormatDate.replaceMaskDateForDatabase(date: date.value),
+        value: money,
+        total: expense.valueTotal,
+      ),
+    );
+    if (result.isLeft) {
+      _log.error(result.left);
+      Get.offAllNamed(Routes.ERROR_PAGE);
+      message(MessageModel.error('Erro', result.left.toString()));
+    }
+
+    isLoading.value = false;
+    Get.back();
+    Get.back();
+    message(MessageModel.sucess('Finalizado', 'Atualizado com sucesso'));
+    await getAllExpenseController.find();
   }
 
   void _clearTextField() {
