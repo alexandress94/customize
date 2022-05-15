@@ -9,6 +9,8 @@ abstract class SqliteExpense {
 
   Future<SqliteResponse> updatePayment({required Map<String, dynamic> model});
 
+  Future<SqliteResponse> updateBetween({Map<String, dynamic>? model});
+
   Future<SqliteResponse> cancelPayment({required Map<String, dynamic> model});
 
   Future<SqliteResponse> delete({required int id});

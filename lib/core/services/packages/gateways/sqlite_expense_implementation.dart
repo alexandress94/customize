@@ -38,6 +38,7 @@ class SqliteExpenseImplementation implements SqliteExpense {
   static const String _columnYnPayment = 'yn_payment';
   static const String _columnYnPortion = 'yn_portion';
   static const String _columnDtPayment = 'dt_payment';
+  static const String _columnTpTransaction = 'tp_transaction';
   static const String _columnDtTransaction = 'dt_transaction';
   static const String _columnDtDue = 'dt_due';
 
@@ -53,6 +54,7 @@ class SqliteExpenseImplementation implements SqliteExpense {
       "$_columnDtPayment TEXT,"
       "$_columnYnPayment INTEGER NOT NULL,"
       "$_columnDtTransaction TEXT NOT NULL,"
+      "$_columnTpTransaction TEXT NOT NULL,"
       "$_columnDtDue TEXT NOT NULL"
       ");";
 
@@ -336,6 +338,58 @@ class SqliteExpenseImplementation implements SqliteExpense {
       parameters: uuId,
       body: sql,
       response: result,
+      statusCode: true,
+    );
+    return SqliteResponse(data: result, response: true);
+  }
+
+  @override
+  Future<SqliteResponse> updateBetween({Map<String, dynamic>? model}) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
+    final id = model!['id'] as int;
+    final uuId = model['uuId'] as String;
+    final description = model['ds_transaction'] as String;
+    final value = model['vl_transaction'] as double;
+    final dueDate = model['dt_due'] as String;
+
+    final Map<String, dynamic> map = {
+      'ds_transaction': description,
+      'vl_transaction': value,
+    };
+
+    final int result = await database.update(
+      _table,
+      map,
+      where: "$_columnIdTransaction >= ? AND $_columnUuIdTransaction = ?",
+      whereArgs: [id, uuId],
+    );
+    final Map<String, dynamic> mapDueDate = {'dt_due': dueDate};
+
+    await database.update(
+      _table,
+      mapDueDate,
+      where: "$_columnIdTransaction = ?",
+      whereArgs: [id],
+    );
+
+    final response = await totalOfExpense(uuId);
+
+    if (response.response) {
+      final Map<String, dynamic> singleMap = {
+        'vl_total': response.data[0]['vl_transaction'] as double,
+      };
+      await database.update(
+        _table,
+        singleMap,
+        where: "$_columnUuIdTransaction = ?",
+        whereArgs: [uuId],
+      );
+    }
+
+    _logs(
+      method: 'UPDATE BETWEEN',
+      parameters: model,
+      response: 'TRANSAÇÃO DELETADO ID: $result',
       statusCode: true,
     );
     return SqliteResponse(data: result, response: true);
