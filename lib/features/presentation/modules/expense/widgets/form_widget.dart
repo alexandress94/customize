@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:organize_more/core/values/format/format_date.dart';
+import 'package:organize_more/features/presentation/modules/expense/widgets/modal_buttom_sheet_update_with_installment_widget.dart';
 
 import 'package:organize_more/features/presentation/theme/app_color.dart';
 import '../../../global_widgets/global_action_buttom_widget.dart';
+import '../../../theme/app_constant.dart';
 import '../controllers/insert_or_update_expense_controller.dart';
 import '../../transactions/widgets/text_form_field_widget.dart';
 import 'status_widget.dart';
@@ -131,27 +133,29 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                     replacement: const SizedBox.shrink(),
                     visible: controller.isLoading.isFalse,
                     child: GlobalActionButtomWidget(
-                        color: Get.isDarkMode
-                            ? AppDarkColors.appBlueColor
-                            : AppLightColors.appBlackColor,
-                        title: 'Cadastrar',
-                        icon: Icons.check,
-                        onTap: () async {
-                          await controller.insertExpense();
-                        }),
+                      color: Get.isDarkMode
+                          ? AppDarkColors.appBlueColor
+                          : AppLightColors.appBlackColor,
+                      title: 'Cadastrar',
+                      icon: Icons.check,
+                      onTap: () async {
+                        await controller.insertExpense();
+                      },
+                    ),
                   )
                 : Visibility(
                     replacement: const SizedBox.shrink(),
                     visible: controller.isLoading.isFalse,
                     child: GlobalActionButtomWidget(
-                        color: Get.isDarkMode
-                            ? AppDarkColors.appBlueColor
-                            : AppLightColors.appBlackColor,
-                        icon: Icons.save_outlined,
-                        title: 'Salvar',
-                        onTap: () async {
-                          await controller.updateExpense();
-                        }),
+                      color: Get.isDarkMode
+                          ? AppDarkColors.appBlueColor
+                          : AppLightColors.appBlackColor,
+                      icon: Icons.save_outlined,
+                      title: 'Salvar',
+                      onTap: () {
+                        _displayModalBottonSheet(context: context);
+                      },
+                    ),
                   ),
             TextButton.icon(
               onPressed: () {
@@ -215,5 +219,25 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
       controller.date.value = _selected;
       controller.selectedDueDateCreateExpense();
     }
+  }
+
+  void _displayModalBottonSheet({
+    required BuildContext context,
+  }) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      isDismissible: false,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(appDefaultPadding),
+          topRight: Radius.circular(appDefaultPadding),
+        ),
+      ),
+      builder: (_) {
+        return ModalButtomSheetUpdateWithInstallmentWidget();
+      },
+    );
   }
 }
