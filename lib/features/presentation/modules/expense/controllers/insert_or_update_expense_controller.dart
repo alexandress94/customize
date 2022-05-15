@@ -298,31 +298,6 @@ class InsertOrUpdateExpenseController extends GetxController
     }
   }
 
-  DateTime _verifyTypeTransactionSelected(int counter, String type) {
-    _log.debug("Quantidade de parcelas: $counter e Tipo: $type ");
-    _log.debug("vencimento: ${date.value}");
-    switch (type) {
-      case "Diário":
-        return DateTime(
-            date.value.year, date.value.month, date.value.day + counter);
-      case "Semanal":
-        return DateTime(
-            date.value.year, date.value.month, date.value.day + (7 * counter));
-      case "Trimestre":
-        return DateTime(
-            date.value.year, date.value.month + (3 * counter), date.value.day);
-      case "Semestre":
-        return DateTime(
-            date.value.year, date.value.month + (6 * counter), date.value.day);
-      case "Anual":
-        return DateTime(
-            date.value.year, date.value.month + (12 * counter), date.value.day);
-      default:
-        return DateTime(
-            date.value.year, date.value.month + counter, date.value.day);
-    }
-  }
-
   Future<void> insertExpense() async {
     isLoading.value = true;
     if (isValidationForm) {
