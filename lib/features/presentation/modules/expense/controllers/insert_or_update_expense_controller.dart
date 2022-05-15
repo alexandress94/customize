@@ -400,6 +400,39 @@ class InsertOrUpdateExpenseController extends GetxController
     await getAllExpenseController.find();
   }
 
+  Future<void> singleUpdate() async {
+    isLoading.value = true;
+    if (isValidationForm) {
+      final expense = arguments['ExpenseEntity'] as ExpenseEntity;
+      double money = FormatMoney.replaceMask(
+        value: moneyTextEditingController.value.text,
+      );
+
+      final result = await _updateExpenseUsecase.call(
+        ParameterUpdateExpense(
+          id: expense.id!,
+          uuId: expense.uuId,
+          description: descriptionTextEditingController.value.text,
+          date: FormatDate.replaceMaskDateForDatabase(date: date.value),
+          value: money,
+          total: expense.valueTotal,
+        ),
+      );
+
+      isLoading.value = false;
+      if (result.isLeft) {
+        _log.error(result.left);
+        Get.offAllNamed(Routes.ERROR_PAGE);
+        message(MessageModel.error('Erro', result.left.toString()));
+      }
+
+      _log.debug(result.right);
+      Get.back();
+      message(MessageModel.sucess('Finalizado', 'Atualizado com sucesso'));
+      await getAllExpenseController.find();
+    }
+  }
+
   Future<void> _updateBetween(ExpenseEntity expense, double money) async {
     final result = await _updateBetweenExpenseUsecase.call(
       ParameterUpdateBetweenExpense(

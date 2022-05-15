@@ -152,9 +152,14 @@ class FormWidget extends GetView<InsertOrUpdateExpenseController> {
                           : AppLightColors.appBlackColor,
                       icon: Icons.save_outlined,
                       title: 'Salvar',
-                      onTap: () {
-                        _displayModalBottonSheet(context: context);
-                      },
+                      onTap:
+                          controller.arguments['ExpenseEntity'].isPortion == 1
+                              ? () {
+                                  _displayModalBottonSheet(context: context);
+                                }
+                              : () {
+                                  controller.singleUpdate();
+                                },
                     ),
                   ),
             TextButton.icon(
