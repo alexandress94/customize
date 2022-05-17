@@ -1,4 +1,4 @@
-name: organize_more
+name: customize
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -39,7 +39,7 @@ dependencies:
   equatable: ^2.0.3
   either_dart: ^0.1.4  
   sqflite: ^2.0.2
-  get: ^4.6.1
+  get: ^4.6.3
   path_provider: ^2.0.8
   intl: ^0.17.0
   easy_mask: ^2.0.1
