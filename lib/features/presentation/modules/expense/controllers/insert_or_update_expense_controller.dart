@@ -1,13 +1,13 @@
-import 'package:organize_more/core/keys/guid_gen.dart';
-import 'package:organize_more/core/models/expense_dto.dart';
-import 'package:organize_more/core/values/format/format_date.dart';
-import 'package:organize_more/core/values/format/format_weekday.dart';
-import 'package:organize_more/features/domain/entities/expense_entity.dart';
-import 'package:organize_more/features/domain/usecases/insert_expense_usecase.dart';
+import 'package:customize/core/keys/guid_gen.dart';
+import 'package:customize/core/models/expense_dto.dart';
+import 'package:customize/core/values/format/format_date.dart';
+import 'package:customize/core/values/format/format_weekday.dart';
+import 'package:customize/features/domain/entities/expense_entity.dart';
+import 'package:customize/features/domain/usecases/insert_expense_usecase.dart';
 
-import 'package:organize_more/core/values/converts/convert_text.dart';
-import 'package:organize_more/core/values/format/format_money.dart';
-import 'package:organize_more/core/services/log/log.dart';
+import 'package:customize/core/values/converts/convert_text.dart';
+import 'package:customize/core/values/format/format_money.dart';
+import 'package:customize/core/services/log/log.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

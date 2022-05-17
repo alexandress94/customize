@@ -1,4 +1,4 @@
-import 'package:organize_more/core/errors/repository_exception.dart';
+import 'package:customize/core/errors/repository_exception.dart';
 import 'package:either_dart/either.dart';
 
 import '../../domain/repositories/update_between_expense_repository.dart';

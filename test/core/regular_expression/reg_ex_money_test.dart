@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:organize_more/core/values/regular_expression/reg_ex_money.dart';
+import 'package:customize/core/values/regular_expression/reg_ex_money.dart';
 
 void main() {
   const validMoney = '20000';

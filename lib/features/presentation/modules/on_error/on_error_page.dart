@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/global_widgets/global_action_buttom_widget.dart';
-import 'package:organize_more/features/presentation/modules/on_error/controller/on_error_controller.dart';
-import 'package:organize_more/features/presentation/routes/routes.dart';
+import 'package:customize/features/presentation/global_widgets/global_action_buttom_widget.dart';
+import 'package:customize/features/presentation/modules/on_error/controller/on_error_controller.dart';
+import 'package:customize/features/presentation/routes/routes.dart';
 
 import '../../theme/app_color.dart';
 import '../../utils/path_lottie.dart';

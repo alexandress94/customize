@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/domain/entities/expense_entity.dart';
+import 'package:customize/features/domain/entities/expense_entity.dart';
 
 import '../../../../../core/models/expense_dto.dart';
 import '../../../../../core/values/format/format_date.dart';

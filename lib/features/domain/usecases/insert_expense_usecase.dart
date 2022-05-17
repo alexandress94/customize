@@ -1,6 +1,6 @@
-import 'package:organize_more/features/domain/repositories/insert_expense_repository.dart';
-import 'package:organize_more/core/errors/usecase_exception.dart';
-import 'package:organize_more/core/usecases/usecase.dart';
+import 'package:customize/features/domain/repositories/insert_expense_repository.dart';
+import 'package:customize/core/errors/usecase_exception.dart';
+import 'package:customize/core/usecases/usecase.dart';
 import 'package:either_dart/either.dart';
 
 class InsertExpenseUsecase implements Usecase<int, ParameterInsertExpense> {

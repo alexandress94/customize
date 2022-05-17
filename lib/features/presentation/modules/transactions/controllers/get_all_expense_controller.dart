@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/core/services/log/log.dart';
-import 'package:organize_more/core/values/replace/replace_date.dart';
-import 'package:organize_more/features/domain/entities/expense_entity.dart';
-import 'package:organize_more/features/domain/usecases/get_all_expense_usecase.dart';
-import 'package:organize_more/features/domain/usecases/get_sum_of_expenses_usecase.dart';
-import 'package:organize_more/features/domain/usecases/get_sum_of_transactions_usecase.dart';
+import 'package:customize/core/services/log/log.dart';
+import 'package:customize/core/values/replace/replace_date.dart';
+import 'package:customize/features/domain/entities/expense_entity.dart';
+import 'package:customize/features/domain/usecases/get_all_expense_usecase.dart';
+import 'package:customize/features/domain/usecases/get_sum_of_expenses_usecase.dart';
+import 'package:customize/features/domain/usecases/get_sum_of_transactions_usecase.dart';
 
 import '../../../../../core/services/packages/contracts/lottie_adapter.dart';
 import '../../../../domain/usecases/get_payment_usecase.dart';

@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 
-import 'package:organize_more/features/presentation/modules/expense/expense_page.dart';
-import 'package:organize_more/features/presentation/modules/on_error/bindings/on_error_binding.dart';
-import 'package:organize_more/features/presentation/modules/onboarding/binding/onboarding_binding.dart';
-import 'package:organize_more/features/presentation/modules/onboarding/onboarding_page.dart';
-import 'package:organize_more/features/presentation/modules/settings/binding/settings_binding.dart';
-import 'package:organize_more/features/presentation/modules/splash/splash_page.dart';
+import 'package:customize/features/presentation/modules/expense/expense_page.dart';
+import 'package:customize/features/presentation/modules/on_error/bindings/on_error_binding.dart';
+import 'package:customize/features/presentation/modules/onboarding/binding/onboarding_binding.dart';
+import 'package:customize/features/presentation/modules/onboarding/onboarding_page.dart';
+import 'package:customize/features/presentation/modules/settings/binding/settings_binding.dart';
+import 'package:customize/features/presentation/modules/splash/splash_page.dart';
 
-import 'package:organize_more/features/presentation/routes/routes.dart';
+import 'package:customize/features/presentation/routes/routes.dart';
 
 import '../modules/on_error/on_error_page.dart';
 import '../modules/settings/settings_page.dart';

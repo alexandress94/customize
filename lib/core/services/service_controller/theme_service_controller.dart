@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/core/services/packages/contracts/local_get_storage.dart';
-import 'package:organize_more/core/services/packages/gateways/local_get_storage_implementation.dart';
-import 'package:organize_more/core/values/keys/keys.dart';
+import 'package:customize/core/services/packages/contracts/local_get_storage.dart';
+import 'package:customize/core/services/packages/gateways/local_get_storage_implementation.dart';
+import 'package:customize/core/values/keys/keys.dart';
 
 class ThemeServiceController extends GetxController {
   final LocalGetStorage _storage = LocalGetStorageImplementation();

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:organize_more/core/services/log/log.dart';
-import 'package:organize_more/features/domain/usecases/update_payment_usecase.dart';
+import 'package:customize/core/services/log/log.dart';
+import 'package:customize/features/domain/usecases/update_payment_usecase.dart';
 
 import '../../../routes/routes.dart';
 import '../../../utils/loader_mixin.dart';

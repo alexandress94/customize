@@ -1,7 +1,7 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
 
 import '../../../../core/services/service_controller/theme_service_controller.dart';
 import 'controllers/settings_controller.dart';

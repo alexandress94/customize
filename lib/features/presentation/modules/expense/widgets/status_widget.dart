@@ -1,7 +1,7 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:organize_more/features/presentation/modules/expense/widgets/toggle_switch_widget.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
-import 'package:organize_more/features/presentation/theme/app_constant.dart';
+import 'package:customize/features/presentation/modules/expense/widgets/toggle_switch_widget.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/theme/app_constant.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

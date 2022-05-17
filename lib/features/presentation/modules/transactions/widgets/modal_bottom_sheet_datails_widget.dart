@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/global_widgets/global_action_buttom_widget.dart';
+import 'package:customize/features/presentation/global_widgets/global_action_buttom_widget.dart';
 
-import 'package:organize_more/features/presentation/modules/transactions/widgets/modal_buttom_sheet_delete_with_installment_widget.dart';
-import 'package:organize_more/features/presentation/routes/routes.dart';
+import 'package:customize/features/presentation/modules/transactions/widgets/modal_buttom_sheet_delete_with_installment_widget.dart';
+import 'package:customize/features/presentation/routes/routes.dart';
 
 import '../../../../../core/values/format/format_date.dart';
 import '../../../../../core/values/format/format_money.dart';

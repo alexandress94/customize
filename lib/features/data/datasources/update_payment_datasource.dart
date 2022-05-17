@@ -1,4 +1,4 @@
-import 'package:organize_more/core/values/format/format_date.dart';
+import 'package:customize/core/values/format/format_date.dart';
 import '../../../core/errors/datasource_exception.dart';
 import '../../../core/services/packages/contracts/sqlite_expense.dart';
 

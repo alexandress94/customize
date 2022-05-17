@@ -1,4 +1,4 @@
-import 'package:organize_more/core/services/log/log.dart';
+import 'package:customize/core/services/log/log.dart';
 import 'package:logger/logger.dart';
 import 'package:get/get.dart';
 

@@ -1,8 +1,8 @@
 import 'package:either_dart/either.dart';
-import 'package:organize_more/core/errors/usecase_exception.dart';
-import 'package:organize_more/core/usecases/usecase.dart';
-import 'package:organize_more/features/domain/entities/expense_entity.dart';
-import 'package:organize_more/features/domain/repositories/get_all_expense_repository.dart';
+import 'package:customize/core/errors/usecase_exception.dart';
+import 'package:customize/core/usecases/usecase.dart';
+import 'package:customize/features/domain/entities/expense_entity.dart';
+import 'package:customize/features/domain/repositories/get_all_expense_repository.dart';
 
 class GetAllExpenseUsecase
     implements Usecase<List<ExpenseEntity>, ParameterGetAllExpense> {

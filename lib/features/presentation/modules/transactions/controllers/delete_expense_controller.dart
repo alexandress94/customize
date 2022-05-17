@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:organize_more/core/models/expense_dto.dart';
+import 'package:customize/core/models/expense_dto.dart';
 
-import 'package:organize_more/features/domain/usecases/delete_expense_usecase.dart';
+import 'package:customize/features/domain/usecases/delete_expense_usecase.dart';
 
 import '../../../../../core/services/log/log.dart';
 import '../../../../domain/usecases/delete_all_expense_usecase.dart';

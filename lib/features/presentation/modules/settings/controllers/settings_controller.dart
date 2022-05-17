@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:organize_more/core/services/packages/contracts/package_info_plus.dart';
+import 'package:customize/core/services/packages/contracts/package_info_plus.dart';
 
 import '../../../../../core/services/packages/contracts/url_launcher.dart';
 

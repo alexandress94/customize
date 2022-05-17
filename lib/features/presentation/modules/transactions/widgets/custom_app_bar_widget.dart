@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/routes/routes.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/routes/routes.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
 
 class CustomAppBarWidget extends StatelessWidget {
   const CustomAppBarWidget({Key? key}) : super(key: key);

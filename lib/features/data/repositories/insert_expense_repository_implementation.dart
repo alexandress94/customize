@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
-import 'package:organize_more/core/errors/repository_exception.dart';
-import 'package:organize_more/features/data/datasources/insert_expense_datasource.dart';
-import 'package:organize_more/features/domain/repositories/insert_expense_repository.dart';
+import 'package:customize/core/errors/repository_exception.dart';
+import 'package:customize/features/data/datasources/insert_expense_datasource.dart';
+import 'package:customize/features/domain/repositories/insert_expense_repository.dart';
 
 class InsertExpenseRepositoryImplementation implements InsertExpenseRepository {
   final InsertExpenseDatasource _datasource;

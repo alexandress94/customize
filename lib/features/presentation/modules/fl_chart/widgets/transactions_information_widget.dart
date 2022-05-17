@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
-import 'package:organize_more/features/presentation/theme/app_constant.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/theme/app_constant.dart';
 
 import '../../transactions/controllers/get_all_expense_controller.dart';
 import 'indicator_widget.dart';

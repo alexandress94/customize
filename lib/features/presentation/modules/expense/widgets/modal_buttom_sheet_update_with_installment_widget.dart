@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/modules/expense/controllers/insert_or_update_expense_controller.dart';
+import 'package:customize/features/presentation/modules/expense/controllers/insert_or_update_expense_controller.dart';
 
 import '../../../global_widgets/global_action_buttom_widget.dart';
 import '../../../theme/app_color.dart';

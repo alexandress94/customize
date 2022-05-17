@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:organize_more/core/services/log/log.dart';
+import 'package:customize/core/services/log/log.dart';
 
 import '../../../../domain/usecases/cancel_payment_usecase.dart';
 import '../../../routes/routes.dart';

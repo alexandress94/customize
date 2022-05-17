@@ -1,6 +1,6 @@
-import 'package:organize_more/core/values/converts/convert_text.dart';
-import 'package:organize_more/core/values/format/format_date.dart';
-import 'package:organize_more/features/domain/entities/expense_entity.dart';
+import 'package:customize/core/values/converts/convert_text.dart';
+import 'package:customize/core/values/format/format_date.dart';
+import 'package:customize/features/domain/entities/expense_entity.dart';
 
 class ExpenseModel extends ExpenseEntity {
   ExpenseModel({

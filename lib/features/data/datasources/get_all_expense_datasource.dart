@@ -1,5 +1,5 @@
-import 'package:organize_more/core/values/concatenate/concatenate.dart';
-import 'package:organize_more/features/data/models/expense_model.dart';
+import 'package:customize/core/values/concatenate/concatenate.dart';
+import 'package:customize/features/data/models/expense_model.dart';
 import '../../../core/errors/datasource_exception.dart';
 import '../../../core/services/packages/contracts/sqlite_expense.dart';
 

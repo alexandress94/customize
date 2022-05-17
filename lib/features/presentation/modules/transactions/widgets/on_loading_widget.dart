@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
 import 'package:shimmer/shimmer.dart';
 
 class OnLoadingWidget extends StatelessWidget {

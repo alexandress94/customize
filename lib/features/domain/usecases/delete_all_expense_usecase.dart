@@ -1,5 +1,5 @@
-import 'package:organize_more/core/usecases/usecase.dart';
-import 'package:organize_more/core/errors/usecase_exception.dart';
+import 'package:customize/core/usecases/usecase.dart';
+import 'package:customize/core/errors/usecase_exception.dart';
 import 'package:either_dart/either.dart';
 
 import '../repositories/delete_all_expense_repository.dart';

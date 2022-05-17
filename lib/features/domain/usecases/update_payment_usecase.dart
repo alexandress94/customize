@@ -1,6 +1,6 @@
-import 'package:organize_more/features/domain/repositories/update_payment_repository.dart';
-import 'package:organize_more/core/usecases/usecase.dart';
-import 'package:organize_more/core/errors/usecase_exception.dart';
+import 'package:customize/features/domain/repositories/update_payment_repository.dart';
+import 'package:customize/core/usecases/usecase.dart';
+import 'package:customize/core/errors/usecase_exception.dart';
 import 'package:either_dart/either.dart';
 
 class UpdatePaymentUsecase implements Usecase<int, ParameterUpdatePayment> {

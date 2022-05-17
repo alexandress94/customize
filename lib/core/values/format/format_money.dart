@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:organize_more/core/values/converts/convert_text.dart';
+import 'package:customize/core/values/converts/convert_text.dart';
 
 abstract class FormatMoney {
   static double replaceMask({required String value}) {

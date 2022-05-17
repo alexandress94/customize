@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:organize_more/features/data/datasources/update_payment_datasource.dart';
-import 'package:organize_more/features/data/repositories/update_payment_repository_implementation.dart';
-import 'package:organize_more/features/domain/usecases/update_payment_usecase.dart';
+import 'package:customize/features/data/datasources/update_payment_datasource.dart';
+import 'package:customize/features/data/repositories/update_payment_repository_implementation.dart';
+import 'package:customize/features/domain/usecases/update_payment_usecase.dart';
 
 import '../../../../../core/services/log/log_implementation.dart';
 import '../controllers/update_payment_controller.dart';

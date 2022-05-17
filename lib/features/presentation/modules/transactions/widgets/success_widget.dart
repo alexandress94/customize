@@ -1,10 +1,10 @@
-import 'package:organize_more/core/values/format/format_date.dart';
-import 'package:organize_more/core/values/format/format_money.dart';
+import 'package:customize/core/values/format/format_date.dart';
+import 'package:customize/core/values/format/format_money.dart';
 
-import 'package:organize_more/features/presentation/modules/transactions/widgets/modal_bottom_sheet_datails_widget.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
-import 'package:organize_more/features/presentation/theme/app_constant.dart';
-import 'package:organize_more/features/domain/entities/expense_entity.dart';
+import 'package:customize/features/presentation/modules/transactions/widgets/modal_bottom_sheet_datails_widget.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/theme/app_constant.dart';
+import 'package:customize/features/domain/entities/expense_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

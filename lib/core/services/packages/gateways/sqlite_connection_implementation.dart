@@ -1,4 +1,4 @@
-import 'package:organize_more/core/services/packages/contracts/sqlite_connection.dart';
+import 'package:customize/core/services/packages/contracts/sqlite_connection.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'sqlite_expense_implementation.dart';

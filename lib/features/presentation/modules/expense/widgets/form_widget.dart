@@ -2,10 +2,10 @@ import 'package:easy_mask/easy_mask.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/core/values/format/format_date.dart';
-import 'package:organize_more/features/presentation/modules/expense/widgets/modal_buttom_sheet_update_with_installment_widget.dart';
+import 'package:customize/core/values/format/format_date.dart';
+import 'package:customize/features/presentation/modules/expense/widgets/modal_buttom_sheet_update_with_installment_widget.dart';
 
-import 'package:organize_more/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
 import '../../../global_widgets/global_action_buttom_widget.dart';
 import '../../../theme/app_constant.dart';
 import '../controllers/insert_or_update_expense_controller.dart';

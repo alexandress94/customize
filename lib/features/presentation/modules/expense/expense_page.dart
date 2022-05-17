@@ -1,6 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:organize_more/features/presentation/modules/expense/widgets/form_widget.dart';
+import 'package:customize/features/presentation/modules/expense/widgets/form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

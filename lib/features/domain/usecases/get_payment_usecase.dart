@@ -1,7 +1,7 @@
-import 'package:organize_more/features/domain/repositories/get_payment_sum_repository.dart';
-import 'package:organize_more/features/domain/entities/amount_entity.dart';
-import 'package:organize_more/core/usecases/usecase.dart';
-import 'package:organize_more/core/errors/usecase_exception.dart';
+import 'package:customize/features/domain/repositories/get_payment_sum_repository.dart';
+import 'package:customize/features/domain/entities/amount_entity.dart';
+import 'package:customize/core/usecases/usecase.dart';
+import 'package:customize/core/errors/usecase_exception.dart';
 import 'package:either_dart/either.dart';
 
 class GetPaymentSumUsecase

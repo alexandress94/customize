@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/modules/transactions/widgets/on_empty_widget.dart';
+import 'package:customize/features/presentation/modules/transactions/widgets/on_empty_widget.dart';
 
-import 'package:organize_more/features/presentation/modules/transactions/widgets/success_widget.dart';
+import 'package:customize/features/presentation/modules/transactions/widgets/success_widget.dart';
 
 import '../../routes/routes.dart';
 import 'controllers/get_all_expense_controller.dart';

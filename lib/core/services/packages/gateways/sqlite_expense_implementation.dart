@@ -1,6 +1,6 @@
-import 'package:organize_more/core/services/log/log.dart';
-import 'package:organize_more/core/services/log/log_implementation.dart';
-import 'package:organize_more/core/services/packages/gateways/sqlite_connection_implementation.dart';
+import 'package:customize/core/services/log/log.dart';
+import 'package:customize/core/services/log/log_implementation.dart';
+import 'package:customize/core/services/packages/gateways/sqlite_connection_implementation.dart';
 import 'package:sqflite/sqflite.dart';
 import '../../response/sqlite_response.dart';
 import '../contracts/sqlite_expense.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:get/get.dart';
 
-import 'package:organize_more/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
 
 import '../../transactions/controllers/get_all_expense_controller.dart';
 import 'sum_of_expenses_widget.dart';

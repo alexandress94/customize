@@ -1,4 +1,4 @@
-import 'package:organize_more/core/usecases/usecase.dart';
+import 'package:customize/core/usecases/usecase.dart';
 import 'package:either_dart/either.dart';
 
 import '../../../core/errors/usecase_exception.dart';

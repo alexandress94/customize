@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:organize_more/core/services/packages/contracts/local_get_storage.dart';
-import 'package:organize_more/core/services/service_controller/check_native_darkmode_service_controller.dart';
-import 'package:organize_more/features/presentation/routes/routes.dart';
+import 'package:customize/core/services/packages/contracts/local_get_storage.dart';
+import 'package:customize/core/services/service_controller/check_native_darkmode_service_controller.dart';
+import 'package:customize/features/presentation/routes/routes.dart';
 
 import '../../../../../core/services/packages/contracts/lottie_adapter.dart';
 import '../../../../../core/values/keys/keys.dart';

@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:organize_more/core/services/log/log_implementation.dart';
-import 'package:organize_more/features/data/datasources/insert_expense_datasource.dart';
-import 'package:organize_more/features/data/datasources/update_between_expense_datasource.dart';
-import 'package:organize_more/features/data/repositories/insert_expense_repository_implementation.dart';
-import 'package:organize_more/features/data/repositories/update_between_expense_repository_implementation.dart';
-import 'package:organize_more/features/domain/usecases/insert_expense_usecase.dart';
+import 'package:customize/core/services/log/log_implementation.dart';
+import 'package:customize/features/data/datasources/insert_expense_datasource.dart';
+import 'package:customize/features/data/datasources/update_between_expense_datasource.dart';
+import 'package:customize/features/data/repositories/insert_expense_repository_implementation.dart';
+import 'package:customize/features/data/repositories/update_between_expense_repository_implementation.dart';
+import 'package:customize/features/domain/usecases/insert_expense_usecase.dart';
 
 import '../../../../data/datasources/update_expense_datasource.dart';
 import '../../../../data/repositories/update_expense_repository_implementation.dart';

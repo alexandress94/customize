@@ -1,4 +1,4 @@
-import 'package:organize_more/features/domain/entities/amount_entity.dart';
+import 'package:customize/features/domain/entities/amount_entity.dart';
 
 class AmountModel extends AmountEntity {
   AmountModel({

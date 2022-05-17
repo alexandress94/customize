@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
 
 class GlobalActionButtomWidget extends StatelessWidget {
   final String title;

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/modules/onboarding/controller/onboarding_controller.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
-import 'package:organize_more/features/presentation/utils/path_lottie.dart';
+import 'package:customize/features/presentation/modules/onboarding/controller/onboarding_controller.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/utils/path_lottie.dart';
 
 import 'widgets/body_widget.dart';
 

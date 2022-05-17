@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:organize_more/features/presentation/modules/expense/controllers/insert_or_update_expense_controller.dart';
-import 'package:organize_more/features/presentation/theme/app_color.dart';
+import 'package:customize/features/presentation/modules/expense/controllers/insert_or_update_expense_controller.dart';
+import 'package:customize/features/presentation/theme/app_color.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class ToggleSwitchWidget extends GetView<InsertOrUpdateExpenseController> {
