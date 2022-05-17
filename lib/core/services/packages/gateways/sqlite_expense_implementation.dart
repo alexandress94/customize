@@ -389,7 +389,59 @@ class SqliteExpenseImplementation implements SqliteExpense {
     _logs(
       method: 'UPDATE BETWEEN',
       parameters: model,
-      response: 'TRANSAÇÃO DELETADO ID: $result',
+      response: 'TRANSAÇÃO UPDATE ID: $result',
+      statusCode: true,
+    );
+    return SqliteResponse(data: result, response: true);
+  }
+
+  @override
+  Future<SqliteResponse> updateAll({Map<String, dynamic>? model}) async {
+    Database database = await SqliteConnectionImplementation.instance.database;
+    final id = model!['id'] as int;
+    final uuId = model['uuId'] as String;
+    final description = model['ds_transaction'] as String;
+    final value = model['vl_transaction'] as double;
+    final dueDate = model['dt_due'] as String;
+
+    final Map<String, dynamic> map = {
+      'ds_transaction': description,
+      'vl_transaction': value,
+    };
+
+    final int result = await database.update(
+      _table,
+      map,
+      where: "$_columnUuIdTransaction = ?",
+      whereArgs: [uuId],
+    );
+    final Map<String, dynamic> mapDueDate = {'dt_due': dueDate};
+
+    await database.update(
+      _table,
+      mapDueDate,
+      where: "$_columnIdTransaction = ?",
+      whereArgs: [id],
+    );
+
+    final response = await totalOfExpense(uuId);
+
+    if (response.response) {
+      final Map<String, dynamic> singleMap = {
+        'vl_total': response.data[0]['vl_transaction'] as double,
+      };
+      await database.update(
+        _table,
+        singleMap,
+        where: "$_columnUuIdTransaction = ?",
+        whereArgs: [uuId],
+      );
+    }
+
+    _logs(
+      method: 'UPDATE ALL',
+      parameters: model,
+      response: 'TRANSAÇÃO UPDATE ID: $result',
       statusCode: true,
     );
     return SqliteResponse(data: result, response: true);
