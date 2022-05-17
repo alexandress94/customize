@@ -1,11 +1,10 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:customize/features/presentation/modules/expense/widgets/toggle_switch_widget.dart';
 import 'package:customize/features/presentation/theme/app_color.dart';
 import 'package:customize/features/presentation/theme/app_constant.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/insert_or_update_expense_controller.dart';
 import '../../transactions/widgets/text_form_field_widget.dart';
 
@@ -112,10 +111,13 @@ class StatusWidget extends GetView<InsertOrUpdateExpenseController> {
                     ),
                     SizedBox(height: 10.0.h),
                     TextFormFieldWidget(
+                      inputMask: <TextInputFormatter>[
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      ],
                       maxLenght: 2,
                       editingController: controller.portionditingController,
                       icon: Icons.add,
-                      textInputType: const TextInputType.numberWithOptions(),
+                      textInputType: TextInputType.number,
                       validator: (installment) {
                         return controller.validatorPortion(installment!);
                       },
