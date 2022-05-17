@@ -8,6 +8,7 @@ import 'package:customize/features/domain/usecases/insert_expense_usecase.dart';
 import 'package:customize/core/values/converts/convert_text.dart';
 import 'package:customize/core/values/format/format_money.dart';
 import 'package:customize/core/services/log/log.dart';
+import 'package:customize/features/domain/usecases/update_all_expense_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,17 +56,20 @@ class InsertOrUpdateExpenseController extends GetxController
   final InsertExpenseUsecase _insertExpenseUsecase;
   final UpdateExpenseUsecase _updateExpenseUsecase;
   final UpdateBetweenExpenseUsecase _updateBetweenExpenseUsecase;
+  final UpdateAllExpenseUsecase _updateAllExpenseUsecase;
   final Log _log;
 
   InsertOrUpdateExpenseController({
     required InsertExpenseUsecase insertExpenseUsecase,
     required UpdateExpenseUsecase updateExpenseUsecase,
     required UpdateBetweenExpenseUsecase updateBetweenExpenseUsecase,
+    required UpdateAllExpenseUsecase updateAllExpenseUsecase,
     required this.arguments,
     required Log log,
   })  : _insertExpenseUsecase = insertExpenseUsecase,
         _updateExpenseUsecase = updateExpenseUsecase,
         _updateBetweenExpenseUsecase = updateBetweenExpenseUsecase,
+        _updateAllExpenseUsecase = updateAllExpenseUsecase,
         _log = log;
 
   GlobalKey<FormState> get getFormKey => _formkey;
@@ -367,7 +371,9 @@ class InsertOrUpdateExpenseController extends GetxController
         case Update.update_between:
           _updateBetween(expense, money);
           break;
-        default:
+        case Update.update_all:
+          _updateAll(expense, money);
+          break;
       }
     } else {
       isLoading.value = false;
@@ -436,6 +442,30 @@ class InsertOrUpdateExpenseController extends GetxController
   Future<void> _updateBetween(ExpenseEntity expense, double money) async {
     final result = await _updateBetweenExpenseUsecase.call(
       ParameterUpdateBetweenExpense(
+        id: expense.id!,
+        uuId: expense.uuId,
+        description: descriptionTextEditingController.value.text,
+        date: FormatDate.replaceMaskDateForDatabase(date: date.value),
+        value: money,
+        total: expense.valueTotal,
+      ),
+    );
+    if (result.isLeft) {
+      _log.error(result.left);
+      Get.offAllNamed(Routes.ERROR_PAGE);
+      message(MessageModel.error('Erro', result.left.toString()));
+    }
+
+    isLoading.value = false;
+    Get.back();
+    Get.back();
+    message(MessageModel.sucess('Finalizado', 'Atualizado com sucesso'));
+    await getAllExpenseController.find();
+  }
+
+  Future<void> _updateAll(ExpenseEntity expense, double money) async {
+    final result = await _updateAllExpenseUsecase.call(
+      ParameterUpdateAllExpense(
         id: expense.id!,
         uuId: expense.uuId,
         description: descriptionTextEditingController.value.text,

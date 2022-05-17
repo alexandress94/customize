@@ -1,3 +1,6 @@
+import 'package:customize/features/data/datasources/update_all_expense_datasource.dart';
+import 'package:customize/features/data/repositories/update_all_expense_repository_implementation.dart';
+import 'package:customize/features/domain/usecases/update_all_expense_usecase.dart';
 import 'package:get/get.dart';
 import 'package:customize/core/services/log/log_implementation.dart';
 import 'package:customize/features/data/datasources/insert_expense_datasource.dart';
@@ -36,6 +39,13 @@ class InsertUpdateExpenseBinding implements Bindings {
         updateBetweenExpenseUsecase: UpdateBetweenExpenseUsecase(
           repository: UpdateBetweenExpenseRepositoryImplementation(
             datasource: UpdateBetweenExpenseDatasourceImplementetion(
+              database: Get.find(),
+            ),
+          ),
+        ),
+        updateAllExpenseUsecase: UpdateAllExpenseUsecase(
+          repository: UpdateAllExpenseRepositoryImplementation(
+            datasource: UpdateAllExpenseDatasourceImplementetion(
               database: Get.find(),
             ),
           ),
