@@ -402,6 +402,7 @@ class InsertOrUpdateExpenseController extends GetxController
 
     _log.debug(result.right);
     Get.back();
+    Get.back();
     message(MessageModel.sucess('Finalizado', 'Atualizado com sucesso'));
     await getAllExpenseController.find();
   }
