@@ -261,9 +261,9 @@ class InsertOrUpdateExpenseController extends GetxController
     );
     switch (valueExpenseStatus) {
       case 1:
-        return money / portion;
-      default:
         return money;
+      default:
+        return money / portion;
     }
   }
 
@@ -273,9 +273,9 @@ class InsertOrUpdateExpenseController extends GetxController
     );
     switch (valueExpenseStatus) {
       case 1:
-        return money;
-      default:
         return money * portion;
+      default:
+        return money;
     }
   }
 
