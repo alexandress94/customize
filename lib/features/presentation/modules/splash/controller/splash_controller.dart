@@ -1,3 +1,4 @@
+import 'package:customize/core/services/local_notification/local_notification_service.dart';
 import 'package:get/get.dart';
 import 'package:customize/core/services/packages/contracts/local_get_storage.dart';
 import 'package:customize/core/services/service_controller/check_native_darkmode_service_controller.dart';
@@ -8,17 +9,20 @@ import '../../../routes/routes.dart';
 class SplashController extends GetxController {
   final LocalGetStorage _storage;
   final CheckNativeDarkmodeServiceController _service;
+  final LocalNotificationService _notificationService;
 
   SplashController({
     required LocalGetStorage storage,
     required CheckNativeDarkmodeServiceController service,
+    required LocalNotificationService notificationService,
   })  : _storage = storage,
+        _notificationService = notificationService,
         _service = service;
 
   CheckNativeDarkmodeServiceController get service => _service;
 
   @override
-  void onReady() {
+  void onReady() async {
     Future.delayed(
       Duration(seconds: 3),
       () async {
@@ -29,6 +33,8 @@ class SplashController extends GetxController {
         }
       },
     );
+    await _notificationService.checkForNotifications();
+
     super.onReady();
   }
 }
