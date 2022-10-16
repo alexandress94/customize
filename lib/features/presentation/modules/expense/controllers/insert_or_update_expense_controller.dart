@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:customize/core/keys/guid_gen.dart';
 import 'package:customize/core/models/expense_dto.dart';
+import 'package:customize/core/services/local_notification/custom_notification.dart';
+import 'package:customize/core/services/local_notification/local_notification_service.dart';
 import 'package:customize/core/values/format/format_date.dart';
 import 'package:customize/core/values/format/format_weekday.dart';
 import 'package:customize/features/domain/entities/expense_entity.dart';
@@ -58,6 +62,8 @@ class InsertOrUpdateExpenseController extends GetxController
   final UpdateBetweenExpenseUsecase _updateBetweenExpenseUsecase;
   final UpdateAllExpenseUsecase _updateAllExpenseUsecase;
   final Log _log;
+
+  final notificationSerivce = Get.find<LocalNotificationService>();
 
   InsertOrUpdateExpenseController({
     required InsertExpenseUsecase insertExpenseUsecase,
@@ -302,6 +308,12 @@ class InsertOrUpdateExpenseController extends GetxController
     }
   }
 
+  DateTime _dateNow = DateTime(
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day,
+  );
+
   Future<void> insertExpense() async {
     isLoading.value = true;
     if (isValidationForm) {
@@ -342,6 +354,15 @@ class InsertOrUpdateExpenseController extends GetxController
           Get.offAllNamed(Routes.ERROR_PAGE);
           message(MessageModel.error('Falha', result.left.toString()));
         }
+
+        notificationSerivce.showScheduleNotification(
+          customNotification: _bodyNotification(
+            id: result.right,
+            dueDate: dueDate,
+          ),
+          dueDate: _scheduleDate(dueDate),
+        );
+
         _log.debug(result.right);
       }
 
@@ -356,12 +377,49 @@ class InsertOrUpdateExpenseController extends GetxController
     }
   }
 
+  CustomNotification _bodyNotification({
+    required int id,
+    required DateTime dueDate,
+  }) {
+    return CustomNotification(
+      id: id,
+      title: 'Lembrete',
+      body: _dateNow.isAfter(dueDate)
+          ? 'Despesa: ${descriptionTextEditingController.text} consta com atraso no pagamento'
+          : 'Despesa: ${descriptionTextEditingController.text} está próxima do vencimento',
+      payload: Routes.TRANSACTION_PAGE,
+    );
+  }
+
+  DateTime _scheduleDate(DateTime dueDate) {
+    int minDay = 8;
+    int maxDay = 18;
+
+    var randomDay = minDay + Random().nextInt(maxDay - minDay);
+
+    return _dateNow.isAtSameMomentAs(dueDate)
+        ? DateTime.now().add(Duration(hours: 1))
+        : _dateNow.isBefore(dueDate)
+            ? dueDate.add(Duration(hours: randomDay))
+            : DateTime.now().add(Duration(hours: 1));
+  }
+
   Future<void> updateData() async {
     isLoading.value = true;
     if (isValidationForm) {
       final expense = arguments['ExpenseEntity'] as ExpenseEntity;
+
       double money = FormatMoney.replaceMask(
         value: moneyTextEditingController.value.text,
+      );
+      await notificationSerivce.cancelNotifications(expense.id!);
+
+      notificationSerivce.showScheduleNotification(
+        customNotification: _bodyNotification(
+          id: expense.id!,
+          dueDate: expense.dueDate,
+        ),
+        dueDate: _scheduleDate(expense.dueDate),
       );
 
       switch (updateExpense.value) {
@@ -432,6 +490,16 @@ class InsertOrUpdateExpenseController extends GetxController
         Get.offAllNamed(Routes.ERROR_PAGE);
         message(MessageModel.error('Erro', result.left.toString()));
       }
+
+      await notificationSerivce.cancelNotifications(expense.id!);
+
+      notificationSerivce.showScheduleNotification(
+        customNotification: _bodyNotification(
+          id: expense.id!,
+          dueDate: date.value,
+        ),
+        dueDate: _scheduleDate(date.value),
+      );
 
       _log.debug(result.right);
       Get.back();

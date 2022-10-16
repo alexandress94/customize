@@ -1,3 +1,4 @@
+import 'package:customize/core/services/local_notification/local_notification_service.dart';
 import 'package:get/get.dart';
 import 'package:customize/core/services/log/log.dart';
 import 'package:customize/features/domain/usecases/update_payment_usecase.dart';
@@ -10,6 +11,7 @@ class UpdatePaymentController extends GetxController
     with LoaderMixin, MessageMixin {
   final UpdatePaymentUsecase _usecase;
   final Log _log;
+  final _notificationSerivce = Get.find<LocalNotificationService>();
 
   final message = Rxn<MessageModel>();
   RxBool isLoading = false.obs;
@@ -47,6 +49,7 @@ class UpdatePaymentController extends GetxController
       return;
     }
 
+    await _notificationSerivce.cancelNotifications(id);
     _log.debug(result.right);
     message(MessageModel.sucess('Sucesso', 'Pagamento finalizado!'));
   }

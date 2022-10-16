@@ -1,3 +1,4 @@
+import 'package:customize/core/services/local_notification/local_notification_service.dart';
 import 'package:get/get.dart';
 import 'package:customize/core/models/expense_dto.dart';
 
@@ -21,6 +22,7 @@ class DeleteExpenseController extends GetxController
   final DeleteExpenseUsecase _deleteUsecase;
   final DeleteBetweenExpenseUsecase _deleteBetweenUsecase;
   final DeleteAllExpenseUsecase _deleteAllUsecase;
+  final _notificationService = Get.find<LocalNotificationService>();
   final Log _log;
 
   final message = Rxn<MessageModel>();
@@ -46,6 +48,8 @@ class DeleteExpenseController extends GetxController
   }
 
   Future<void> deleteExpense(ExpenseDto expense) async {
+    await _notificationService.cancelNotifications(expense.id!);
+
     switch (remove.value) {
       case Delete.delete_one:
         await delete(expense.id!);
@@ -71,7 +75,7 @@ class DeleteExpenseController extends GetxController
       Get.offAllNamed(Routes.ERROR_PAGE);
       message(MessageModel.error('Falha', result.left.toString()));
     }
-
+    await _notificationService.cancelNotifications(id);
     message(MessageModel.sucess('Finalizado', 'Deletado com sucesso!'));
   }
 

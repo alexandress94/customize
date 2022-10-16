@@ -1,3 +1,4 @@
+import 'package:customize/core/services/local_notification/local_notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,8 @@ class GetAllExpenseController extends GetxController
   final updatePaymentController = Get.find<UpdatePaymentController>();
   final cancelPaymentController = Get.find<CancelPaymentController>();
   final deleteExpenseController = Get.find<DeleteExpenseController>();
+
+  final notificationSerivce = Get.find<LocalNotificationService>();
 
   final RxList<ExpenseEntity> _allExpenses = <ExpenseEntity>[].obs;
   final GetAllExpenseUsecase _usecaseAllExpense;
