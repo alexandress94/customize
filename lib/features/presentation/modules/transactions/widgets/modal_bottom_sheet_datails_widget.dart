@@ -253,20 +253,26 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                 color: appNormalBackgroundCardDueDateColor,
                 backgroundColor: appNormalDueDateColor,
               ),
-              SizedBox(width: 20.0.h),
-              const Text('Esta despesa está com vencimento.')
+              SizedBox(width: 10.0.w),
+              const Text('Despesa com vencimento.')
             ],
           )
         : now.isAtSameMomentAs(expense.dueDate) && expense.isPayment == 0
             ? Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _modifyIconByDate(
                     backgroundColor: appNormalBackgroundCloseToExpirationColor,
                     icon: Icons.warning,
                     color: appNormalWarningColor,
                   ),
-                  SizedBox(width: 20.0.h),
-                  const Text('Esta despesa está próximo do vencimento.')
+                  SizedBox(width: 10.0.w),
+                  Expanded(
+                    child: const Text(
+                      'Despesa próximo do vencimento.',
+                    ),
+                  )
                 ],
               )
             : now.isBefore(expense.dueDate) && expense.isPayment == 0
@@ -277,8 +283,8 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                         icon: Icons.schedule,
                         color: appNormalBackgroundInTimerColor,
                       ),
-                      SizedBox(width: 20.0.h),
-                      const Text('Esta despesa está em dia.')
+                      SizedBox(width: 10.0.w),
+                      const Text('Despesa em dia.')
                     ],
                   )
                 : Row(
@@ -288,8 +294,8 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                         icon: Icons.check,
                         color: appNormalPaymentColor,
                       ),
-                      SizedBox(width: 20.0.h),
-                      const Text('Esta despesa consta como pagamento.')
+                      SizedBox(width: 10.0.w),
+                      const Text('Despesa com pagamento.')
                     ],
                   );
   }
