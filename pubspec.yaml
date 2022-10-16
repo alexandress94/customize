@@ -59,7 +59,9 @@ dependencies:
   rename: ^2.0.1
   toggle_switch: ^2.0.1
   all_validations_br: ^2.3.0
-  
+  flutter_native_timezone: ^2.0.0
+  flutter_local_notifications: ^9.9.1
+  timezone: ^0.8.0
 
 dev_dependencies:
   flutter_test:
