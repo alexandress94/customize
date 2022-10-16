@@ -1,3 +1,4 @@
+import 'package:customize/core/services/local_notification/local_notification_service.dart';
 import 'package:get/get.dart';
 import 'package:customize/core/services/log/log.dart';
 import 'package:customize/core/services/log/log_implementation.dart';
@@ -17,6 +18,11 @@ class InitialBindings implements Bindings {
   void dependencies() {
     Get.putAsync<Log>(
       () => LogImplemetation().getInstance(),
+      permanent: true,
+    );
+
+    Get.put<LocalNotificationService>(
+      LocalNotificationService(),
       permanent: true,
     );
 
