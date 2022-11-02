@@ -31,13 +31,22 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              width: 135.w,
+              height: 5.67.h,
+              decoration: BoxDecoration(
+                color: Get.isDarkMode
+                    ? AppDarkColors.appPrimeryOnboardingColor
+                    : AppLightColors.appSecondaryColor,
+                borderRadius: BorderRadius.all(Radius.circular(100.0)),
+              ),
+            ),
+          ),
+          const SizedBox(height: 25.33),
           Row(
             children: [
-              Text(
-                'Detalhes: ',
-                style: Get.textTheme.headline6,
-              ),
-              const Spacer(),
               TextButton.icon(
                 onPressed: () {
                   Get.back();
@@ -53,7 +62,7 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
                 icon: const Icon(Icons.create),
                 label: const Text('Editar'),
               ),
-              const SizedBox(width: appDefaultPadding),
+              const Spacer(),
               TextButton.icon(
                 onPressed: expense.isPortion == 1
                     ? () {
@@ -321,6 +330,9 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
     required ExpenseEntity expense,
   }) {
     showModalBottomSheet(
+      barrierColor: Get.isDarkMode
+          ? AppDarkColors.appPrimeryOnboardingColor.withOpacity(0.5)
+          : AppLightColors.appSecondaryColor.withOpacity(0.5),
       isScrollControlled: true,
       isDismissible: false,
       backgroundColor: Get.theme.scaffoldBackgroundColor,
@@ -342,6 +354,10 @@ class ModalBottomSheetDatailsWidget extends GetView<GetAllExpenseController> {
     required ExpenseEntity expense,
   }) {
     showModalBottomSheet(
+      elevation: 2.0,
+      barrierColor: Get.isDarkMode
+          ? AppDarkColors.appPrimeryOnboardingColor.withOpacity(0.5)
+          : AppLightColors.appSecondaryColor.withOpacity(0.5),
       isScrollControlled: true,
       isDismissible: false,
       backgroundColor: Get.theme.scaffoldBackgroundColor,

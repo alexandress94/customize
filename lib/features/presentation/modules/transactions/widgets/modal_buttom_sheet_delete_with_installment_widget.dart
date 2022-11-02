@@ -32,6 +32,20 @@ class ModalButtomSheetDeleteWithInstallmentWidget
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: 135.w,
+                height: 5.67.h,
+                decoration: BoxDecoration(
+                  color: Get.isDarkMode
+                      ? AppDarkColors.appPrimeryOnboardingColor
+                      : AppLightColors.appSecondaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                ),
+              ),
+            ),
+            const SizedBox(height: 25.33),
             Text(
               'Deseja remover está despesa?',
               style: Theme.of(context).textTheme.headline6?.copyWith(

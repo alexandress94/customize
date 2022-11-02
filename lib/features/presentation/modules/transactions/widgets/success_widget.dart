@@ -136,6 +136,9 @@ class SuccessWidget extends GetView<GetAllExpenseController> {
     required ExpenseEntity expense,
   }) {
     showModalBottomSheet(
+      barrierColor: Get.isDarkMode
+          ? AppDarkColors.appPrimeryOnboardingColor.withOpacity(0.5)
+          : AppLightColors.appSecondaryColor.withOpacity(0.5),
       isScrollControlled: true,
       isDismissible: false,
       backgroundColor: Get.theme.scaffoldBackgroundColor,
