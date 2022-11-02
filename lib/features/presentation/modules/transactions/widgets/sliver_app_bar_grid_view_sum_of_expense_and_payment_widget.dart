@@ -62,7 +62,7 @@ class SliverAppBarGridViewSumOfExpenseAndPaymentWidget
                         SizedBox(height: 15.0.h),
                         Text(
                           'Despesa com pagamento',
-                          textAlign: TextAlign.left,
+                          textAlign: TextAlign.justify,
                           style:
                               Theme.of(context).textTheme.bodyText1?.copyWith(
                                     letterSpacing: 1.5,
@@ -125,7 +125,7 @@ class SliverAppBarGridViewSumOfExpenseAndPaymentWidget
                         SizedBox(height: 15.0.h),
                         Text(
                           'Despesa sem pagamento',
-                          textAlign: TextAlign.left,
+                          textAlign: TextAlign.justify,
                           style:
                               Theme.of(context).textTheme.bodyText1?.copyWith(
                                     letterSpacing: 1.5,
