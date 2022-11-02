@@ -48,19 +48,20 @@ class DeleteExpenseController extends GetxController
   }
 
   Future<void> deleteExpense(ExpenseDto expense) async {
-    await _notificationService.cancelNotifications(expense.id!);
-
     switch (remove.value) {
       case Delete.delete_one:
         await delete(expense.id!);
+        await _notificationService.cancelNotifications(expense.id!);
         remove.value = Delete.delete_one;
         break;
       case Delete.delete_between:
         await deleteBetween(expense);
+        await _notificationService.cancelNotifications(expense.id!);
         remove.value = Delete.delete_one;
         break;
       case Delete.delete_all:
-        deleteAll(expense.uuId);
+        await deleteAll(expense.uuId);
+        await _notificationService.cancelNotifications(expense.id!);
         remove.value = Delete.delete_one;
         break;
     }
