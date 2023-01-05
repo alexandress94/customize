@@ -194,14 +194,14 @@ class ModalButtomSheetDeleteWithInstallmentWidget
                       icon: Icons.delete_outline,
                       color: appNormalDangerColor,
                       title: 'Remover',
-                      onTap: () {
-                        controller.deleteExpenseController.deleteExpense(
+                      onTap: () async {
+                        // Fecha o alert dialog
+                        Get.back();
+                        await controller.deleteExpenseController.deleteExpense(
                           ExpenseDto.fromEntity(entity: expense),
                         );
                         // controller.deleteExpenseController.delete(expense.id!);
                         controller.find();
-                        // Fecha o alert dialog
-                        Get.back();
                         // fecha o modal bottom sheet.
                         // Get.back();
                       },

@@ -62,27 +62,6 @@ class TransactionsPage extends GetView<GetAllExpenseController> {
               ),
             ),
           ),
-          // floatingActionButton: Visibility(
-          //   visible: controller.isFabVisible.value,
-          //   child: FloatingActionButton.extended(
-          //     onPressed: () {
-          //       Get.toNamed(
-          //         Routes.EXPANSE_PAGE,
-          //         arguments: {
-          //           "title-page": "Cadastrar despesa",
-          //           "visibility": true,
-          //         },
-          //       );
-          //     },
-          //     label: Row(
-          //       children: [
-          //         const Text('Adicionar'),
-          //         SizedBox(width: 10.0.h),
-          //         const Icon(Icons.add),
-          //       ],
-          //     ),
-          //   ),
-          // ),
         ),
       ),
     );
