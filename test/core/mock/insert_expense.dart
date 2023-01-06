@@ -2,7 +2,7 @@ import 'package:customize/core/values/format/format_date.dart';
 
 import 'filter_date.dart';
 
-Map<String, dynamic> tInsertExpense = {
+Map<String, dynamic> tInsertExpenseParameter = {
   'uuId': '5792f0fc-8a27-4cc0-8848-12f6089f1b2f',
   'ds_transaction': 'conta de agua',
   'vl_transaction': 150.0,
