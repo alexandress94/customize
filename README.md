@@ -6,92 +6,77 @@ filtrar entre as parcelas separadas por um filtro mensal e até fazer pagamentos
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/alexandress94/customize/blob/master/LICENCE) 
 
-## 🚀 Começando
+## 📄 Screenshot
 
-Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 
-Consulte **[Implantação](#-implanta%C3%A7%C3%A3o)** para saber como implantar o projeto.
+Onboard                    |  Tela principal 
+:-------------------------:|:-------------------------:
+<img src="https://github.com/alexandress94/customize/blob/master/assets/screenshot/1.png" width="200" height="400">  |  <img src="https://github.com/alexandress94/customize/blob/master/assets/screenshot/3.png" width="200" height="400">
+Inserir nova despesa            | Confirmar pagamento 
+<img src="https://github.com/alexandress94/customize/blob/master/assets/screenshot/4.png" width="200" height="400">  |  <img src="https://github.com/alexandress94/customize/blob/master/assets/screenshot/5.png" width="200" height="400">
+Configurações             |  Tema dark
+<img src="https://github.com/alexandress94/customize/blob/master/assets/screenshot/6.png" width="200" height="400">  |  <img src="https://github.com/alexandress94/customize/blob/master/assets/screenshot/7.png" width="200" height="400">
 
-### 📋 Pré-requisitos
 
-De que coisas você precisa para instalar o software e como instalá-lo?
+## 🛠️ O que foi usado para desenvolver o projeto
 
-```
-Dar exemplos
-```
+- Framework: Flutter/Dart;
+- Pacotes: GetX, Either, Sqlite, Logger, GetStorage, All Validations BR, URL Launcher;
+- Padrão de projeto: Arquitetura limpa;
+- Teste unitário.
 
-### 🔧 Instalação
+## 📋 Pré-requisitos
 
-Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
+De que coisas você precisa para testar o app e como executá-lo?
 
-Diga como essa etapa será:
+- <a href="https://docs.flutter.dev/get-started/install" target="_blank">Download do flutter</a>
 
-```
-Dar exemplos
-```
+Faça download de alguma IDE de sua preferência:
 
-E repita:
+- <a href="https://code.visualstudio.com/?wt.mc_id=vscom_downloads" target="_blank">Download do VS Code</a>
+<br> ou 
+- <a href="https://developer.android.com/studio" target="_blank">Download do Android Studio</a>
 
-```
-Até finalizar
-```
 
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
+## 🔧 Como rodar o projeto
 
-## ⚙️ Executando os testes
+Clonar o projeto em uma estrutura de pasta de sua preferência
 
-Explicar como executar os testes automatizados para este sistema.
-
-### 🔩 Analise os testes de ponta a ponta
-
-Explique que eles verificam esses testes e porquê.
+HTTPS:
 
 ```
-Dar exemplos
+https://github.com/alexandress94/customize.git
 ```
 
-### ⌨️ E testes de estilo de codificação
-
-Explique que eles verificam esses testes e porquê.
+SSH:
 
 ```
-Dar exemplos
+git@github.com:alexandress94/customize.git
 ```
 
-## 📦 Implantação
+GitHub CLI:
 
-Adicione notas adicionais sobre como implantar isso em um sistema ativo
+```
+gh repo clone alexandress94/customize
+```
 
-## 🛠️ Construído com
+<br>
 
-Mencione as ferramentas que você usou para criar seu projeto
+Rode o comando no terminal da sua IDE para executar o projeto
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - O framework web usado
-* [Maven](https://maven.apache.org/) - Gerente de Dependência
-* [ROME](https://rometools.github.io/rome/) - Usada para gerar RSS
+```
+flutter clean
+```
 
-## 🖇️ Colaborando
+```
+flutter pub get
+```
 
-Por favor, leia o [COLABORACAO.md](https://gist.github.com/usuario/linkParaInfoSobreContribuicoes) para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.
+```
+flutter run
+```
 
-## 📌 Versão
-
-Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto). 
-
-## ✒️ Autores
-
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
-
-* **Um desenvolvedor** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
-* **Fulano De Tal** - *Documentação* - [fulanodetal](https://github.com/linkParaPerfil)
-
-Você também pode ver a lista de todos os [colaboradores](https://github.com/usuario/projeto/colaboradores) que participaram deste projeto.
-
-## 📄 Licença
-
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
-
-## 🎁 Expressões de gratidão
+## 🎁 Como testar o app?
 
 * Conte a outras pessoas sobre este projeto 📢;
 * Convide alguém da equipe para uma cerveja 🍺;
@@ -100,4 +85,4 @@ Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](h
 
 
 ---
-⌨️ com ❤️ por [Armstrong Lohãns](https://gist.github.com/lohhans) 😊
+⌨️ com ❤️ por [Alexandre Sobral Santos](https://github.com/alexandress94) 😊
