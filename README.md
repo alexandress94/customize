@@ -78,10 +78,11 @@ flutter run
 
 ## 🎁 Como testar o app?
 
-* Conte a outras pessoas sobre este projeto 📢;
-* Convide alguém da equipe para uma cerveja 🍺;
-* Um agradecimento publicamente 🫂;
-* etc.
+- <a href="https://mega.nz/file/tPglHKTL#D_e6wM-FyT84ApEx4k3x8H6LWK3QAYTmOrMU255SQYg" target="_blank">Download pelo Mega</a>
+<br> ou 
+- <a href="https://drive.google.com/file/d/1QBQt3GDt7cMfjQMtqKRwa4eFMoeUjYDl/view?usp=share_link" target="_blank">Download pelo Drive</a>
+
+
 
 
 ---
