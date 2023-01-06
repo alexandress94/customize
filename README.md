@@ -27,7 +27,7 @@ Configurações             |  Tema dark
 
 ## 📋 Pré-requisitos
 
-De que coisas você precisa para testar o app e como executá-lo?
+O que é necessário para rodar o app?
 
 - <a href="https://docs.flutter.dev/get-started/install" target="_blank">Download do flutter</a>
 
