@@ -20,37 +20,40 @@ void main() {
     sut = InsertExpenseUsecase(repository: repository);
   });
 
-  group('Test get all expense usecase:', () {
+  group('Test insert expense usecase:', () {
     test('Should be return success when the result for a right', () async {
-      when(() => repository.insertExpense(expense: tInsertExpense)).thenAnswer(
+      when(() => repository.insertExpense(expense: tInsertExpenseParameter))
+          .thenAnswer(
         (_) async => Right<Exception, int>(tExpenseId),
       );
 
       final result = await sut.call(
-        ParameterInsertExpense(expenses: tInsertExpense),
+        ParameterInsertExpense(expenses: tInsertExpenseParameter),
       );
 
       expect(result.isRight, true);
     });
     test('Should be return success when the result for a id', () async {
-      when(() => repository.insertExpense(expense: tInsertExpense)).thenAnswer(
+      when(() => repository.insertExpense(expense: tInsertExpenseParameter))
+          .thenAnswer(
         (_) async => Right<Exception, int>(tExpenseId),
       );
 
       final result = await sut(
-        ParameterInsertExpense(expenses: tInsertExpense),
+        ParameterInsertExpense(expenses: tInsertExpenseParameter),
       );
 
       expect(result.right, tExpenseId);
     });
 
     test('Should be return failure when the result for a left', () async {
-      when(() => repository.insertExpense(expense: tInsertExpense)).thenAnswer(
+      when(() => repository.insertExpense(expense: tInsertExpenseParameter))
+          .thenAnswer(
         (_) async => Left<Exception, int>(UsecaseException.invalidInput()),
       );
 
       final result = await sut(
-        ParameterInsertExpense(expenses: tInsertExpense),
+        ParameterInsertExpense(expenses: tInsertExpenseParameter),
       );
 
       expect(result.isLeft, true);
