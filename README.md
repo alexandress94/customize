@@ -22,7 +22,7 @@ Configurações             |  Tema dark
 
 - Framework: Flutter/Dart;
 - Pacotes: GetX, Either, Sqlite, Logger, GetStorage, All Validations BR, URL Launcher;
-- Padrão de projeto: Arquitetura limpa;
+- Padrão de projeto: Arquitetura limpa, código limpo, S.O.L.I.D;
 - Teste unitário.
 
 ## 📋 Pré-requisitos
