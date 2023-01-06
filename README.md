@@ -1,7 +1,8 @@
 # Customize
 
 Este projeto foi inicialmente criado para resolver um problema pessoal, onde fosse possível organizar
-as despesas pessoais em um único app
+as despesas pessoais em um único app. Neste aplicativo é possível fazer lançamentos de despesas com parcelas,
+filtrar entre as parcelas separadas por um filtro mensal e até fazer pagamentos das parcelas cadastradas.
 
 ## 🚀 Começando
 
