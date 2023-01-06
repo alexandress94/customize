@@ -4,6 +4,8 @@ Este projeto foi inicialmente criado para resolver um problema pessoal, onde fos
 as despesas pessoais em um único app. Neste aplicativo é possível fazer lançamentos de despesas com parcelas,
 filtrar entre as parcelas separadas por um filtro mensal e até fazer pagamentos das parcelas cadastradas.
 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/alexandress94/customize/blob/master/LICENCE) 
+
 ## 🚀 Começando
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
