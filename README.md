@@ -82,8 +82,3 @@ flutter run
 <br> ou 
 - <a href="https://drive.google.com/file/d/1QBQt3GDt7cMfjQMtqKRwa4eFMoeUjYDl/view?usp=share_link" target="_blank">Download pelo Drive</a>
 
-
-
-
----
-⌨️ com ❤️ por [Alexandre Sobral Santos](https://github.com/alexandress94) 😊
