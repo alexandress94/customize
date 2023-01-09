@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:customize/core/services/bindings/initial_bindings.dart';
-import 'package:customize/features/presentation/routes/routes.dart';
 import 'core/services/service_controller/theme_service_controller.dart';
+import 'package:customize/features/presentation/routes/routes.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'features/presentation/routes/app_pages.dart';
 import 'features/presentation/theme/app_theme.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() async {
   await GetStorage.init();
@@ -20,15 +20,15 @@ void main() async {
       splitScreenMode: true,
       builder: (_) => GetMaterialApp(
         title: 'Customize',
-        locale: const Locale('pt', 'BR'),
-        supportedLocales: const [
-          Locale('en', 'US'),
-          Locale('pt', 'BR'),
-        ],
-        localizationsDelegates: [
+        localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
+        supportedLocales: const [
+          Locale('pt', 'BR'),
+        ],
+        locale: const Locale('pt', 'BR'),
         initialRoute: Routes.INITIAL_PAGE,
         getPages: AppPages.routes,
         initialBinding: InitialBindings(),
