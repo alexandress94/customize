@@ -1,4 +1,5 @@
 import 'package:customize/core/services/bindings/initial_bindings.dart';
+import 'package:flutter/rendering.dart';
 import 'core/services/service_controller/theme_service_controller.dart';
 import 'package:customize/features/presentation/routes/routes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -12,6 +13,7 @@ import 'package:get/get.dart';
 void main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
+  RendererBinding.instance.setSemanticsEnabled(true);
 
   return runApp(
     ScreenUtilInit(
