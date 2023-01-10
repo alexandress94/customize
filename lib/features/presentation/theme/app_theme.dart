@@ -56,7 +56,9 @@ class AppTheme {
       // custom background color
       fillColor: AppDarkColors.appSecondaryBackgroundColor,
       filled: true,
-
+      hintStyle: const TextStyle(
+        color: AppLightColors.appHintColor,
+      ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide:
