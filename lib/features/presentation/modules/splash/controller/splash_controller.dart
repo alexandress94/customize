@@ -20,7 +20,7 @@ class SplashController extends GetxController {
   @override
   void onReady() async {
     Future.delayed(
-      Duration(seconds: 3),
+      Duration(milliseconds: 800),
       () async {
         if (await _storage.read(Keys.DISPLAY_ONBOARDING) ?? true) {
           return Get.offAllNamed(Routes.ONBOARDING_PAGE);
