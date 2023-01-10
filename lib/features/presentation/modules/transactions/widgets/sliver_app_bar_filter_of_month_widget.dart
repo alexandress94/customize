@@ -16,7 +16,7 @@ class SliverAppBarFilterOfMonthWidget extends GetView<GetAllExpenseController> {
           : AppLightColors.appBarBackgroundColor,
       automaticallyImplyLeading: false,
       primary: false,
-      toolbarHeight: 85.0.h,
+      toolbarHeight: 100.0.h,
       elevation: 0,
       centerTitle: true,
       pinned: false,
@@ -37,10 +37,7 @@ class SliverAppBarFilterOfMonthWidget extends GetView<GetAllExpenseController> {
                       controller.backFilter();
                       controller.find();
                     },
-                    child: const SizedBox(
-                      width: 30,
-                      child: Icon(Icons.arrow_back_ios),
-                    ),
+                    child: Icon(Icons.arrow_back_ios, size: 40),
                   ),
                   SizedBox(width: 15.0.h),
                   Obx(
@@ -57,10 +54,7 @@ class SliverAppBarFilterOfMonthWidget extends GetView<GetAllExpenseController> {
                       controller.nextFilter();
                       controller.find();
                     },
-                    child: const SizedBox(
-                      width: 30,
-                      child: Icon(Icons.arrow_forward_ios),
-                    ),
+                    child: Icon(Icons.arrow_forward_ios, size: 40),
                   )
                 ],
               ),
