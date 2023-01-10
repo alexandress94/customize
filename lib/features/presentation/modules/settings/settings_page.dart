@@ -228,12 +228,12 @@ class SettingsPage extends GetView<SettingsController> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '    Projeto realizado apenas por um desenvolvedor, com objetivo '
+                'Projeto realizado apenas por um desenvolvedor, com objetivo '
                 'de resolver um problema pessoal na organização das despesas e também '
                 'colocar os estudos em prática na área da programação. Como este projeto foi pensado '
                 'apenas para consumo próprio, resolvi disponibilizá-lo para que possa ajudar outras pessoas afim '
                 'de organizar suas despesas.',
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.justify,
               )
             ],
           ),
