@@ -22,7 +22,7 @@ class ToggleSwitchWidget extends GetView<InsertOrUpdateExpenseController> {
     return FittedBox(
       child: ToggleSwitch(
         minWidth: double.infinity.w,
-        minHeight: 50.0.h,
+        minHeight: 58.0,
         initialLabelIndex: 0,
         cornerRadius: 20.0,
         activeFgColor: Colors.white,
